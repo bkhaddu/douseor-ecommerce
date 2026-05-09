@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Shop All - DOUSEOR</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+  tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        "colors": {
+                "surface-bright": "#faf9f5",
+                "on-secondary-fixed-variant": "#464747",
+                "on-secondary": "#ffffff",
+                "on-error": "#ffffff",
+                "surface-container": "#efeeea",
+                "on-surface-variant": "#444748",
+                "secondary-container": "#e0dfdf",
+                "surface-dim": "#dbdad6",
+                "tertiary": "#000000",
+                "primary": "#000000",
+                "outline": "#747878",
+                "background": "#faf9f5",
+                "tertiary-container": "#1d1b1a",
+                "surface-container-high": "#e9e8e4",
+                "tertiary-fixed": "#e6e1df",
+                "error": "#ba1a1a",
+                "surface-container-lowest": "#ffffff",
+                "secondary": "#5e5e5e",
+                "secondary-fixed": "#e3e2e2",
+                "on-primary": "#ffffff",
+                "on-tertiary": "#ffffff",
+                "inverse-surface": "#30312e",
+                "on-primary-container": "#858383",
+                "inverse-primary": "#c9c6c5",
+                "primary-fixed-dim": "#c9c6c5",
+                "outline-variant": "#c4c7c7",
+                "on-tertiary-fixed": "#1d1b1a",
+                "on-primary-fixed-variant": "#474646",
+                "surface-tint": "#5f5e5e",
+                "surface": "#faf9f5",
+                "error-container": "#ffdad6",
+                "on-tertiary-container": "#868381",
+                "tertiary-fixed-dim": "#cac6c3",
+                "surface-container-highest": "#e3e2df",
+                "surface-variant": "#e3e2df",
+                "secondary-fixed-dim": "#c7c6c6",
+                "on-surface": "#1b1c1a",
+                "on-secondary-fixed": "#1a1c1c",
+                "primary-fixed": "#e5e2e1",
+                "on-secondary-container": "#626363",
+                "on-background": "#1b1c1a",
+                "inverse-on-surface": "#f2f1ed",
+                "on-tertiary-fixed-variant": "#484645",
+                "primary-container": "#1c1b1b",
+                "surface-container-low": "#f5f4f0",
+                "on-primary-fixed": "#1c1b1b",
+                "on-error-container": "#93000a"
+        },
+        "borderRadius": {
+                "DEFAULT": "0.25rem",
+                "lg": "0.5rem",
+                "xl": "0.75rem",
+                "full": "9999px"
+        },
+        "spacing": {
+                "gutter": "1px",
+                "margin-desktop": "40px",
+                "navbar-height": "60px",
+                "base": "8px",
+                "margin-mobile": "16px"
+        },
+        "fontFamily": {
+                "headline-lg": [
+                        "Inter"
+                ],
+                "headline-md": [
+                        "Inter"
+                ],
+                "headline-xl": [
+                        "Inter"
+                ],
+                "label-caption": [
+                        "Inter"
+                ],
+                "headline-xl-mobile": [
+                        "Inter"
+                ],
+                "body": [
+                        "Inter"
+                ]
+        },
+        "fontSize": {
+                "headline-lg": [
+                        "32px",
+                        {
+                                "lineHeight": "1.2",
+                                "letterSpacing": "-0.02em",
+                                "fontWeight": "400"
+                        }
+                ],
+                "headline-md": [
+                        "16px",
+                        {
+                                "lineHeight": "1.2",
+                                "letterSpacing": "0.02em",
+                                "fontWeight": "500"
+                        }
+                ],
+                "headline-xl": [
+                        "72px",
+                        {
+                                "lineHeight": "1.1",
+                                "letterSpacing": "-0.04em",
+                                "fontWeight": "300"
+                        }
+                ],
+                "label-caption": [
+                        "11px",
+                        {
+                                "lineHeight": "1.4",
+                                "letterSpacing": "0.08em",
+                                "fontWeight": "400"
+                        }
+                ],
+                "headline-xl-mobile": [
+                        "42px",
+                        {
+                                "lineHeight": "1.1",
+                                "letterSpacing": "-0.04em",
+                                "fontWeight": "300"
+                        }
+                ],
+                "body": [
+                        "13px",
+                        {
+                                "lineHeight": "1.7",
+                                "letterSpacing": "0.01em",
+                                "fontWeight": "400"
+                        }
+                ]
+        }
+},
+    },
+  }
+</script>
+<style>
+  body {
+    background-color: #F5F4F0;
+  }
+  .aspect-4-5 {
+    aspect-ratio: 4 / 5;
+  }
+</style>
+</head>
+<body class="font-body text-on-surface antialiased min-h-screen flex flex-col pt-[60px]">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full h-[60px] z-50 bg-surface-container-lowest dark:bg-primary-container border-b border-outline-variant transition-opacity duration-200">
+<div class="flex justify-between items-center px-margin-mobile md:px-margin-desktop w-full max-w-7xl mx-auto h-full">
+<button class="flex items-center hover:opacity-70 transition-opacity duration-200 active:scale-[0.98] transition-transform text-primary dark:text-primary-fixed">
+<span class="material-symbols-outlined">menu</span>
+</button>
+<div class="font-headline-lg text-headline-lg font-black tracking-tighter text-primary dark:text-primary-fixed">
+        DOUSEOR
+      </div>
+<button class="flex items-center hover:opacity-70 transition-opacity duration-200 active:scale-[0.98] transition-transform text-primary dark:text-primary-fixed">
+<span class="material-symbols-outlined">shopping_bag</span>
+</button>
+</div>
+</header>
+<!-- Main Content -->
+<main class="flex-grow w-full max-w-7xl mx-auto px-margin-mobile md:px-margin-desktop py-16">
+<!-- Page Header -->
+<div class="mb-12 flex justify-between items-end border-b border-outline-variant pb-4">
+<h1 class="font-headline-xl text-headline-xl uppercase">SHOP ALL</h1>
+<span class="font-label-caption text-label-caption text-on-surface-variant">248 ITEMS</span>
+</div>
+<!-- Sticky Filter Bar -->
+<div class="sticky top-[60px] z-40 bg-[#F5F4F0] py-4 mb-12 border-b border-outline-variant flex justify-between items-center">
+<div class="flex gap-8">
+<button class="font-label-caption text-label-caption flex items-center gap-1 uppercase hover:opacity-70 transition-opacity">
+          CATEGORY <span class="material-symbols-outlined text-[14px]">expand_more</span>
+</button>
+<button class="font-label-caption text-label-caption flex items-center gap-1 uppercase hover:opacity-70 transition-opacity">
+          SIZE <span class="material-symbols-outlined text-[14px]">expand_more</span>
+</button>
+<button class="font-label-caption text-label-caption flex items-center gap-1 uppercase hover:opacity-70 transition-opacity">
+          COLOR <span class="material-symbols-outlined text-[14px]">expand_more</span>
+</button>
+</div>
+<button class="font-label-caption text-label-caption flex items-center gap-1 uppercase hover:opacity-70 transition-opacity">
+        SORT BY <span class="material-symbols-outlined text-[14px]">sort</span>
+</button>
+</div>
+<!-- Product Grid -->
+<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-x-px gap-y-12 bg-outline-variant border border-outline-variant">
+<!-- Product Card 1 -->
+<div class="bg-surface-container-lowest flex flex-col group cursor-pointer">
+<div class="w-full aspect-4-5 relative overflow-hidden bg-surface-container">
+<img alt="A high-fashion editorial shot of an oversized architectural coat in deep black, worn by a model in a stark, minimalist concrete setting. The lighting is harsh and directional, creating stark shadows that emphasize the sharp tailoring and structural volume of the garment. The overall mood is cold, severe, and strictly avant-garde, adhering to a stark black and white aesthetic with rigid geometric compositions." class="w-full h-full object-cover grayscale group-hover:scale-105 transition-transform duration-500 ease-out" data-alt="A high-fashion editorial shot of an oversized architectural coat in deep black, worn by a model in a stark, minimalist concrete setting. The lighting is harsh and directional, creating stark shadows that emphasize the sharp tailoring and structural volume of the garment. The overall mood is cold, severe, and strictly avant-garde, adhering to a stark black and white aesthetic with rigid geometric compositions." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAykDTnH-EYmPlAgJiM14TJCv29sj6-Ac_K1x75FmFzFlKFj9vZ6kdRpp1-hhPwlcAtWb5hlchvtu8CzqUS5f6XcQnrk9K7E4ngfWQNKL998aFXnFh6YlJq0Ma2J5QmCytcIX_lM0emYXoYzVcCEj0xQXQoemFQRONWxuRKT8teom7CXOUvc-WFywKJdtmnnL6jJdtMw1SYTQOO-SRCv5ZFoOOWTZGbDpHybidxI9LC0_aApa5d3-27zDlqRA7U6wmW1mSK0R9tUdo"/>
+</div>
+<div class="p-4 flex flex-col gap-1 border-t border-outline-variant">
+<div class="flex justify-between items-start">
+<h3 class="font-label-caption text-label-caption uppercase tracking-widest text-primary">STRUCTURAL COAT</h3>
+<span class="font-label-caption text-label-caption text-primary">$890</span>
+</div>
+<span class="font-label-caption text-label-caption text-on-surface-variant uppercase">OUTERWEAR</span>
+</div>
+</div>
+<!-- Product Card 2 -->
+<div class="bg-surface-container-lowest flex flex-col group cursor-pointer">
+<div class="w-full aspect-4-5 relative overflow-hidden bg-surface-container">
+<img alt="A close-up studio shot of a heavily textured, asymmetrical white button-down shirt. The fabric appears stiff and almost paper-like, showcasing brutalist fashion design principles. Shot against an off-white background with flat, diffuse lighting to highlight the fabric's raw grain. The aesthetic is extremely clinical, devoid of warmth, focusing purely on the garment's harsh geometry and severe construction." class="w-full h-full object-cover grayscale group-hover:scale-105 transition-transform duration-500 ease-out" data-alt="A close-up studio shot of a heavily textured, asymmetrical white button-down shirt. The fabric appears stiff and almost paper-like, showcasing brutalist fashion design principles. Shot against an off-white background with flat, diffuse lighting to highlight the fabric's raw grain. The aesthetic is extremely clinical, devoid of warmth, focusing purely on the garment's harsh geometry and severe construction." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDxaC3TGYZHvSEBnNJwg1lS7CNson4j5O6N4-hvv39PCvcg51Qcb1V2UhfZxl0AXaGonQWfEHhewVnIEJwDANDNlZjp8Floyc0owSRiW5fG0IL9kvnGAS7O3B5XbvO28IDklf1Hsy4JauBHnBYweCTFcaNR8JQnkVfqW0H2UmZkqNopHYfG3szn1O77ZvfgruQE66SPddhadP3rlNUZdW9mPGFOoxqyNPRlJQdPshaJdKqe82bW7eQovgFqlF7in8HveV9IlB5zV3M"/>
+</div>
+<div class="p-4 flex flex-col gap-1 border-t border-outline-variant">
+<div class="flex justify-between items-start">
+<h3 class="font-label-caption text-label-caption uppercase tracking-widest text-primary">ASYMMETRIC SHIRT</h3>
+<span class="font-label-caption text-label-caption text-primary">$450</span>
+</div>
+<span class="font-label-caption text-label-caption text-on-surface-variant uppercase">SHIRTING</span>
+</div>
+</div>
+<!-- Product Card 3 -->
+<div class="bg-surface-container-lowest flex flex-col group cursor-pointer">
+<div class="w-full aspect-4-5 relative overflow-hidden bg-surface-container">
+<img alt="A stark product photograph of wide-leg, rigid black trousers draped over a brutalist steel chair. The environment is an empty, white gallery room flooded with natural light from a hidden skylight. The composition is highly structured and linear, emphasizing the sharp pleats and heavy drape of the trousers. The mood is silent, austere, and uncompromisingly modern." class="w-full h-full object-cover grayscale group-hover:scale-105 transition-transform duration-500 ease-out" data-alt="A stark product photograph of wide-leg, rigid black trousers draped over a brutalist steel chair. The environment is an empty, white gallery room flooded with natural light from a hidden skylight. The composition is highly structured and linear, emphasizing the sharp pleats and heavy drape of the trousers. The mood is silent, austere, and uncompromisingly modern." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBxJGwo4tQyNSf5-3jORESnseHpA1Xirs9bpyl6bmg0Bbt3Wk5hSxlrbTOoOfeNdGswmKPAnWKodyvSUgdItAPVQsoWVEAo0PJm2GG7VgS3gpbkWGYm0qKXaDwGD46yRzTfL-bckInPy7-VJei-m6jdQ19Hk8FgkQvlYOdkuAa_cOKeTBLC2vviEOmZXdsmmWC3CTTh2EGxas9oxBtSpYupJJDcIOik_50T73sp5HBpEcZls9Ljl4ayswhV6lzROn3Nf5jjXlI_hpw"/>
+</div>
+<div class="p-4 flex flex-col gap-1 border-t border-outline-variant">
+<div class="flex justify-between items-start">
+<h3 class="font-label-caption text-label-caption uppercase tracking-widest text-primary">WIDE TROUSER</h3>
+<span class="font-label-caption text-label-caption text-primary">$520</span>
+</div>
+<span class="font-label-caption text-label-caption text-on-surface-variant uppercase">BOTTOMS</span>
+</div>
+</div>
+<!-- Product Card 4 -->
+<div class="bg-surface-container-lowest flex flex-col group cursor-pointer">
+<div class="w-full aspect-4-5 relative overflow-hidden bg-surface-container">
+<img alt="A minimalist product shot of a pair of brutalist leather boots with exaggerated, squared-off soles. The boots sit on a raw concrete plinth against a pale grey backdrop. The lighting is extremely sharp, casting graphic shadows that accentuate the heavy, utilitarian hardware and matte black leather. The overall image is cold, industrial, and distinctly avant-garde." class="w-full h-full object-cover grayscale group-hover:scale-105 transition-transform duration-500 ease-out" data-alt="A minimalist product shot of a pair of brutalist leather boots with exaggerated, squared-off soles. The boots sit on a raw concrete plinth against a pale grey backdrop. The lighting is extremely sharp, casting graphic shadows that accentuate the heavy, utilitarian hardware and matte black leather. The overall image is cold, industrial, and distinctly avant-garde." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDH3AXFTmx6hZguqW-Pp4b6uWSsw5KTm_c9T1MGLo19tpx2gURumWcfs1s5UWmB1tXl-0P6H08ciN6E7qDDkrMOGBBqIxfurFTzkTsiYwgsGkR77c88V4VoJRmwdJXgnLnZA-Czj2WNAgjDn0FPzlaoLS6qBsbVqcQmZokVMi_cDT6SFY95aztltXN3D962E_y2o-_nqtvxtBJnhPbCy1NsoHZWaWK4TvzU_20PBqc8RoSw5p62ZNFrxRZCDNincYZPPEYWoMAgQOw"/>
+</div>
+<div class="p-4 flex flex-col gap-1 border-t border-outline-variant">
+<div class="flex justify-between items-start">
+<h3 class="font-label-caption text-label-caption uppercase tracking-widest text-primary">SQUARE BOOT</h3>
+<span class="font-label-caption text-label-caption text-primary">$1,100</span>
+</div>
+<span class="font-label-caption text-label-caption text-on-surface-variant uppercase">FOOTWEAR</span>
+</div>
+</div>
+<!-- Product Card 5 -->
+<div class="bg-surface-container-lowest flex flex-col group cursor-pointer">
+<div class="w-full aspect-4-5 relative overflow-hidden bg-surface-container">
+<img alt="An abstract, cropped editorial image showing the collar and shoulder of a heavy knit sweater in dark charcoal. The texture is coarse and irregular, reflecting a wabi-sabi yet severe aesthetic. Shot in a sterile environment with flat, cold lighting that strips away any sense of warmth. The focus is entirely on the structural weave and the unyielding silhouette against a stark white background." class="w-full h-full object-cover grayscale group-hover:scale-105 transition-transform duration-500 ease-out" data-alt="An abstract, cropped editorial image showing the collar and shoulder of a heavy knit sweater in dark charcoal. The texture is coarse and irregular, reflecting a wabi-sabi yet severe aesthetic. Shot in a sterile environment with flat, cold lighting that strips away any sense of warmth. The focus is entirely on the structural weave and the unyielding silhouette against a stark white background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC0_6j8AOqutq5g8YRZLzttxcntkkaGk19y6l_OVbtBsUMJEn397lNs9PU-hzLmPDXUtKmeWJZ7PV0DbSwpHMNcQ2rCRox4Rca55ufhIuM302xaYUpg6o1g9g7zxylmUdXSb2XAd5_V9gUG-CV5xQ5ARRJJyFlrkAPXZbnasAAwIB5mrM2wmigOVOAVYcYmH6zfswDw_AxL9L8Iba_qWlnEfFquIShsLfBGjYE3ShLPETUaZILdDzi7Uh0z0Ewvrrh_LoeKia3ahEQ"/>
+</div>
+<div class="p-4 flex flex-col gap-1 border-t border-outline-variant">
+<div class="flex justify-between items-start">
+<h3 class="font-label-caption text-label-caption uppercase tracking-widest text-primary">HEAVY KNIT</h3>
+<span class="font-label-caption text-label-caption text-primary">$680</span>
+</div>
+<span class="font-label-caption text-label-caption text-on-surface-variant uppercase">KNITWEAR</span>
+</div>
+</div>
+<!-- Product Card 6 -->
+<div class="bg-surface-container-lowest flex flex-col group cursor-pointer">
+<div class="w-full aspect-4-5 relative overflow-hidden bg-surface-container">
+<img alt="A fashion photograph of a severe, floor-length slip dress in a matte black fabric, hung on a thin wire hanger against a bare plaster wall. The dress is totally devoid of embellishment, relying entirely on clean, knife-edge seams. The lighting is low and moody, emphasizing the brutalist minimalism of the garment. The aesthetic is somber, restrained, and highly disciplined." class="w-full h-full object-cover grayscale group-hover:scale-105 transition-transform duration-500 ease-out" data-alt="A fashion photograph of a severe, floor-length slip dress in a matte black fabric, hung on a thin wire hanger against a bare plaster wall. The dress is totally devoid of embellishment, relying entirely on clean, knife-edge seams. The lighting is low and moody, emphasizing the brutalist minimalism of the garment. The aesthetic is somber, restrained, and highly disciplined." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAu_VxljTM_74Dsr6WHDBaMrtickc-L9NctaGOujBXr2q9-hP_va7uwXwiAT1VahEgvskLWymy2Zj0Q1meUEQD5FSEunf2Itm4wJJzBCsHU303E1pt0rZRQkHJIHPfphTyESPjxh8nUu61n_m7yXujxUH6h6zZwN8Aii6hUy1JZ4Ndmos1-R3KTu3U7vCM2A18KVF85Qj_crOAqiP_Tg0EnSQPf2TapI33tejsc3tBVPK11kS71WU1H1ZhTwhXaTF_kaEYyE2CaPLw"/>
+</div>
+<div class="p-4 flex flex-col gap-1 border-t border-outline-variant">
+<div class="flex justify-between items-start">
+<h3 class="font-label-caption text-label-caption uppercase tracking-widest text-primary">COLUMN DRESS</h3>
+<span class="font-label-caption text-label-caption text-primary">$950</span>
+</div>
+<span class="font-label-caption text-label-caption text-on-surface-variant uppercase">DRESSES</span>
+</div>
+</div>
+<!-- Product Card 7 -->
+<div class="bg-surface-container-lowest flex flex-col group cursor-pointer">
+<div class="w-full aspect-4-5 relative overflow-hidden bg-surface-container">
+<img alt="A still-life shot of a minimalist, boxy leather handbag resting on a slab of polished steel. The bag features sharp right angles, zero visible stitching, and a matte black finish. The environment is dark and industrial, illuminated by a single, sharp spotlight that reflects off the metallic surface. The image exudes a cold, impenetrable luxury style." class="w-full h-full object-cover grayscale group-hover:scale-105 transition-transform duration-500 ease-out" data-alt="A still-life shot of a minimalist, boxy leather handbag resting on a slab of polished steel. The bag features sharp right angles, zero visible stitching, and a matte black finish. The environment is dark and industrial, illuminated by a single, sharp spotlight that reflects off the metallic surface. The image exudes a cold, impenetrable luxury style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBDUCKBE3CvlK_TpfGW8AS9DlN2xcCpXIOpHU2SJ-yZLjAJBqtLizGrb6ipcmnT19ih6EB8sCoPk_ghU3VViz311ovKI2Q85qfRR1EBBdXIOpQWI6UaZqeQFbD2f0GQhS4tSkKUpA4DXxiBcXSmwPWbEKTm9IhI-EMkoxNPUR2ZC231QSUKZ29g5DySuSPJt_0T27tIidyQAlx3zfnVgD-b22Z6EHO2ZWIjvorhoWNtWnAap5F5CdIcNMK4dXQ15z07iCDm7dfV6Ko"/>
+</div>
+<div class="p-4 flex flex-col gap-1 border-t border-outline-variant">
+<div class="flex justify-between items-start">
+<h3 class="font-label-caption text-label-caption uppercase tracking-widest text-primary">BOX BAG</h3>
+<span class="font-label-caption text-label-caption text-primary">$1,200</span>
+</div>
+<span class="font-label-caption text-label-caption text-on-surface-variant uppercase">ACCESSORIES</span>
+</div>
+</div>
+<!-- Product Card 8 -->
+<div class="bg-surface-container-lowest flex flex-col group cursor-pointer">
+<div class="w-full aspect-4-5 relative overflow-hidden bg-surface-container">
+<img alt="An editorial shot of an oversized blazer in a stark, flat grey fabric. The garment is modeled against an expansive, empty white cyc wall. The shoulders are dramatically exaggerated, and the cut is unyielding and masculine. The lighting is high-key and shadowless, creating a clinical, hyper-modern atmosphere that perfectly aligns with a brutalist fashion aesthetic." class="w-full h-full object-cover grayscale group-hover:scale-105 transition-transform duration-500 ease-out" data-alt="An editorial shot of an oversized blazer in a stark, flat grey fabric. The garment is modeled against an expansive, empty white cyc wall. The shoulders are dramatically exaggerated, and the cut is unyielding and masculine. The lighting is high-key and shadowless, creating a clinical, hyper-modern atmosphere that perfectly aligns with a brutalist fashion aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAyEvpJaKB5Tpx3Wr4-oQeOhu60Ck-j_rqBwm4wCj9Z_TnNzpog2IloJWkLvlR7z9koIJNJIa2ehOpzc7AMieoFLr802QGjIU3BKGkFCNPdyivr_F1J3HFxNWTuuhyuF2G-mnGG2-ZcN8uW3nLUT6ZyMoDuXYXIetPS3F5qz1HkXR9RpmiW-hXs6LCvv1bg2ZXo9X4eUVNrucjca1H0ixW7p0vWg3EnIEzKxkXyN3sHBjPoS8pBpJxoUozxCx8BoMjygML5YqqRyIc"/>
+</div>
+<div class="p-4 flex flex-col gap-1 border-t border-outline-variant">
+<div class="flex justify-between items-start">
+<h3 class="font-label-caption text-label-caption uppercase tracking-widest text-primary">OVERSIZED BLAZER</h3>
+<span class="font-label-caption text-label-caption text-primary">$1,050</span>
+</div>
+<span class="font-label-caption text-label-caption text-on-surface-variant uppercase">TAILORING</span>
+</div>
+</div>
+</div>
+<!-- Pagination -->
+<div class="mt-24 flex justify-center items-center gap-4">
+<button class="font-label-caption text-label-caption uppercase text-on-surface-variant hover:text-primary transition-colors flex items-center gap-1 opacity-50 cursor-not-allowed">
+<span class="material-symbols-outlined text-[14px]">chevron_left</span> PREV
+      </button>
+<div class="flex gap-4 font-label-caption text-label-caption">
+<span class="text-primary underline">1</span>
+<a class="text-on-surface-variant hover:text-primary transition-colors" href="#">2</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors" href="#">3</a>
+<span class="text-on-surface-variant">...</span>
+<a class="text-on-surface-variant hover:text-primary transition-colors" href="#">12</a>
+</div>
+<button class="font-label-caption text-label-caption uppercase text-on-surface-variant hover:text-primary transition-colors flex items-center gap-1">
+        NEXT <span class="material-symbols-outlined text-[14px]">chevron_right</span>
+</button>
+</div>
+</main>
+<!-- Footer -->
+<footer class="w-full bg-surface dark:bg-surface-container-high border-t border-outline-variant mt-24">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-base py-16 px-margin-mobile md:px-margin-desktop max-w-7xl mx-auto">
+<div class="font-headline-md text-headline-md font-bold text-primary dark:text-primary-fixed mb-8 md:mb-0">
+        DOUSEOR
+      </div>
+<div class="flex flex-col gap-4">
+<a class="font-label-caption text-label-caption uppercase tracking-widest text-primary dark:text-primary-fixed underline hover:opacity-70 transition-opacity" href="#">SHOP</a>
+<a class="font-label-caption text-label-caption uppercase tracking-widest text-on-surface-variant dark:text-on-surface-variant hover:text-primary dark:hover:text-primary-fixed transition-colors" href="#">ABOUT</a>
+</div>
+<div class="flex flex-col gap-4">
+<a class="font-label-caption text-label-caption uppercase tracking-widest text-on-surface-variant dark:text-on-surface-variant hover:text-primary dark:hover:text-primary-fixed transition-colors" href="#">CONTACT</a>
+<a class="font-label-caption text-label-caption uppercase tracking-widest text-on-surface-variant dark:text-on-surface-variant hover:text-primary dark:hover:text-primary-fixed transition-colors" href="#">NEWSLETTER</a>
+</div>
+<div class="flex flex-col gap-4 md:items-end">
+<a class="font-label-caption text-label-caption uppercase tracking-widest text-on-surface-variant dark:text-on-surface-variant hover:text-primary dark:hover:text-primary-fixed transition-colors" href="#">PRIVACY</a>
+<a class="font-label-caption text-label-caption uppercase tracking-widest text-on-surface-variant dark:text-on-surface-variant hover:text-primary dark:hover:text-primary-fixed transition-colors" href="#">TERMS</a>
+<div class="mt-8 font-label-caption text-label-caption uppercase tracking-widest text-on-surface-variant">
+          © 2024 DOUSEOR. ALL RIGHTS RESERVED.
+        </div>
+</div>
+</div>
+</footer>
+</body></html>

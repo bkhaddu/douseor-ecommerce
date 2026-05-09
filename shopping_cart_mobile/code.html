@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>DOUSEOR - Cart</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "on-error": "#ffffff",
+                      "tertiary-fixed": "#e6e1df",
+                      "surface-container-highest": "#e3e2df",
+                      "on-primary-container": "#858383",
+                      "primary-fixed": "#e5e2e1",
+                      "tertiary-container": "#1d1b1a",
+                      "surface-dim": "#dbdad6",
+                      "on-primary-fixed-variant": "#474646",
+                      "secondary-container": "#e0dfdf",
+                      "on-tertiary-fixed": "#1d1b1a",
+                      "surface-container-lowest": "#ffffff",
+                      "on-secondary": "#ffffff",
+                      "on-tertiary": "#ffffff",
+                      "on-surface": "#1b1c1a",
+                      "surface-tint": "#5f5e5e",
+                      "on-primary-fixed": "#1c1b1b",
+                      "error": "#ba1a1a",
+                      "secondary-fixed": "#e3e2e2",
+                      "background": "#faf9f5",
+                      "on-secondary-container": "#626363",
+                      "on-secondary-fixed-variant": "#464747",
+                      "secondary": "#5e5e5e",
+                      "inverse-on-surface": "#f2f1ed",
+                      "outline": "#747878",
+                      "surface-container-high": "#e9e8e4",
+                      "primary": "#000000",
+                      "on-background": "#1b1c1a",
+                      "surface": "#faf9f5",
+                      "outline-variant": "#c4c7c7",
+                      "on-error-container": "#93000a",
+                      "surface-container": "#efeeea",
+                      "secondary-fixed-dim": "#c7c6c6",
+                      "primary-fixed-dim": "#c9c6c5",
+                      "on-secondary-fixed": "#1a1c1c",
+                      "on-tertiary-fixed-variant": "#484645",
+                      "error-container": "#ffdad6",
+                      "surface-variant": "#e3e2df",
+                      "inverse-surface": "#30312e",
+                      "on-tertiary-container": "#868381",
+                      "on-surface-variant": "#444748",
+                      "inverse-primary": "#c9c6c5",
+                      "primary-container": "#1c1b1b",
+                      "surface-container-low": "#f5f4f0",
+                      "surface-bright": "#faf9f5",
+                      "tertiary-fixed-dim": "#cac6c3",
+                      "tertiary": "#000000",
+                      "on-primary": "#ffffff"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "base": "8px",
+                      "gutter": "1px",
+                      "navbar-height": "60px",
+                      "margin-mobile": "16px",
+                      "margin-desktop": "40px"
+              },
+              "fontFamily": {
+                      "headline-xl-mobile": ["Inter"],
+                      "body": ["Inter"],
+                      "headline-md": ["Inter"],
+                      "headline-lg": ["Inter"],
+                      "headline-xl": ["Inter"],
+                      "label-caption": ["Inter"]
+              },
+              "fontSize": {
+                      "headline-xl-mobile": ["42px", { "lineHeight": "1.1", "letterSpacing": "-0.04em", "fontWeight": "300" }],
+                      "body": ["13px", { "lineHeight": "1.7", "letterSpacing": "0.01em", "fontWeight": "400" }],
+                      "headline-md": ["16px", { "lineHeight": "1.2", "letterSpacing": "0.02em", "fontWeight": "500" }],
+                      "headline-lg": ["32px", { "lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "400" }],
+                      "headline-xl": ["72px", { "lineHeight": "1.1", "letterSpacing": "-0.04em", "fontWeight": "300" }],
+                      "label-caption": ["11px", { "lineHeight": "1.4", "letterSpacing": "0.08em", "fontWeight": "400" }]
+              }
+            }
+          }
+        }
+    </script>
+<style>
+        body {
+            background-color: #F5F4F0;
+            color: #0D0D0D;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        /* Overriding tailwind primary color for exact #0D0D0D requirement */
+        .text-custom-black { color: #0D0D0D; }
+        .bg-custom-black { background-color: #0D0D0D; }
+        .border-custom-black { border-color: #0D0D0D; }
+        .bg-custom-bg { background-color: #F5F4F0; }
+        .border-custom-divider { border-color: #E0DFDB; }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-custom-bg text-custom-black min-h-screen flex flex-col font-body antialiased">
+<!-- TopAppBar Navigation suppressed for transactional page (Cart), replaced with simple header -->
+<header class="fixed top-0 w-full h-navbar-height z-50 bg-custom-bg border-b border-custom-divider flex justify-between items-center px-margin-mobile md:px-margin-desktop max-w-7xl mx-auto">
+<button aria-label="Go back" class="p-2 -ml-2 text-custom-black hover:opacity-70 transition-opacity">
+<span class="material-symbols-outlined">arrow_back</span>
+</button>
+<span class="font-headline-md text-headline-md font-bold tracking-widest text-custom-black absolute left-1/2 -translate-x-1/2">DOUSEOR</span>
+<div class="w-10"></div> <!-- Spacer for centering -->
+</header>
+<!-- Main Content Canvas -->
+<main class="flex-grow pt-[80px] pb-[300px] px-margin-mobile md:px-margin-desktop max-w-7xl mx-auto w-full md:grid md:grid-cols-12 md:gap-x-gutter">
+<!-- Cart Header -->
+<div class="col-span-12 mb-8 md:mb-12">
+<h1 class="font-headline-lg text-headline-lg text-custom-black">CART (2)</h1>
+</div>
+<!-- Cart Items List -->
+<div class="col-span-12 md:col-span-8 flex flex-col border-t border-custom-divider">
+<!-- Item 1 -->
+<div class="py-6 flex gap-6 border-b border-custom-divider relative">
+<!-- Image Container 4:5 -->
+<div class="w-[100px] md:w-[140px] shrink-0 aspect-[4/5] bg-surface-container-lowest border border-custom-divider">
+<img alt="Oversized Structured Blazer" class="w-full h-full object-cover" data-alt="A minimalist high-end fashion photography shot of a structured, oversized black blazer hanging cleanly against a pure white studio background. The lighting is harsh and directional, emphasizing the sharp tailoring and premium wool fabric texture. The aesthetic is extremely clean, cold, and editorial, perfectly matching a brutalist luxury fashion e-commerce site." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBxGDb_qfzhDf-0EGpgeVh_1ysImTCcsjE21hUJnqVFZS3i6_KSHwj93jPoVdNVAx-i04JPiAdakdgmwloYrWlVs1fTN6XIo8ImIDwVVGg3Di2-jaP_zP7mjPeuPfoLmdeTrFJoHpjKGhIU-kxr27GgbZO_acqIMCKm9GmbP99TBHewMGuyPcZQfOYYs9jugNq7_x6AZvzgrFz8pPrB7PesRg0wmlclNmveSH4S585Owm6BkrKR-H4dKjdw-rMx5qUSflZXxgIokwU"/>
+</div>
+<!-- Details -->
+<div class="flex flex-col flex-grow justify-between">
+<div>
+<div class="flex justify-between items-start mb-2">
+<h2 class="font-headline-md text-headline-md text-custom-black pr-4">OVERSIZED STRUCTURED BLAZER</h2>
+<span class="font-headline-md text-headline-md text-custom-black shrink-0">$850</span>
+</div>
+<p class="font-label-caption text-label-caption text-secondary uppercase tracking-widest mb-1">COLOR: BLACK</p>
+<p class="font-label-caption text-label-caption text-secondary uppercase tracking-widest">SIZE: M</p>
+</div>
+<div class="flex justify-between items-end mt-6">
+<!-- Minimal Quantity Stepper -->
+<div class="flex items-center border border-custom-divider w-fit h-8">
+<button aria-label="Decrease quantity" class="w-8 h-full flex items-center justify-center text-custom-black hover:bg-surface-container-lowest transition-colors">
+<span class="material-symbols-outlined text-[16px]">remove</span>
+</button>
+<span class="font-body text-body text-custom-black w-8 text-center">1</span>
+<button aria-label="Increase quantity" class="w-8 h-full flex items-center justify-center text-custom-black hover:bg-surface-container-lowest transition-colors">
+<span class="material-symbols-outlined text-[16px]">add</span>
+</button>
+</div>
+<button class="font-label-caption text-label-caption text-secondary underline hover:text-custom-black transition-colors uppercase tracking-widest">
+                            REMOVE
+                        </button>
+</div>
+</div>
+</div>
+<!-- Item 2 -->
+<div class="py-6 flex gap-6 border-b border-custom-divider relative">
+<!-- Image Container 4:5 -->
+<div class="w-[100px] md:w-[140px] shrink-0 aspect-[4/5] bg-surface-container-lowest border border-custom-divider">
+<img alt="Classic Poplin Shirt" class="w-full h-full object-cover" data-alt="A minimalist editorial photograph of a crisp white poplin button-down shirt folded perfectly flat on a light grey concrete surface. Strong overhead lighting casts sharp, geometric shadows. The image focuses heavily on the collar details and the raw, unpolished concrete texture contrasting with the smooth white fabric, maintaining a stark brutalist visual identity." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCQF8mHKmZpEOEDvmK12WoZP_33sIUIkZji7z53FvGzNHNTkyTcuPrG_Ds_dmMpgf5UkFoHWgLACfY51uYgWzW7_KvCSbRyk3oAy7ZcRriheeaXZG_esmZUCL2YyHQKpKZwoLFYml5ID66e_4w3oPTvJRv260SAjV8EqFOpNFjkXimwm7XN1BQVaLNTPmAUX4QqfpmfnA3dqIeCKTAM7uK5_SRLmM54ssKdcKIOJbP135MthH884ePq4GRox9OcBdY9de1EpgziOoo"/>
+</div>
+<!-- Details -->
+<div class="flex flex-col flex-grow justify-between">
+<div>
+<div class="flex justify-between items-start mb-2">
+<h2 class="font-headline-md text-headline-md text-custom-black pr-4">CLASSIC POPLIN SHIRT</h2>
+<span class="font-headline-md text-headline-md text-custom-black shrink-0">$320</span>
+</div>
+<p class="font-label-caption text-label-caption text-secondary uppercase tracking-widest mb-1">COLOR: WHITE</p>
+<p class="font-label-caption text-label-caption text-secondary uppercase tracking-widest">SIZE: L</p>
+</div>
+<div class="flex justify-between items-end mt-6">
+<!-- Minimal Quantity Stepper -->
+<div class="flex items-center border border-custom-divider w-fit h-8">
+<button aria-label="Decrease quantity" class="w-8 h-full flex items-center justify-center text-custom-black hover:bg-surface-container-lowest transition-colors">
+<span class="material-symbols-outlined text-[16px]">remove</span>
+</button>
+<span class="font-body text-body text-custom-black w-8 text-center">1</span>
+<button aria-label="Increase quantity" class="w-8 h-full flex items-center justify-center text-custom-black hover:bg-surface-container-lowest transition-colors">
+<span class="material-symbols-outlined text-[16px]">add</span>
+</button>
+</div>
+<button class="font-label-caption text-label-caption text-secondary underline hover:text-custom-black transition-colors uppercase tracking-widest">
+                            REMOVE
+                        </button>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Sticky Order Summary Footer -->
+<div class="fixed bottom-0 left-0 w-full bg-surface-container-lowest border-t border-custom-divider z-40">
+<div class="max-w-7xl mx-auto px-margin-mobile md:px-margin-desktop py-6">
+<div class="md:grid md:grid-cols-12 md:gap-x-gutter">
+<div class="md:col-span-8 hidden md:block">
+<!-- Spacer for desktop grid alignment -->
+</div>
+<div class="md:col-span-4 flex flex-col space-y-4">
+<!-- Subtotals -->
+<div class="flex justify-between items-center">
+<span class="font-label-caption text-label-caption text-secondary uppercase tracking-widest">SUBTOTAL</span>
+<span class="font-headline-md text-headline-md text-custom-black">$1,170</span>
+</div>
+<div class="flex justify-between items-center pb-4 border-b border-custom-divider">
+<span class="font-label-caption text-label-caption text-secondary uppercase tracking-widest">SHIPPING</span>
+<span class="font-label-caption text-label-caption text-secondary uppercase tracking-widest">CALCULATED AT CHECKOUT</span>
+</div>
+<!-- Total -->
+<div class="flex justify-between items-center py-2">
+<span class="font-headline-md text-headline-md text-custom-black font-bold">TOTAL</span>
+<span class="font-headline-md text-headline-md text-custom-black font-bold">$1,170</span>
+</div>
+<!-- Actions -->
+<div class="pt-4 flex flex-col gap-4 items-center">
+<button class="w-full h-[50px] bg-custom-black text-on-primary font-headline-md text-headline-md uppercase tracking-widest rounded-none hover:opacity-90 transition-opacity active:opacity-80">
+                            PROCEED TO CHECKOUT
+                        </button>
+<a class="font-label-caption text-label-caption text-secondary underline uppercase tracking-widest hover:text-custom-black transition-colors" href="#">
+                            CONTINUE SHOPPING
+                        </a>
+</div>
+</div>
+</div>
+</div>
+</div>
+</body></html>

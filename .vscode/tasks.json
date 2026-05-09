@@ -1,0 +1,34 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Start Server",
+            "type": "shell",
+            "command": "cmd",
+            "args": [
+                "/c",
+                "npx",
+                "http-server",
+                "-p",
+                "8080",
+                "-c-1"
+            ],
+            "isBackground": true,
+            "problemMatcher": {
+                "pattern": [
+                    {
+                        "regexp": ".",
+                        "file": 1,
+                        "location": 2,
+                        "message": 3
+                    }
+                ],
+                "background": {
+                    "activeOnStart": true,
+                    "beginsPattern": ".*Starting up http-server.*",
+                    "endsPattern": ".*Hit CTRL-C to stop the server.*"
+                }
+            }
+        }
+    ]
+}

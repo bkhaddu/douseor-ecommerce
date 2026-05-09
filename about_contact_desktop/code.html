@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>DOUSEOR - About &amp; Contact</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-bright": "#faf9f5",
+                        "on-secondary-fixed-variant": "#464747",
+                        "on-secondary": "#ffffff",
+                        "on-error": "#ffffff",
+                        "surface-container": "#efeeea",
+                        "on-surface-variant": "#444748",
+                        "secondary-container": "#e0dfdf",
+                        "surface-dim": "#dbdad6",
+                        "tertiary": "#000000",
+                        "primary": "#000000",
+                        "outline": "#747878",
+                        "background": "#faf9f5",
+                        "tertiary-container": "#1d1b1a",
+                        "surface-container-high": "#e9e8e4",
+                        "tertiary-fixed": "#e6e1df",
+                        "error": "#ba1a1a",
+                        "surface-container-lowest": "#ffffff",
+                        "secondary": "#5e5e5e",
+                        "secondary-fixed": "#e3e2e2",
+                        "on-primary": "#ffffff",
+                        "on-tertiary": "#ffffff",
+                        "inverse-surface": "#30312e",
+                        "on-primary-container": "#858383",
+                        "inverse-primary": "#c9c6c5",
+                        "primary-fixed-dim": "#c9c6c5",
+                        "outline-variant": "#c4c7c7",
+                        "on-tertiary-fixed": "#1d1b1a",
+                        "on-primary-fixed-variant": "#474646",
+                        "surface-tint": "#5f5e5e",
+                        "surface": "#faf9f5",
+                        "error-container": "#ffdad6",
+                        "on-tertiary-container": "#868381",
+                        "tertiary-fixed-dim": "#cac6c3",
+                        "surface-container-highest": "#e3e2df",
+                        "surface-variant": "#e3e2df",
+                        "secondary-fixed-dim": "#c7c6c6",
+                        "on-surface": "#1b1c1a",
+                        "on-secondary-fixed": "#1a1c1c",
+                        "primary-fixed": "#e5e2e1",
+                        "on-secondary-container": "#626363",
+                        "on-background": "#1b1c1a",
+                        "inverse-on-surface": "#f2f1ed",
+                        "on-tertiary-fixed-variant": "#484645",
+                        "primary-container": "#1c1b1b",
+                        "surface-container-low": "#f5f4f0",
+                        "on-primary-fixed": "#1c1b1b",
+                        "on-error-container": "#93000a"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "gutter": "1px",
+                        "margin-desktop": "40px",
+                        "navbar-height": "60px",
+                        "base": "8px",
+                        "margin-mobile": "16px"
+                    },
+                    "fontFamily": {
+                        "headline-lg": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "headline-xl": ["Inter"],
+                        "label-caption": ["Inter"],
+                        "headline-xl-mobile": ["Inter"],
+                        "body": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-lg": ["32px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "400"}],
+                        "headline-md": ["16px", {"lineHeight": "1.2", "letterSpacing": "0.02em", "fontWeight": "500"}],
+                        "headline-xl": ["72px", {"lineHeight": "1.1", "letterSpacing": "-0.04em", "fontWeight": "300"}],
+                        "label-caption": ["11px", {"lineHeight": "1.4", "letterSpacing": "0.08em", "fontWeight": "400"}],
+                        "headline-xl-mobile": ["42px", {"lineHeight": "1.1", "letterSpacing": "-0.04em", "fontWeight": "300"}],
+                        "body": ["13px", {"lineHeight": "1.7", "letterSpacing": "0.01em", "fontWeight": "400"}]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body {
+            background-color: #f5f4f0; /* surface-container-low */
+            color: #1b1c1a; /* on-surface */
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        /* Custom scrollbar for brutalist feel */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #faf9f5;
+            border-left: 1px solid #e0dfdf;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #000000;
+        }
+        
+        /* Hairline borders everywhere */
+        .brutalist-border {
+            border: 1px solid #e0dfdf; /* secondary-container */
+        }
+        .brutalist-border-bottom {
+            border-bottom: 1px solid #e0dfdf;
+        }
+        .brutalist-border-top {
+            border-top: 1px solid #e0dfdf;
+        }
+        .brutalist-border-right {
+            border-right: 1px solid #e0dfdf;
+        }
+        
+        /* Form inputs brutalist reset */
+        input[type="text"],
+        input[type="email"],
+        textarea {
+            border: none;
+            border-bottom: 1px solid #e0dfdf;
+            border-radius: 0;
+            background-color: transparent;
+            padding: 8px 0;
+            box-shadow: none !important;
+        }
+        input:focus, textarea:focus {
+            outline: none;
+            border-bottom: 1px solid #000000;
+            ring: 0;
+        }
+    </style>
+</head>
+<body class="bg-surface-container-low text-on-surface font-body min-h-screen flex flex-col">
+<!-- TopAppBar -->
+<header class="bg-surface-container-lowest dark:bg-primary-container text-primary dark:text-primary-fixed font-headline-md text-headline-md uppercase tracking-widest fixed top-0 w-full h-[60px] z-50 border-b border-outline-variant flat no shadows flex justify-between items-center px-margin-mobile md:px-margin-desktop max-w-7xl mx-auto left-0 right-0">
+<!-- Leading Icon -->
+<button class="hover:opacity-70 transition-opacity duration-200 active:scale-[0.98] transition-transform flex items-center justify-center w-10 h-10">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">menu</span>
+</button>
+<!-- Brand Logo -->
+<a class="font-headline-lg text-headline-lg font-black tracking-tighter text-primary dark:text-primary-fixed hover:opacity-70 transition-opacity duration-200" href="#">
+            DOUSEOR
+        </a>
+<!-- Trailing Icon -->
+<button class="hover:opacity-70 transition-opacity duration-200 active:scale-[0.98] transition-transform flex items-center justify-center w-10 h-10">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">shopping_bag</span>
+</button>
+</header>
+<!-- Main Content Canvas -->
+<main class="flex-grow pt-[60px] max-w-7xl mx-auto w-full px-margin-mobile md:px-margin-desktop pb-24">
+<!-- About Section Heading & Intro -->
+<section class="mt-24 mb-32 brutalist-border-bottom pb-24">
+<div class="grid grid-cols-1 md:grid-cols-12 gap-base">
+<div class="md:col-span-5">
+<h1 class="font-headline-xl text-headline-xl text-primary">THE ESSENCE<br/>OF RESTRAINT</h1>
+</div>
+<div class="md:col-span-1"></div>
+<div class="md:col-span-6 flex items-end">
+<p class="font-body text-body text-on-surface-variant max-w-xl">
+                        Douseor is founded on the principle of extreme minimalism. We strip away the unnecessary to reveal the core structural integrity of everyday objects. Our approach is unapologetic, cold, and highly disciplined, prioritizing function and architectural clarity over decorative noise. We cater to those who find confidence in simplicity and power in the absence of excess. Every detail is calculated, every line deliberate.
+                    </p>
+</div>
+</div>
+</section>
+<!-- Values Strip (3 Columns) -->
+<section class="mb-32">
+<h2 class="font-label-caption text-label-caption text-secondary uppercase mb-8">Core Principles</h2>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-0 brutalist-border">
+<!-- Value 1 -->
+<div class="p-12 brutalist-border-right flex flex-col justify-between min-h-[300px]">
+<div class="font-headline-xl text-headline-xl text-secondary-fixed-dim">01</div>
+<div>
+<h3 class="font-headline-md text-headline-md text-primary mb-4">STRUCTURAL HONESTY</h3>
+<p class="font-body text-body text-on-surface-variant">Materials are presented as they are. No faux finishes, no hiding the construction. The beauty lies in the exposed mechanics and the raw nature of the components.</p>
+</div>
+</div>
+<!-- Value 2 -->
+<div class="p-12 brutalist-border-right flex flex-col justify-between min-h-[300px]">
+<div class="font-headline-xl text-headline-xl text-secondary-fixed-dim">02</div>
+<div>
+<h3 class="font-headline-md text-headline-md text-primary mb-4">PURPOSEFUL VOID</h3>
+<p class="font-body text-body text-on-surface-variant">Space is not empty; it is an active design element. By maintaining rigorous padding and strict margins, we allow the object to dominate its environment without shouting.</p>
+</div>
+</div>
+<!-- Value 3 -->
+<div class="p-12 flex flex-col justify-between min-h-[300px]">
+<div class="font-headline-xl text-headline-xl text-secondary-fixed-dim">03</div>
+<div>
+<h3 class="font-headline-md text-headline-md text-primary mb-4">COLD PRECISION</h3>
+<p class="font-body text-body text-on-surface-variant">Warmth is subjective; precision is undeniable. We rely on a strict grid, hairline borders, and a monochromatic palette to establish an environment of absolute control and exactitude.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Full-width Editorial Image -->
+<section class="mb-32">
+<div class="w-full h-[600px] bg-secondary-container relative overflow-hidden">
+<img alt="Minimalist architectural space" class="absolute inset-0 w-full h-full object-cover filter grayscale" data-alt="A stark, minimalist architectural interior space bathed in harsh, natural cold light. The scene is dominated by raw concrete textures, sharp geometric shadows, and pristine white surfaces. A single, sculptural black chair sits in the middle of the empty room, emphasizing scale and isolation. The aesthetic is extremely brutalist, high-contrast black and white, resembling a high-end fashion editorial spread or a modern art gallery." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDwLAWYuomjxFfHMmtT1cMAO7ud7rleZ2EHhyId8Z_8zqhrik2gy_dvrOuI-oJ_vyL3qGoH4tLnxm0Iq-5y7GzwkXwgJdGbjZQyWPjmzwWarLqtxPLbRnRvkqYGTbuj5i72j2BWRFVpXFlXTHUT549a13K07BVA3voNURzvlL8oRT04VklzopOVsaVY113XjkNirMyDw3JCGVY4Rvpei6i4MHPFW33C8pWfP1AOTzFDV88765VEhF2EApQDv4icP0znqYRfrTiz54c"/>
+</div>
+</section>
+<!-- Contact Section -->
+<section class="mb-16 pt-16 brutalist-border-top" id="contact">
+<h2 class="font-headline-lg text-headline-lg text-primary mb-16">INQUIRIES</h2>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-24">
+<!-- Contact Info Left -->
+<div>
+<div class="mb-12">
+<h3 class="font-label-caption text-label-caption text-secondary uppercase mb-4">HEADQUARTERS</h3>
+<p class="font-body text-body text-primary">
+                            142 STRUCTURAL AVE.<br/>
+                            SECTOR 4, NEW YORK<br/>
+                            NY 10001
+                        </p>
+</div>
+<div class="mb-12">
+<h3 class="font-label-caption text-label-caption text-secondary uppercase mb-4">DIRECT LINE</h3>
+<p class="font-body text-body text-primary">
+                            +1 (800) 000-0000<br/>
+                            INFO@DOUSEOR.COM
+                        </p>
+</div>
+<div>
+<h3 class="font-label-caption text-label-caption text-secondary uppercase mb-4">HOURS</h3>
+<p class="font-body text-body text-primary">
+                            MON - FRI: 09:00 - 17:00 EST<br/>
+                            SAT - SUN: CLOSED
+                        </p>
+</div>
+</div>
+<!-- Minimalist Form Right -->
+<div>
+<form class="flex flex-col gap-8">
+<div class="flex flex-col">
+<label class="font-label-caption text-label-caption text-secondary uppercase mb-2" for="name">FULL NAME</label>
+<input class="w-full font-body text-body text-primary" id="name" name="name" required="" type="text"/>
+</div>
+<div class="flex flex-col">
+<label class="font-label-caption text-label-caption text-secondary uppercase mb-2" for="email">EMAIL ADDRESS</label>
+<input class="w-full font-body text-body text-primary" id="email" name="email" required="" type="email"/>
+</div>
+<div class="flex flex-col">
+<label class="font-label-caption text-label-caption text-secondary uppercase mb-2" for="message">MESSAGE</label>
+<textarea class="w-full font-body text-body text-primary resize-none" id="message" name="message" required="" rows="4"></textarea>
+</div>
+<button class="mt-4 bg-primary text-on-primary font-label-caption text-label-caption uppercase tracking-widest py-4 px-8 w-fit hover:opacity-90 transition-opacity rounded-none" type="submit">
+                            SEND MESSAGE
+                        </button>
+</form>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-surface dark:bg-surface-container-high text-primary dark:text-on-surface font-label-caption text-label-caption uppercase tracking-widest w-full border-t border-outline-variant flat no shadows mt-auto">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-base py-16 px-margin-mobile md:px-margin-desktop max-w-7xl mx-auto">
+<!-- Brand Column -->
+<div class="flex flex-col gap-4">
+<span class="font-headline-md text-headline-md font-bold text-primary dark:text-primary-fixed">DOUSEOR</span>
+<span class="text-on-surface-variant dark:text-on-surface-variant">© 2024 DOUSEOR. ALL RIGHTS RESERVED.</span>
+</div>
+<!-- Links Column 1 -->
+<div class="flex flex-col gap-4">
+<a class="text-on-surface-variant dark:text-on-surface-variant hover:text-primary dark:hover:text-primary-fixed transition-colors active:opacity-80" href="#">SHOP</a>
+<a class="text-primary dark:text-primary-fixed underline hover:text-primary dark:hover:text-primary-fixed transition-colors active:opacity-80" href="#">ABOUT</a>
+<a class="text-primary dark:text-primary-fixed underline hover:text-primary dark:hover:text-primary-fixed transition-colors active:opacity-80" href="#contact">CONTACT</a>
+</div>
+<!-- Links Column 2 -->
+<div class="flex flex-col gap-4">
+<a class="text-on-surface-variant dark:text-on-surface-variant hover:text-primary dark:hover:text-primary-fixed transition-colors active:opacity-80" href="#">NEWSLETTER</a>
+<a class="text-on-surface-variant dark:text-on-surface-variant hover:text-primary dark:hover:text-primary-fixed transition-colors active:opacity-80" href="#">PRIVACY</a>
+<a class="text-on-surface-variant dark:text-on-surface-variant hover:text-primary dark:hover:text-primary-fixed transition-colors active:opacity-80" href="#">TERMS</a>
+</div>
+<!-- Empty column to fulfill 4 col grid requirement -->
+<div class="hidden md:block"></div>
+</div>
+</footer>
+</body></html>

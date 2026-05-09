@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>DOUSEOR Product Detail</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-dim": "#dbdad6",
+                    "error": "#ba1a1a",
+                    "primary-fixed": "#e5e2e1",
+                    "on-background": "#1b1c1a",
+                    "secondary-fixed": "#e3e2e2",
+                    "tertiary-container": "#1d1b1a",
+                    "surface-container-high": "#e9e8e4",
+                    "on-primary-fixed": "#1c1b1b",
+                    "inverse-primary": "#c9c6c5",
+                    "surface-variant": "#e3e2df",
+                    "surface-container-low": "#f5f4f0",
+                    "inverse-on-surface": "#f2f1ed",
+                    "background": "#faf9f5",
+                    "on-surface-variant": "#444748",
+                    "primary": "#000000",
+                    "tertiary": "#000000",
+                    "on-tertiary-fixed-variant": "#484645",
+                    "on-secondary": "#ffffff",
+                    "on-secondary-fixed-variant": "#464747",
+                    "on-primary-container": "#858383",
+                    "on-error": "#ffffff",
+                    "on-error-container": "#93000a",
+                    "on-secondary-fixed": "#1a1c1c",
+                    "on-tertiary-container": "#868381",
+                    "on-primary-fixed-variant": "#474646",
+                    "surface-bright": "#faf9f5",
+                    "surface-container-lowest": "#ffffff",
+                    "surface-tint": "#5f5e5e",
+                    "secondary": "#5e5e5e",
+                    "primary-container": "#1c1b1b",
+                    "outline-variant": "#c4c7c7",
+                    "surface": "#faf9f5",
+                    "surface-container": "#efeeea",
+                    "on-tertiary-fixed": "#1d1b1a",
+                    "on-surface": "#1b1c1a",
+                    "secondary-fixed-dim": "#c7c6c6",
+                    "on-secondary-container": "#626363",
+                    "primary-fixed-dim": "#c9c6c5",
+                    "on-tertiary": "#ffffff",
+                    "error-container": "#ffdad6",
+                    "on-primary": "#ffffff",
+                    "surface-container-highest": "#e3e2df",
+                    "secondary-container": "#e0dfdf",
+                    "tertiary-fixed": "#e6e1df",
+                    "inverse-surface": "#30312e",
+                    "tertiary-fixed-dim": "#cac6c3",
+                    "outline": "#747878"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "margin-desktop": "40px",
+                    "gutter": "1px",
+                    "base": "8px",
+                    "margin-mobile": "16px",
+                    "navbar-height": "60px"
+            },
+            "fontFamily": {
+                    "headline-lg": [
+                            "Inter"
+                    ],
+                    "body": [
+                            "Inter"
+                    ],
+                    "headline-xl-mobile": [
+                            "Inter"
+                    ],
+                    "headline-xl": [
+                            "Inter"
+                    ],
+                    "headline-md": [
+                            "Inter"
+                    ],
+                    "label-caption": [
+                            "Inter"
+                    ]
+            },
+            "fontSize": {
+                    "headline-lg": [
+                            "32px",
+                            {
+                                    "lineHeight": "1.2",
+                                    "letterSpacing": "-0.02em",
+                                    "fontWeight": "400"
+                            }
+                    ],
+                    "body": [
+                            "13px",
+                            {
+                                    "lineHeight": "1.7",
+                                    "letterSpacing": "0.01em",
+                                    "fontWeight": "400"
+                            }
+                    ],
+                    "headline-xl-mobile": [
+                            "42px",
+                            {
+                                    "lineHeight": "1.1",
+                                    "letterSpacing": "-0.04em",
+                                    "fontWeight": "300"
+                            }
+                    ],
+                    "headline-xl": [
+                            "72px",
+                            {
+                                    "lineHeight": "1.1",
+                                    "letterSpacing": "-0.04em",
+                                    "fontWeight": "300"
+                            }
+                    ],
+                    "headline-md": [
+                            "16px",
+                            {
+                                    "lineHeight": "1.2",
+                                    "letterSpacing": "0.02em",
+                                    "fontWeight": "500"
+                            }
+                    ],
+                    "label-caption": [
+                            "11px",
+                            {
+                                    "lineHeight": "1.4",
+                                    "letterSpacing": "0.08em",
+                                    "fontWeight": "400"
+                            }
+                    ]
+            }
+    },
+        },
+      }
+    </script>
+<style>
+        body {
+            background-color: #f5f4f0; /* surface-container-low fallback */
+        }
+        /* Hide scrollbar for gallery thumbnails */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface-container-low text-on-surface font-body pt-navbar-height antialiased selection:bg-primary selection:text-on-primary">
+<!-- TopAppBar -->
+<nav class="fixed top-0 w-full h-[60px] z-50 bg-surface-container-lowest border-b border-outline-variant flex justify-between items-center px-margin-mobile md:px-margin-desktop max-w-7xl mx-auto transition-transform">
+<button aria-label="Menu" class="text-primary hover:opacity-70 transition-opacity duration-200 active:scale-[0.98] flex items-center justify-center p-2 -ml-2">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">menu</span>
+</button>
+<div class="font-headline-lg text-headline-lg font-black tracking-tighter text-primary">
+            DOUSEOR
+        </div>
+<button aria-label="Shopping Bag" class="text-primary hover:opacity-70 transition-opacity duration-200 active:scale-[0.98] flex items-center justify-center p-2 -mr-2">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">shopping_bag</span>
+</button>
+</nav>
+<main class="w-full max-w-7xl mx-auto pb-24 md:pb-32 bg-surface-container-lowest md:border-l md:border-r md:border-outline-variant min-h-screen flex flex-col md:flex-row md:items-start">
+<!-- Image Gallery (Mobile First) -->
+<div class="w-full md:w-1/2 md:sticky md:top-[60px] border-b md:border-b-0 md:border-r border-outline-variant bg-surface">
+<!-- Main Image -->
+<div class="w-full aspect-[4/5] bg-surface-variant relative overflow-hidden">
+<img alt="Main product view" class="w-full h-full object-cover" data-alt="A striking editorial photograph of a minimalist fashion garment against a stark, high-contrast background. The lighting is cold and architectural, casting sharp shadows that emphasize the structural integrity of the piece. The color palette is strictly monochrome, relying on deep blacks and pristine whites to convey a raw, unapologetic luxury aesthetic. The composition is centered and authoritative, devoid of any decorative elements or visual noise." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAzfFfgTufswJvKwDLveSR35GLUIzLs-E3le-j_remRLeGQ7QQafc3m034qe5I_RUc8iKgnQqjF3p5T6Cl-nMveCoDAm0qjVT_f-SLOuJMREfzO5rXbfSYgFZVLkAFwOBDm2zZplCySXwnK80QurJjJ-W9IQ5nI7n_shPZob2uih2zeIhT3NM_tloZS7hmyD-weTINFW2A7YGrLcylP5WbIKEMqfE3hsy29BKCFMw7ugCXd1PGZcUUHmvSwfxn_JmyALpaOf4Y7oYI"/>
+</div>
+<!-- Thumbnails -->
+<div class="flex overflow-x-auto no-scrollbar border-t border-outline-variant bg-surface-container-lowest divide-x divide-outline-variant">
+<button class="w-[100px] flex-shrink-0 aspect-[4/5] relative bg-surface-variant focus:outline-none ring-inset ring-2 ring-primary">
+<img alt="Thumbnail 1" class="w-full h-full object-cover opacity-90 hover:opacity-100 transition-opacity" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDg7yNZWIbhXqXMjl4pf2zL5yzfpnskOxLIpTp219qt6aeqcU0f5t55i6wlauEQhlEGRwZGMWW9Pb0AiFRoC9wpbX01L9r3WJL_eRV2tdtzqM3UZGCh0pxXr4dosBIPLBhsameVLxEpcrqDXFPOX71st3v3kO8wUYSLSdcaYt9Qvyj0P9-buud5HwYakYp5GgRiQP6_4aQ9DnbR_ySNBcM-hQMtrMZIXdmbDfGlhkFf_8xBoWaynCQKP3gAoEBHXI3OeXf27ACoogo"/>
+</button>
+<button class="w-[100px] flex-shrink-0 aspect-[4/5] relative bg-surface-variant focus:outline-none hover:opacity-80 transition-opacity">
+<img alt="Thumbnail 2" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-300" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDS7EBrSPu3MYaM69RO6ACZYG3_AJyfqlz3Dj-VosxeUKi6UWn1ayZZSSR6bTljtZgUFIpBBSQQBsZg3jjdo7yB7tE6fIgxbJaeFopTzvx5vqzRD7az9cZC8mFPbttQm0PxuI1PlhUdv7Ua_RSE6fv4-7XsTFccpCdW1YG4rYAPZ1dxojjHoswp8mHFUXTaKjrohq3XG2UI2MaLsVizPvZMsomyMXhFe9ViRWz9HnkJxAYDuGC3NTdLefZXJyBb5SH4pAAiMwn5os8"/>
+</button>
+<button class="w-[100px] flex-shrink-0 aspect-[4/5] relative bg-surface-variant focus:outline-none hover:opacity-80 transition-opacity">
+<img alt="Thumbnail 3" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-300 scale-x-[-1]" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDRyxh_Avx8JhT1WXBtLx9AhldGdqquyBRSaq2zGeGhKb94twlICybs5-ih1Y_fW8K9tWr7TcW2fRrSykXOJPPDttQspPMw7hiEy7gQTN9cDpeoGbYUrfzVqrKik66cIA59kG1GwBd-rghtUHW5WCCSRGmR8R59RRyf8Ak4Y9vJQ5VdK1RJnCYU4uWax6mNan955YNzbQfEXjENcvJS-K-MUCqKVKjkibK6MrNW8LATdAHLegoTvb6LUG0rhdO93Rd25g6jHZsq-Go"/>
+</button>
+<button class="w-[100px] flex-shrink-0 aspect-[4/5] relative bg-surface-variant focus:outline-none hover:opacity-80 transition-opacity">
+<img alt="Thumbnail 4" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-300 scale-x-[-1]" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBGDfivgD9ECum4EMxab4DYcDjDfwn_DGLOJwD3yx5elXml0xk2MKtsxujqjWd6jPbcWiB8gRMN_FNcEk9ZM-X3MYsnRxae9rK-RCER-65uCty620Z7sSMOL6adHmQsUcsmQjUpvsCIYxBQEJ49t0xDTTxQNi9MlUp5anQVEqXgmWS4qJSfswhT4Ooa57gLRwgKajTitESoqnJtiPv_oe8Vs2ebYyjHX4XXEO92QTBqziavhuGeXoGb4kGJTu3PTX57OyUBBcCvqHQ"/>
+</button>
+</div>
+</div>
+<!-- Product Info Area -->
+<div class="w-full md:w-1/2 flex flex-col pt-8 md:pt-16 pb-12">
+<!-- Core Details -->
+<div class="px-margin-mobile md:px-16 flex flex-col mb-10">
+<span class="font-label-caption text-label-caption uppercase tracking-widest text-on-surface-variant mb-2">OUTERWEAR</span>
+<h1 class="font-headline-lg text-headline-lg text-primary mb-4">STRUCTURAL BLAZER NO. 04</h1>
+<span class="font-headline-md text-headline-md text-primary font-medium">$850.00</span>
+</div>
+<hr class="border-t border-outline-variant w-full mb-8"/>
+<!-- Configuration -->
+<div class="px-margin-mobile md:px-16 flex flex-col mb-12">
+<!-- Size Selector -->
+<div class="mb-8">
+<div class="flex justify-between items-end mb-3">
+<span class="font-label-caption text-label-caption uppercase tracking-widest text-primary">SELECT SIZE</span>
+<button class="font-label-caption text-label-caption uppercase tracking-widest text-on-surface-variant underline hover:text-primary transition-colors">SIZE GUIDE</button>
+</div>
+<div class="grid grid-cols-4 gap-gutter bg-outline-variant border border-outline-variant p-[1px]">
+<button class="aspect-square bg-surface-container-lowest hover:bg-surface-dim transition-colors font-headline-md text-headline-md text-primary flex items-center justify-center">S</button>
+<button class="aspect-square bg-primary text-on-primary font-headline-md text-headline-md flex items-center justify-center">M</button>
+<button class="aspect-square bg-surface-container-lowest hover:bg-surface-dim transition-colors font-headline-md text-headline-md text-primary flex items-center justify-center">L</button>
+<button class="aspect-square bg-surface-container-lowest text-outline opacity-50 cursor-not-allowed font-headline-md text-headline-md flex items-center justify-center relative overflow-hidden">
+                            XL
+                            <div class="absolute w-[141%] h-[1px] bg-outline top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rotate-45"></div>
+</button>
+</div>
+</div>
+<!-- Quantity -->
+<div class="mb-8 flex flex-col">
+<label class="font-label-caption text-label-caption uppercase tracking-widest text-primary mb-3" for="quantity">QUANTITY</label>
+<div class="flex items-center border border-primary w-fit">
+<button aria-label="Decrease quantity" class="w-12 h-12 flex items-center justify-center text-primary hover:bg-surface-dim transition-colors focus:outline-none">
+<span class="material-symbols-outlined text-[16px]">remove</span>
+</button>
+<input class="w-12 h-12 text-center font-headline-md text-headline-md text-primary border-none p-0 focus:ring-0 bg-transparent appearance-none" id="quantity" min="1" type="number" value="1"/>
+<button aria-label="Increase quantity" class="w-12 h-12 flex items-center justify-center text-primary hover:bg-surface-dim transition-colors focus:outline-none">
+<span class="material-symbols-outlined text-[16px]">add</span>
+</button>
+</div>
+</div>
+<!-- Actions -->
+<div class="flex flex-col gap-3">
+<button class="w-full h-14 bg-primary text-on-primary font-headline-md text-headline-md uppercase tracking-widest flex items-center justify-center hover:opacity-90 active:bg-surface-variant active:text-primary transition-all duration-200 rounded-none">
+                        ADD TO CART
+                    </button>
+<button class="w-full h-14 bg-transparent border border-primary text-primary font-headline-md text-headline-md uppercase tracking-widest flex items-center justify-center hover:bg-surface-dim transition-colors duration-200 rounded-none">
+                        ADD TO WISHLIST
+                    </button>
+</div>
+</div>
+<!-- Accordions (Collapsible Sections) -->
+<div class="flex flex-col border-t border-outline-variant w-full">
+<!-- Description -->
+<details class="group border-b border-outline-variant cursor-pointer" open="">
+<summary class="flex justify-between items-center w-full px-margin-mobile md:px-16 py-5 list-none focus:outline-none hover:bg-surface-container-low transition-colors">
+<span class="font-label-caption text-label-caption uppercase tracking-widest text-primary">DESCRIPTION</span>
+<span class="material-symbols-outlined text-primary group-open:rotate-180 transition-transform duration-300">expand_more</span>
+</summary>
+<div class="px-margin-mobile md:px-16 pb-6 text-on-surface-variant font-body text-body">
+<p class="mb-4">An unapologetic approach to tailoring. The Structural Blazer No. 04 strips away traditional padding in favor of precise, architectural pattern drafting. Cut from a densely woven technical wool blend that holds its shape with brutalist efficiency.</p>
+<ul class="list-none space-y-1">
+<li class="flex items-start before:content-['-'] before:mr-2">Oversized, boxy fit</li>
+<li class="flex items-start before:content-['-'] before:mr-2">Concealed placket closure</li>
+<li class="flex items-start before:content-['-'] before:mr-2">Unlined interior with bound seams</li>
+<li class="flex items-start before:content-['-'] before:mr-2">Constructed in Portugal</li>
+</ul>
+</div>
+</details>
+<!-- Shipping -->
+<details class="group border-b border-outline-variant cursor-pointer">
+<summary class="flex justify-between items-center w-full px-margin-mobile md:px-16 py-5 list-none focus:outline-none hover:bg-surface-container-low transition-colors">
+<span class="font-label-caption text-label-caption uppercase tracking-widest text-primary">SHIPPING &amp; RETURNS</span>
+<span class="material-symbols-outlined text-primary group-open:rotate-180 transition-transform duration-300">expand_more</span>
+</summary>
+<div class="px-margin-mobile md:px-16 pb-6 text-on-surface-variant font-body text-body hidden group-open:block">
+<p>Complimentary express shipping on all domestic orders. Returns are accepted within 14 days of delivery in original, unworn condition. Return shipping costs are the responsibility of the client.</p>
+</div>
+</details>
+</div>
+</div>
+</main>
+<!-- You May Also Like -->
+<section class="w-full max-w-7xl mx-auto bg-surface-container-lowest md:border-l md:border-r md:border-outline-variant border-t border-outline-variant">
+<div class="px-margin-mobile md:px-margin-desktop py-12 md:py-16 text-center border-b border-outline-variant">
+<h2 class="font-headline-md text-headline-md uppercase tracking-widest text-primary">YOU MAY ALSO LIKE</h2>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-gutter bg-outline-variant border-b border-outline-variant">
+<!-- Product 1 -->
+<a class="group flex flex-col bg-surface-container-lowest relative pb-4 md:pb-6" href="#">
+<div class="aspect-[4/5] bg-surface-variant mb-4 overflow-hidden">
+<img alt="Related Product 1" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-[cubic-bezier(0.25,1,0.5,1)]" data-alt="A cold, minimalist studio shot of a structured garment. The lighting is flat and unforgiving, highlighting the sharp lines and stark silhouette. The color palette features stark whites, grays, and pitch black. No background distractions, pure focus on the architectural nature of the piece." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBjV0yNZQ3JMPjFAYR3JKZ3rjbULyQqy5n3QBoAIPEKUsSGD4daaItyxJC5U4Y-REle3oNyzUKDu2vbMy6p-J4xqtYVmWe08MayW90Uq_I73TwzK-X9D7ouQXvET4ySOSJZdUFIUfF-Hi3DgDl8Yg_qCLYDEYL5ZJThAdTnV14424_CVs0nhrrG0AOh1aB3Rjk8obsSxje0QRGyq7KN3n8w-JRv8nRfkUnIEEsn0fDSWA5pnTO9QnX06F5GQxDPBey-gFvFYj20f2c"/>
+</div>
+<div class="px-4 flex flex-col">
+<span class="font-label-caption text-label-caption text-primary truncate">TECHNICAL TROUSER</span>
+<span class="font-label-caption text-label-caption text-on-surface-variant mt-1">$420.00</span>
+</div>
+</a>
+<!-- Product 2 -->
+<a class="group flex flex-col bg-surface-container-lowest relative pb-4 md:pb-6" href="#">
+<div class="aspect-[4/5] bg-surface-variant mb-4 overflow-hidden">
+<img alt="Related Product 2" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] grayscale" data-alt="A stark, high-contrast monochrome image of a utilitarian fashion accessory. The composition is brutalist and direct, with razor-sharp edges and intense black levels. The object sits alone against a pure white background, embodying a cold, industrial luxury aesthetic devoid of warmth." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBZ2oUX3Xnn6YXH6AJSY_hycHPomXJhKv_puONAqB8oZ5rm2v9ArnlspS2FfSWMDFTgOaN1IH-ZKg9jADdWoteGOHu2NFUUH3y8AMgpztVmFhjusIvuHH1tS8TEb1Jp6ouq3etuAHOCi99mAHF2vePSPzlza-VwE1_yhfw9FOOfLg7MEEOZwGJ-sGYbe2cZ28HtyvtDW684hgaj3ztAAgKeazf-JS-oqZejPWbtRPUqmCdlOulVjMM-UqPCt_arWkddalOwD5hpMIs"/>
+</div>
+<div class="px-4 flex flex-col">
+<span class="font-label-caption text-label-caption text-primary truncate">UTILITY VEST</span>
+<span class="font-label-caption text-label-caption text-on-surface-variant mt-1">$550.00</span>
+</div>
+</a>
+<!-- Product 3 (Hidden on mobile) -->
+<a class="group hidden md:flex flex-col bg-surface-container-lowest relative pb-4 md:pb-6" href="#">
+<div class="aspect-[4/5] bg-surface-variant mb-4 overflow-hidden">
+<img alt="Related Product 3" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-[cubic-bezier(0.25,1,0.5,1)]" data-alt="An editorial fashion photograph showcasing a heavy, structured top. The aesthetic is brutalist, relying on geometric shapes and strict monochrome tones. The lighting creates deep, dramatic shadows that emphasize volume over detail. The overall mood is serious, confident, and unapologetically raw." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCkDAA1P1XFUan9nxi17RcRNxGKS_HB-5aEACirE2pUNYN6Pwuw-E9XSQwyGyM6q25krNEQLrYKK8kuifedyIjN-letd4yrFPfDNk1pFlgFHr5z6qHHNrGBvSFsXGhZyRaHhnxmTjM6ktEFX2XvMVIofdy-PnsyRdRlzZuwaP--PyAHQfCVOsMnPiksbj3pCIj9jqBqw8vh2f22X0_8a1o7FgZPskex3cGpczCgxXqGdpscAmmLVbyLHU-dgvZPsi7dtQydPSpHO7A"/>
+</div>
+<div class="px-4 flex flex-col">
+<span class="font-label-caption text-label-caption text-primary truncate">HEAVYWEIGHT TEE</span>
+<span class="font-label-caption text-label-caption text-on-surface-variant mt-1">$180.00</span>
+</div>
+</a>
+<!-- Product 4 (Hidden on mobile) -->
+<a class="group hidden md:flex flex-col bg-surface-container-lowest relative pb-4 md:pb-6" href="#">
+<div class="aspect-[4/5] bg-surface-variant mb-4 overflow-hidden">
+<img alt="Related Product 4" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] grayscale" data-alt="A minimalist presentation of luxury footwear. The shoe is photographed against a stark off-white background with a single, harsh directional light source. The resulting image is stark, structural, and strictly monochrome, perfectly capturing a brutalist fashion sensibility." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBqEYYRwYMpFG5JhfQq4BxepK006PGBg2rbwUpjrPwnPTvF0W-9dsiy_rlP07WQHgXOmGXmFZsLOIemkFK5MaJv1Re-ZdD0iokqMfEHvYmYefOcshEagNeMkCFaYS8ZZDXIa4825-1iDsRYN8Q-wPx1HJ_1Gqg5S-BflNkDDwYlgBZqQHwJkhhHPgzIHv714NmCkJcMEq9Kvmdvo390sA1QB6OdIE1iEJVFENfqm5wNapN0V6zBJrTTTro9_gZj9GQ6FNFhKq-tda8"/>
+</div>
+<div class="px-4 flex flex-col">
+<span class="font-label-caption text-label-caption text-primary truncate">COMBAT BOOT</span>
+<span class="font-label-caption text-label-caption text-on-surface-variant mt-1">$890.00</span>
+</div>
+</a>
+</div>
+</section>
+<!-- Footer -->
+<footer class="w-full bg-surface max-w-7xl mx-auto md:border-l md:border-r md:border-outline-variant border-t border-outline-variant">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-base py-16 px-margin-mobile md:px-margin-desktop">
+<!-- Brand -->
+<div class="col-span-1 md:col-span-2 mb-12 md:mb-0">
+<div class="font-headline-md text-headline-md font-bold text-primary mb-4">
+                    DOUSEOR
+                </div>
+<p class="font-label-caption text-label-caption text-on-surface-variant uppercase tracking-widest max-w-[250px]">
+                    STRUCTURAL INTEGRITY.<br/>
+                    UNAPOLOGETIC DESIGN.
+                </p>
+</div>
+<!-- Links -->
+<div class="col-span-1 flex flex-col gap-4">
+<a class="font-label-caption text-label-caption uppercase tracking-widest text-on-surface-variant hover:text-primary transition-colors active:opacity-80" href="#">SHOP</a>
+<a class="font-label-caption text-label-caption uppercase tracking-widest text-on-surface-variant hover:text-primary transition-colors active:opacity-80" href="#">ABOUT</a>
+<a class="font-label-caption text-label-caption uppercase tracking-widest text-on-surface-variant hover:text-primary transition-colors active:opacity-80" href="#">CONTACT</a>
+</div>
+<div class="col-span-1 flex flex-col gap-4">
+<a class="font-label-caption text-label-caption uppercase tracking-widest text-on-surface-variant hover:text-primary transition-colors active:opacity-80" href="#">NEWSLETTER</a>
+<a class="font-label-caption text-label-caption uppercase tracking-widest text-on-surface-variant hover:text-primary transition-colors active:opacity-80" href="#">PRIVACY</a>
+<a class="font-label-caption text-label-caption uppercase tracking-widest text-on-surface-variant hover:text-primary transition-colors active:opacity-80" href="#">TERMS</a>
+</div>
+<!-- Copyright -->
+<div class="col-span-1 md:col-span-4 mt-16 md:mt-24 pt-8 border-t border-outline-variant">
+<p class="font-label-caption text-label-caption uppercase tracking-widest text-on-surface-variant">© 2024 DOUSEOR. ALL RIGHTS RESERVED.</p>
+</div>
+</div>
+</footer>
+</body></html>

@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>DOUSEOR - Checkout</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Config -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-tertiary-container": "#868381",
+                        "error": "#ba1a1a",
+                        "surface-tint": "#5f5e5e",
+                        "on-surface": "#1b1c1a",
+                        "secondary": "#5e5e5e",
+                        "primary-fixed": "#e5e2e1",
+                        "tertiary": "#000000",
+                        "surface-container-highest": "#e3e2df",
+                        "on-secondary-fixed-variant": "#464747",
+                        "secondary-container": "#e0dfdf",
+                        "on-primary-fixed-variant": "#474646",
+                        "on-background": "#1b1c1a",
+                        "surface-container": "#efeeea",
+                        "on-primary": "#ffffff",
+                        "tertiary-fixed": "#e6e1df",
+                        "surface-variant": "#e3e2df",
+                        "on-secondary-container": "#626363",
+                        "on-primary-fixed": "#1c1b1b",
+                        "on-secondary": "#ffffff",
+                        "primary-fixed-dim": "#c9c6c5",
+                        "on-tertiary-fixed-variant": "#484645",
+                        "surface-container-low": "#f5f4f0",
+                        "on-tertiary-fixed": "#1d1b1a",
+                        "on-surface-variant": "#444748",
+                        "inverse-on-surface": "#f2f1ed",
+                        "tertiary-fixed-dim": "#cac6c3",
+                        "tertiary-container": "#1d1b1a",
+                        "inverse-primary": "#c9c6c5",
+                        "surface-dim": "#dbdad6",
+                        "primary": "#000000",
+                        "on-primary-container": "#858383",
+                        "on-error-container": "#93000a",
+                        "on-secondary-fixed": "#1a1c1c",
+                        "surface-container-lowest": "#ffffff",
+                        "outline": "#747878",
+                        "surface-container-high": "#e9e8e4",
+                        "on-tertiary": "#ffffff",
+                        "surface-bright": "#faf9f5",
+                        "secondary-fixed-dim": "#c7c6c6",
+                        "error-container": "#ffdad6",
+                        "background": "#faf9f5",
+                        "surface": "#faf9f5",
+                        "primary-container": "#1c1b1b",
+                        "secondary-fixed": "#e3e2e2",
+                        "outline-variant": "#c4c7c7",
+                        "on-error": "#ffffff",
+                        "inverse-surface": "#30312e"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "base": "8px",
+                        "margin-mobile": "16px",
+                        "gutter": "1px",
+                        "margin-desktop": "40px",
+                        "navbar-height": "60px"
+                    },
+                    "fontFamily": {
+                        "body": ["Inter"],
+                        "label-caption": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "headline-xl-mobile": ["Inter"],
+                        "headline-xl": ["Inter"]
+                    },
+                    "fontSize": {
+                        "body": ["13px", { "lineHeight": "1.7", "letterSpacing": "0.01em", "fontWeight": "400" }],
+                        "label-caption": ["11px", { "lineHeight": "1.4", "letterSpacing": "0.08em", "fontWeight": "400" }],
+                        "headline-md": ["16px", { "lineHeight": "1.2", "letterSpacing": "0.02em", "fontWeight": "500" }],
+                        "headline-lg": ["32px", { "lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "400" }],
+                        "headline-xl-mobile": ["42px", { "lineHeight": "1.1", "letterSpacing": "-0.04em", "fontWeight": "300" }],
+                        "headline-xl": ["72px", { "lineHeight": "1.1", "letterSpacing": "-0.04em", "fontWeight": "300" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        /* Brutalist reset and utilities */
+        body { background-color: #faf9f5; }
+        input:focus { outline: none; box-shadow: none; border-color: #000000; }
+        /* Hide scrollbar for sticky sidebar if needed */
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+</head>
+<body class="bg-surface text-primary font-body antialiased selection:bg-primary selection:text-on-primary flex flex-col min-h-screen">
+<!-- TopAppBar (Simplified for Checkout flow as per instructions, but retaining structure) -->
+<header class="fixed top-0 w-full h-[60px] z-50 bg-surface-container-lowest border-b border-outline-variant">
+<div class="flex justify-between items-center px-margin-mobile md:px-margin-desktop w-full max-w-7xl mx-auto h-full">
+<button class="text-primary hover:opacity-70 transition-opacity duration-200">
+<span class="material-symbols-outlined">menu</span>
+</button>
+<div class="font-headline-lg text-headline-lg font-black tracking-tighter text-primary">
+                DOUSEOR
+            </div>
+<button class="text-primary hover:opacity-70 transition-opacity duration-200">
+<span class="material-symbols-outlined">shopping_bag</span>
+</button>
+</div>
+</header>
+<!-- Main Content Grid -->
+<main class="flex-grow w-full max-w-7xl mx-auto pt-[60px] flex flex-col lg:flex-row border-x border-outline-variant">
+<!-- Left Column: Form (60%) -->
+<section class="w-full lg:w-[60%] p-margin-desktop lg:p-[80px] lg:border-r border-outline-variant bg-surface-container-lowest">
+<!-- Breadcrumbs -->
+<nav class="flex gap-2 items-center mb-12 font-label-caption text-label-caption uppercase tracking-widest text-on-surface-variant">
+<span class="text-primary">INFORMATION</span>
+<span class="material-symbols-outlined text-[14px]">chevron_right</span>
+<span>SHIPPING</span>
+<span class="material-symbols-outlined text-[14px]">chevron_right</span>
+<span>PAYMENT</span>
+</nav>
+<!-- Checkout Form -->
+<form class="flex flex-col gap-16">
+<!-- Contact Section -->
+<div class="flex flex-col gap-8">
+<h2 class="font-headline-md text-headline-md uppercase">CONTACT</h2>
+<div class="relative">
+<input class="w-full bg-transparent border-0 border-b border-outline-variant py-4 px-0 font-label-caption text-label-caption uppercase placeholder:text-on-surface-variant focus:ring-0 focus:border-primary transition-colors" id="email" placeholder="EMAIL OR MOBILE PHONE NUMBER" type="email"/>
+</div>
+<label class="flex items-center gap-3 cursor-pointer group">
+<div class="w-4 h-4 border border-outline-variant flex items-center justify-center group-hover:border-primary transition-colors">
+<input checked="" class="opacity-0 absolute" type="checkbox"/>
+<div class="w-2 h-2 bg-primary hidden group-has-[:checked]:block"></div>
+</div>
+<span class="font-label-caption text-label-caption uppercase text-on-surface-variant">EMAIL ME WITH NEWS AND OFFERS</span>
+</label>
+</div>
+<!-- Shipping Address Section -->
+<div class="flex flex-col gap-8">
+<h2 class="font-headline-md text-headline-md uppercase">SHIPPING ADDRESS</h2>
+<div class="relative">
+<select class="w-full bg-transparent border-0 border-b border-outline-variant py-4 px-0 font-label-caption text-label-caption uppercase appearance-none focus:ring-0 focus:border-primary transition-colors cursor-pointer">
+<option>UNITED STATES</option>
+<option>CANADA</option>
+<option>UNITED KINGDOM</option>
+</select>
+<span class="material-symbols-outlined absolute right-0 top-1/2 -translate-y-1/2 pointer-events-none text-on-surface-variant">expand_more</span>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+<input class="w-full bg-transparent border-0 border-b border-outline-variant py-4 px-0 font-label-caption text-label-caption uppercase placeholder:text-on-surface-variant focus:ring-0 focus:border-primary transition-colors" placeholder="FIRST NAME" type="text"/>
+<input class="w-full bg-transparent border-0 border-b border-outline-variant py-4 px-0 font-label-caption text-label-caption uppercase placeholder:text-on-surface-variant focus:ring-0 focus:border-primary transition-colors" placeholder="LAST NAME" type="text"/>
+</div>
+<input class="w-full bg-transparent border-0 border-b border-outline-variant py-4 px-0 font-label-caption text-label-caption uppercase placeholder:text-on-surface-variant focus:ring-0 focus:border-primary transition-colors" placeholder="ADDRESS" type="text"/>
+<input class="w-full bg-transparent border-0 border-b border-outline-variant py-4 px-0 font-label-caption text-label-caption uppercase placeholder:text-on-surface-variant focus:ring-0 focus:border-primary transition-colors" placeholder="APARTMENT, SUITE, ETC. (OPTIONAL)" type="text"/>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<input class="w-full bg-transparent border-0 border-b border-outline-variant py-4 px-0 font-label-caption text-label-caption uppercase placeholder:text-on-surface-variant focus:ring-0 focus:border-primary transition-colors" placeholder="CITY" type="text"/>
+<div class="relative">
+<select class="w-full bg-transparent border-0 border-b border-outline-variant py-4 px-0 font-label-caption text-label-caption uppercase appearance-none focus:ring-0 focus:border-primary transition-colors cursor-pointer">
+<option>STATE</option>
+<option>NY</option>
+<option>CA</option>
+</select>
+<span class="material-symbols-outlined absolute right-0 top-1/2 -translate-y-1/2 pointer-events-none text-on-surface-variant">expand_more</span>
+</div>
+<input class="w-full bg-transparent border-0 border-b border-outline-variant py-4 px-0 font-label-caption text-label-caption uppercase placeholder:text-on-surface-variant focus:ring-0 focus:border-primary transition-colors" placeholder="ZIP CODE" type="text"/>
+</div>
+</div>
+<!-- Shipping Method Section -->
+<div class="flex flex-col gap-8">
+<h2 class="font-headline-md text-headline-md uppercase">SHIPPING METHOD</h2>
+<div class="flex flex-col border border-outline-variant">
+<label class="flex justify-between items-center p-6 border-b border-outline-variant cursor-pointer hover:bg-surface transition-colors">
+<div class="flex items-center gap-4">
+<div class="w-4 h-4 rounded-full border border-primary flex items-center justify-center">
+<div class="w-2 h-2 rounded-full bg-primary"></div>
+</div>
+<span class="font-label-caption text-label-caption uppercase">STANDARD (3-5 BUSINESS DAYS)</span>
+</div>
+<span class="font-label-caption text-label-caption uppercase font-medium">FREE</span>
+</label>
+<label class="flex justify-between items-center p-6 cursor-pointer hover:bg-surface transition-colors">
+<div class="flex items-center gap-4">
+<div class="w-4 h-4 rounded-full border border-outline-variant flex items-center justify-center">
+<div class="w-2 h-2 rounded-full bg-primary hidden"></div>
+</div>
+<span class="font-label-caption text-label-caption uppercase">EXPRESS (1-2 BUSINESS DAYS)</span>
+</div>
+<span class="font-label-caption text-label-caption uppercase font-medium">$25.00</span>
+</label>
+</div>
+</div>
+<!-- Payment Section -->
+<div class="flex flex-col gap-8">
+<h2 class="font-headline-md text-headline-md uppercase">PAYMENT</h2>
+<p class="font-label-caption text-label-caption uppercase text-on-surface-variant">ALL TRANSACTIONS ARE SECURE AND ENCRYPTED.</p>
+<div class="border border-outline-variant p-6 flex flex-col gap-6">
+<div class="flex justify-between items-center border-b border-outline-variant pb-6">
+<span class="font-label-caption text-label-caption uppercase">CREDIT CARD</span>
+<div class="flex gap-2">
+<span class="material-symbols-outlined text-outline-variant">credit_card</span>
+</div>
+</div>
+<input class="w-full bg-transparent border-0 border-b border-outline-variant py-4 px-0 font-label-caption text-label-caption uppercase placeholder:text-on-surface-variant focus:ring-0 focus:border-primary transition-colors" placeholder="CARD NUMBER" type="text"/>
+<input class="w-full bg-transparent border-0 border-b border-outline-variant py-4 px-0 font-label-caption text-label-caption uppercase placeholder:text-on-surface-variant focus:ring-0 focus:border-primary transition-colors" placeholder="NAME ON CARD" type="text"/>
+<div class="grid grid-cols-2 gap-8">
+<input class="w-full bg-transparent border-0 border-b border-outline-variant py-4 px-0 font-label-caption text-label-caption uppercase placeholder:text-on-surface-variant focus:ring-0 focus:border-primary transition-colors" placeholder="EXPIRATION DATE (MM/YY)" type="text"/>
+<input class="w-full bg-transparent border-0 border-b border-outline-variant py-4 px-0 font-label-caption text-label-caption uppercase placeholder:text-on-surface-variant focus:ring-0 focus:border-primary transition-colors" placeholder="SECURITY CODE" type="text"/>
+</div>
+</div>
+</div>
+<!-- Actions -->
+<div class="pt-8 flex flex-col sm:flex-row gap-6 justify-between items-center border-t border-outline-variant">
+<a class="font-label-caption text-label-caption uppercase text-on-surface-variant hover:text-primary transition-colors flex items-center gap-1" href="#">
+<span class="material-symbols-outlined text-[14px]">chevron_left</span>
+                        RETURN TO CART
+                    </a>
+<button class="bg-primary text-on-primary px-12 py-5 font-headline-md text-headline-md uppercase hover:opacity-90 transition-opacity tracking-widest w-full sm:w-auto" type="button">
+                        PAY NOW
+                    </button>
+</div>
+</form>
+</section>
+<!-- Right Column: Sticky Order Summary (40%) -->
+<aside class="w-full lg:w-[40%] bg-surface border-t lg:border-t-0 border-outline-variant relative">
+<div class="sticky top-[60px] p-margin-desktop lg:p-[80px] flex flex-col gap-12 h-[calc(100vh-60px)] overflow-y-auto no-scrollbar">
+<!-- Product List -->
+<div class="flex flex-col gap-8">
+<!-- Item 1 -->
+<div class="flex gap-6 items-start">
+<div class="w-[80px] shrink-0 aspect-[4/5] border border-outline-variant bg-surface-container-highest relative">
+<img class="w-full h-full object-cover absolute inset-0" data-alt="A striking digital installation art piece featuring a highly structured, brutalist black garment hanging against a stark, pure white background. The lighting is harsh and directional, creating sharp architectural shadows that emphasize the severe, minimalist aesthetic of the clothing. The scene relies on a sophisticated palette of absolute black and pristine white, communicating a cold, editorial luxury." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDrPPKQJXuNea3_8onlW171b4qP1VggeRMIhpOY4JhPVNQCrR7HFShpePFR3m3hzdzPynUNVVJlPgpBsRxG4iIKE57_h8T_4P6UktoUlBxSrO_an1UqshjOvA1IrMyj5iQK-14Pecp0LaoDGec3T4x5kZQ4NKDkf31OWyk2PuQHOGTx-gUgGUPwxKZczddZrjfLDAV4cL_HDUGn1yvn0Y1g-u2f7l8pQEhzy51DW3x2QSILsgU2PVUt7_WFtqKv5mtZJFwm6-5IXdQ"/>
+<div class="absolute -top-2 -right-2 w-5 h-5 bg-primary text-on-primary flex items-center justify-center font-label-caption text-[10px]">1</div>
+</div>
+<div class="flex flex-col flex-grow justify-between h-full pt-1">
+<div class="flex justify-between items-start w-full">
+<div class="flex flex-col gap-1">
+<span class="font-label-caption text-label-caption uppercase font-bold">STRUCTURED BLAZER</span>
+<span class="font-label-caption text-label-caption uppercase text-on-surface-variant">SIZE: 48</span>
+</div>
+<span class="font-label-caption text-label-caption uppercase">$1,250.00</span>
+</div>
+</div>
+</div>
+<!-- Item 2 -->
+<div class="flex gap-6 items-start">
+<div class="w-[80px] shrink-0 aspect-[4/5] border border-outline-variant bg-surface-container-highest relative">
+<img class="w-full h-full object-cover absolute inset-0" data-alt="A striking digital installation art piece featuring a pair of wide-leg, structural black trousers presented flat against a minimalist off-white surface. The lighting is high-key and uniform, eliminating soft gradients in favor of sharp, distinct edges. The overall mood is utilitarian and disciplined, focusing entirely on the geometry and silhouette of the fashion item." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCl1ZVO9k5h3-4rQF-HE8nQ0457j9xokJ6icRGrPnuTpQ1ILNTIwkR0MaeSvmU8kqKcdq0s-z1M6hp6Oj_kXLE0uhRWUU-OJDH7cWbSBO1J4pyfgHyHhXqsVeLx51mX9erw2u0ZoVvT_Elxd4Ry_h3Wy1wyCiJ-E3Jd6PhGrtooeAiIeYW74sTdTJ-t4pYY2Dnn8P3iIyl3IMdG6K5aGpNKAhyz7g3yK1Cl4Xy3NqCv-oI93QAhbSgYxMeGojw6sd70iIGjVzMSWR8"/>
+<div class="absolute -top-2 -right-2 w-5 h-5 bg-primary text-on-primary flex items-center justify-center font-label-caption text-[10px]">1</div>
+</div>
+<div class="flex flex-col flex-grow justify-between h-full pt-1">
+<div class="flex justify-between items-start w-full">
+<div class="flex flex-col gap-1">
+<span class="font-label-caption text-label-caption uppercase font-bold">WIDE TROUSER</span>
+<span class="font-label-caption text-label-caption uppercase text-on-surface-variant">SIZE: 48</span>
+</div>
+<span class="font-label-caption text-label-caption uppercase">$850.00</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Discount Code -->
+<div class="flex gap-4 border-y border-outline-variant py-8">
+<input class="w-full bg-transparent border-0 border-b border-outline-variant py-3 px-0 font-label-caption text-label-caption uppercase placeholder:text-on-surface-variant focus:ring-0 focus:border-primary transition-colors" placeholder="DISCOUNT CODE" type="text"/>
+<button class="bg-transparent border border-primary text-primary px-6 py-3 font-label-caption text-label-caption uppercase hover:bg-primary hover:text-on-primary transition-colors whitespace-nowrap" type="button">
+                        APPLY
+                    </button>
+</div>
+<!-- Totals -->
+<div class="flex flex-col gap-4 font-label-caption text-label-caption uppercase">
+<div class="flex justify-between text-on-surface-variant">
+<span>SUBTOTAL</span>
+<span>$2,100.00</span>
+</div>
+<div class="flex justify-between text-on-surface-variant">
+<span>SHIPPING</span>
+<span>CALCULATED AT NEXT STEP</span>
+</div>
+<div class="flex justify-between items-end mt-4 pt-4 border-t border-outline-variant text-primary">
+<span class="font-headline-md text-headline-md">TOTAL</span>
+<div class="flex items-baseline gap-2">
+<span class="text-on-surface-variant">USD</span>
+<span class="font-headline-md text-headline-md">$2,100.00</span>
+</div>
+</div>
+</div>
+</div>
+</aside>
+</main>
+<!-- Footer Component -->
+<footer class="w-full bg-surface border-t border-outline-variant mt-auto">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-base py-16 px-margin-mobile md:px-margin-desktop max-w-7xl mx-auto">
+<div class="font-headline-md text-headline-md font-bold text-primary">
+                DOUSEOR
+            </div>
+<div class="md:col-span-3 flex flex-wrap gap-x-8 gap-y-4 font-label-caption text-label-caption uppercase tracking-widest">
+<a class="text-on-surface-variant hover:text-primary transition-colors active:opacity-80" href="#">SHOP</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors active:opacity-80" href="#">ABOUT</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors active:opacity-80" href="#">CONTACT</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors active:opacity-80" href="#">NEWSLETTER</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors active:opacity-80" href="#">PRIVACY</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors active:opacity-80" href="#">TERMS</a>
+</div>
+<div class="md:col-span-4 mt-8 pt-8 border-t border-outline-variant font-label-caption text-label-caption uppercase tracking-widest text-on-surface-variant">
+                © 2024 DOUSEOR. ALL RIGHTS RESERVED.
+            </div>
+</div>
+</footer>
+</body></html>

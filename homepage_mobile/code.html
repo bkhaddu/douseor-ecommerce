@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>DOUSEOR</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-dim": "#dbdad6",
+                        "error": "#ba1a1a",
+                        "primary-fixed": "#e5e2e1",
+                        "on-background": "#1b1c1a",
+                        "secondary-fixed": "#e3e2e2",
+                        "tertiary-container": "#1d1b1a",
+                        "surface-container-high": "#e9e8e4",
+                        "on-primary-fixed": "#1c1b1b",
+                        "inverse-primary": "#c9c6c5",
+                        "surface-variant": "#e3e2df",
+                        "surface-container-low": "#f5f4f0",
+                        "inverse-on-surface": "#f2f1ed",
+                        "background": "#faf9f5",
+                        "on-surface-variant": "#444748",
+                        "primary": "#000000",
+                        "tertiary": "#000000",
+                        "on-tertiary-fixed-variant": "#484645",
+                        "on-secondary": "#ffffff",
+                        "on-secondary-fixed-variant": "#464747",
+                        "on-primary-container": "#858383",
+                        "on-error": "#ffffff",
+                        "on-error-container": "#93000a",
+                        "on-secondary-fixed": "#1a1c1c",
+                        "on-tertiary-container": "#868381",
+                        "on-primary-fixed-variant": "#474646",
+                        "surface-bright": "#faf9f5",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-tint": "#5f5e5e",
+                        "secondary": "#5e5e5e",
+                        "primary-container": "#1c1b1b",
+                        "outline-variant": "#c4c7c7",
+                        "surface": "#faf9f5",
+                        "surface-container": "#efeeea",
+                        "on-tertiary-fixed": "#1d1b1a",
+                        "on-surface": "#1b1c1a",
+                        "secondary-fixed-dim": "#c7c6c6",
+                        "on-secondary-container": "#626363",
+                        "primary-fixed-dim": "#c9c6c5",
+                        "on-tertiary": "#ffffff",
+                        "error-container": "#ffdad6",
+                        "on-primary": "#ffffff",
+                        "surface-container-highest": "#e3e2df",
+                        "secondary-container": "#e0dfdf",
+                        "tertiary-fixed": "#e6e1df",
+                        "inverse-surface": "#30312e",
+                        "tertiary-fixed-dim": "#cac6c3",
+                        "outline": "#747878"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "margin-desktop": "40px",
+                        "gutter": "1px",
+                        "base": "8px",
+                        "margin-mobile": "16px",
+                        "navbar-height": "60px"
+                    },
+                    "fontFamily": {
+                        "headline-lg": ["Inter", "sans-serif"],
+                        "body": ["Inter", "sans-serif"],
+                        "headline-xl-mobile": ["Inter", "sans-serif"],
+                        "headline-xl": ["Inter", "sans-serif"],
+                        "headline-md": ["Inter", "sans-serif"],
+                        "label-caption": ["Inter", "sans-serif"]
+                    },
+                    "fontSize": {
+                        "headline-lg": ["32px", { "lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "400" }],
+                        "body": ["13px", { "lineHeight": "1.7", "letterSpacing": "0.01em", "fontWeight": "400" }],
+                        "headline-xl-mobile": ["42px", { "lineHeight": "1.1", "letterSpacing": "-0.04em", "fontWeight": "300" }],
+                        "headline-xl": ["72px", { "lineHeight": "1.1", "letterSpacing": "-0.04em", "fontWeight": "300" }],
+                        "headline-md": ["16px", { "lineHeight": "1.2", "letterSpacing": "0.02em", "fontWeight": "500" }],
+                        "label-caption": ["11px", { "lineHeight": "1.4", "letterSpacing": "0.08em", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface-container-low text-primary antialiased font-body min-h-screen flex flex-col">
+<!-- TopAppBar -->
+<nav class="fixed top-0 w-full h-[60px] z-50 bg-surface-container-lowest border-b border-outline-variant">
+<div class="flex justify-between items-center px-margin-mobile md:px-margin-desktop w-full max-w-7xl mx-auto h-full">
+<button class="hover:opacity-70 transition-opacity duration-200 active:scale-[0.98] flex items-center justify-center">
+<span class="material-symbols-outlined text-primary">menu</span>
+</button>
+<div class="font-headline-lg text-headline-lg font-black tracking-tighter text-primary">DOUSEOR</div>
+<button class="hover:opacity-70 transition-opacity duration-200 active:scale-[0.98] flex items-center justify-center">
+<span class="material-symbols-outlined text-primary">shopping_bag</span>
+</button>
+</div>
+</nav>
+<!-- Main Content Canvas -->
+<main class="flex-grow pt-[60px] flex flex-col border-x border-outline-variant max-w-7xl mx-auto w-full bg-surface-container-lowest shadow-sm">
+<!-- Hero Section -->
+<section class="flex flex-col md:flex-row min-h-[calc(100vh-60px)] border-b border-outline-variant">
+<div class="flex-1 p-margin-mobile md:p-margin-desktop flex flex-col justify-end border-b md:border-b-0 md:border-r border-outline-variant order-2 md:order-1 bg-surface-container-lowest">
+<p class="font-label-caption text-label-caption uppercase tracking-widest text-on-surface-variant mb-6">SS25 Collection</p>
+<h1 class="font-headline-xl-mobile text-headline-xl-mobile md:font-headline-xl md:text-headline-xl uppercase text-primary mb-12">Architecture<br/>Of The<br/>Body</h1>
+<button class="bg-primary text-on-primary px-8 py-4 w-max font-label-caption text-label-caption uppercase tracking-widest hover:opacity-90 transition-opacity rounded-none border border-primary">SHOP NOW</button>
+</div>
+<div class="flex-[1.2] relative h-[530px] md:h-auto bg-surface-dim order-1 md:order-2 overflow-hidden">
+<img class="absolute inset-0 w-full h-full object-cover object-center" data-alt="A striking editorial fashion photograph of a model wearing a severely structured, avant-garde black coat. The setting is a minimalist, raw concrete studio with harsh, directional high-contrast lighting that emphasizes the architectural silhouettes of the garment. The overall aesthetic is cold, brutalist, and unapologetically modern, perfectly aligned with a high-end luxury brand light-mode UI." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCTWnGl0fDdXXhTkm4ezDpM9GE-XSv22T1z1G4gdc2SKH8N245DWGKJgkY60TZPQ1v1sPQEUtnGKUUQQohW9yUJWfyM8atuZmtGF7Gnp4B41GACRGkb0SppqoRH_nhn7DJMGySTtbSQyHKVM2mIcEL4MnPFxpVFzboJlb2UJRYJxx2te_sxatEP8-ZpYhfnvXSSiY-m0vna140Y3qSVUFR9cNhbDdQhvR0-JVXvZV_GPXEhI1DpJ8etMPSedvroWK6s2sPbt2TwmhE"/>
+</div>
+</section>
+<!-- Static Marquee Strip -->
+<div class="w-full bg-primary text-on-primary py-3 border-b border-outline-variant overflow-hidden flex items-center">
+<div class="px-margin-mobile font-label-caption text-label-caption uppercase tracking-widest whitespace-nowrap">
+                NEW ARRIVALS — SS25 — DOUSEOR — FREE SHIPPING OVER ₹2999 — NEW ARRIVALS — SS25 — DOUSEOR
+            </div>
+</div>
+<!-- Featured Collection -->
+<section class="flex flex-col border-b border-outline-variant">
+<div class="p-margin-mobile md:p-margin-desktop border-b border-outline-variant flex justify-between items-end">
+<h2 class="font-headline-md text-headline-md uppercase text-primary">FEATURED</h2>
+<a class="font-label-caption text-label-caption uppercase tracking-widest text-on-surface-variant hover:text-primary transition-colors" href="#">View All</a>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 divide-y md:divide-y-0 md:divide-x divide-outline-variant">
+<article class="flex flex-col group cursor-pointer bg-surface-container-lowest">
+<div class="aspect-[4/5] bg-surface-dim relative border-b border-outline-variant overflow-hidden">
+<img class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="Close-up product shot of a stark white, oversized cotton shirt with an asymmetric collar. The shirt is photographed flat against a pure off-white background (#F5F4F0) with harsh, direct flash lighting creating distinct, sharp drop shadows. The image feels raw, utilitarian, and highly clinical, adhering to a minimalist brutalist fashion aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDhqfXqfSRNDCnpct3lRUO4Si8860z6GBDK7gW3oU1RFCjxK4rF8XtREqPHxMT8XxNmFYHB5M18nK0SdGum0cg0iCt1OwK6cKCsU4tXeF0RmYNWojxU3L-spmWxQiytkWlQqFqIPHL8q7dOysP3T3sBzJoULt-59UWlAbxNTjSKxhibG9X0Uek2pOtwsy-dxL9HLmtNG49cZTSialxGDk3X5EG9_wZlbQfhUcLosN_pI2ybJFqPsRxHQlZ0gPmGC2glIknDHtrHIc4"/>
+<div class="absolute top-0 left-0 border-b border-r border-outline-variant bg-surface-container-lowest px-3 py-1 font-label-caption text-label-caption uppercase tracking-widest">01</div>
+</div>
+<div class="p-4 flex flex-col gap-1">
+<h3 class="font-label-caption text-label-caption uppercase text-primary">Asymmetric Cotton Shirt</h3>
+<p class="font-label-caption text-label-caption text-on-surface-variant">₹8,500</p>
+</div>
+</article>
+<article class="flex flex-col group cursor-pointer bg-surface-container-lowest">
+<div class="aspect-[4/5] bg-surface-dim relative border-b border-outline-variant overflow-hidden">
+<img class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="A meticulously tailored, pitch-black wool blazer displayed on a featureless mannequin in a stark white void. The lighting is extremely clinical and cold, highlighting the sharp lines and rigid shoulder pads of the garment. The overall vibe is austere, luxury-brutalist, and entirely devoid of warmth or decoration." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAzRvB7idwbm5PYFtRGVu2lb0ooCjfgkg_v5Y-BJYvgAzkdmt11TlUquKaFbz248nnIipwbdFhyJwPEjLxALvXyR0K2XCZsHSaHEql07HSc51mhw-abMOTCHYJt6Lq_6trdInJHDTk8wtBalInBD43k4JK2_UW8x7H7KVZF1qdKIgEB-QhcLwADL77HTfHyv-UNc_hu7pBW4A0RgTZVr0qNpuiL_PcifQ9bViNMUFZ9gAkpRgQLUCW79zukQS46_2Nf1PhiH3wNtpw"/>
+<div class="absolute top-0 left-0 border-b border-r border-outline-variant bg-surface-container-lowest px-3 py-1 font-label-caption text-label-caption uppercase tracking-widest">02</div>
+</div>
+<div class="p-4 flex flex-col gap-1">
+<h3 class="font-label-caption text-label-caption uppercase text-primary">Structural Wool Blazer</h3>
+<p class="font-label-caption text-label-caption text-on-surface-variant">₹24,000</p>
+</div>
+</article>
+<article class="flex flex-col group cursor-pointer bg-surface-container-lowest">
+<div class="aspect-[4/5] bg-surface-dim relative border-b border-outline-variant overflow-hidden">
+<img class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="Minimalist product photography of a heavy black leather bag with stark geometric lines. The bag sits on a stark concrete block against a bright, overexposed white backdrop. The composition relies entirely on geometric shapes and high contrast, evoking a sense of industrial luxury and brutalist design principles." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB82WaXQb6hW0_cWKU4DolpSUQWr7by7ncAcTXc4Etn289mrPtShjA2YDCQAl2ZGzXGbintw0ouXm5AobCyMZfUJ-Wu8-2F4Eb8TYfmSFCEgwJX9xfkHkfF0g5K9ff1Tnxeop44-AXl-NIL_hn_FPUD7uFoutZDQVFiHiwt-Of9KuKR1bBxos67B-1xuoXF4jWVE2xuQJSapuKdNRHPA9FBbRq00XCnUcxVBhcWj_5As1gKjb9EYBdIBspvxuM_RRAJY0SlUkxggpQ"/>
+<div class="absolute top-0 left-0 border-b border-r border-outline-variant bg-surface-container-lowest px-3 py-1 font-label-caption text-label-caption uppercase tracking-widest">03</div>
+</div>
+<div class="p-4 flex flex-col gap-1">
+<h3 class="font-label-caption text-label-caption uppercase text-primary">Geometric Tote</h3>
+<p class="font-label-caption text-label-caption text-on-surface-variant">₹18,200</p>
+</div>
+</article>
+<article class="flex flex-col group cursor-pointer bg-surface-container-lowest hidden md:flex">
+<div class="aspect-[4/5] bg-surface-dim relative border-b border-outline-variant overflow-hidden">
+<img class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="A pair of sharply creased, wide-leg trousers in a muted slate grey fabric. The garment is photographed tightly cropped, focusing on the harsh lines of the pleats and the raw hem. The lighting is diffused but high-key, maintaining a cold, editorial atmosphere consistent with a minimalist fashion lookbook." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAUJK1DaOPzNDSepJnafinbZEsEgt3Ej8leBAPtgpDEEIGdvu5ue3Rmwl3SdXwcHq767oBW_seQdD-RT3umVqeSk6UugyTETrJvcQrKp-9YE7EWAPG2hFrN9abMwuxyWilMIQTP5tufttJTo87cxkpwW14FVX8su2em-Xu0bJLNwm0EBYRtbxnxcjkb1jk6gqIfbQ2Eolbwx162XAHzQnb6qYntsu622yrI8jz7zSyvdjQxV0mMaY3VDLebpDUvUxBR2-ZJsq8h7uU"/>
+<div class="absolute top-0 left-0 border-b border-r border-outline-variant bg-surface-container-lowest px-3 py-1 font-label-caption text-label-caption uppercase tracking-widest">04</div>
+</div>
+<div class="p-4 flex flex-col gap-1">
+<h3 class="font-label-caption text-label-caption uppercase text-primary">Pleated Wide Trouser</h3>
+<p class="font-label-caption text-label-caption text-on-surface-variant">₹11,000</p>
+</div>
+</article>
+</div>
+</section>
+<!-- Editorial Banner -->
+<section class="border-b border-outline-variant bg-surface-container-lowest p-margin-mobile md:p-margin-desktop">
+<div class="w-full aspect-[4/5] md:aspect-[21/9] bg-surface-dim relative border border-outline-variant overflow-hidden">
+<img class="absolute inset-0 w-full h-full object-cover grayscale opacity-90" data-alt="A wide, cinematic black and white photograph of an empty, brutalist concrete room with a single sliver of bright sunlight cutting across the floor. The image is devoid of people or products, serving purely as an architectural mood-setter for the fashion brand. The texture of the raw concrete is highly detailed, emphasizing structural rawness over decoration." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBmr-HSUVTMhHiqqIhA7Z3Th9PZG1qDe_7KEASDkj9dHQgbYu4j-ZqUVCbxYYa4uuprFUV3hMA3JpWViUW1EA1fqzIEykPG--hCPlPeTPRbtMiz09xl5tVA_oRxqpn7ghYL2NFGLZJ1PjNzg7S_CFp1CPkapN_hZEtqey_1n2LmK_L0PA9yDSyHJktfGSi88SAzF3VcQidYQujFoLQwtGCSd8pKds7JOOWMjkO24IRt2VJN4m6_H0Pax2ihLJiMYQgJpiMqN2vPqoE"/>
+</div>
+</section>
+<!-- New Arrivals (Horizontal Scroll) -->
+<section class="flex flex-col border-b border-outline-variant bg-surface-container-lowest">
+<div class="p-margin-mobile md:p-margin-desktop border-b border-outline-variant">
+<h2 class="font-headline-md text-headline-md uppercase text-primary">NEW IN</h2>
+</div>
+<div class="flex overflow-x-auto snap-x divide-x divide-outline-variant hide-scrollbar border-b border-outline-variant">
+<article class="min-w-[70vw] md:min-w-[320px] flex flex-col snap-start cursor-pointer group bg-surface-container-lowest">
+<div class="aspect-[3/4] bg-surface-dim relative border-b border-outline-variant overflow-hidden">
+<img class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="A close-up studio shot of a chunky, solid silver ring resting on a stark white plinth. The lighting is harsh and direct, creating a deep, singular shadow behind the object. The composition is highly disciplined, focusing on the reflective, metallic surface of the minimalist accessory against a light background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD7Z2PIP9Z6qHfgIjPGXKuGWnDh7Yuruj6Ir0-xjApZPMFKxrWiajM9X8X2nKjsMyoD-A1fCOezbhsbUFbw8YTehmAAmPkuK9bFA77hNm9xvz0oeF2WVKqkir97k5OGCy77s6ot3EvCI6xZ-NZNxXyN0o8xXq-132WQ_DTIwWbFetQIhbyut_uMrZufQbakJgA6i7t8SnmtZTFLxL888J21tG5wA7ODNP0_Y6OBML2xgguvsC70I6msPQNC0e08Q3pZRKORjEQKYAM"/>
+</div>
+<div class="p-4 flex flex-col gap-1">
+<h3 class="font-label-caption text-label-caption uppercase text-primary">Solid Silver Ring</h3>
+<p class="font-label-caption text-label-caption text-on-surface-variant">₹4,200</p>
+</div>
+</article>
+<article class="min-w-[70vw] md:min-w-[320px] flex flex-col snap-start cursor-pointer group bg-surface-container-lowest">
+<div class="aspect-[3/4] bg-surface-dim relative border-b border-outline-variant overflow-hidden">
+<img class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="A stiff, white cotton mock-neck top photographed flat lay style on a pale grey surface. The garment is arranged with absolute geometric precision, ensuring perfectly straight lines and symmetrical folds. The lighting is sterile and even, typical of high-end, brutalist e-commerce photography." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCc5O8m7aXNkubJE62uiH7Y1j7caG5NrlGOhumcXUsZLawbkehGl2XTncmgn57XLp74g0j-LmJiSP5cO6EOzpY6tPp3cNhdYAloMKxB7Jte5XBk9nFfi-0qp3G0gJXUkUl4zTv1gJOVEmA11VcPTAfMUabmRvp6qYfLlO5o84O03BCraB_b6FVBl89a8nnGgEGE5b1Lx_Pg9sw0VHFSKuZs9JH544-5RzbO5YzM28Hh0TdQn6BaSj3htZmaJgICxWKGrxLv3FN_7mY"/>
+</div>
+<div class="p-4 flex flex-col gap-1">
+<h3 class="font-label-caption text-label-caption uppercase text-primary">Mock-Neck Jersey</h3>
+<p class="font-label-caption text-label-caption text-on-surface-variant">₹6,800</p>
+</div>
+</article>
+<article class="min-w-[70vw] md:min-w-[320px] flex flex-col snap-start cursor-pointer group bg-surface-container-lowest">
+<div class="aspect-[3/4] bg-surface-dim relative border-b border-outline-variant overflow-hidden">
+<img class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="A pair of severe, pointed-toe black leather boots positioned rigidly side-by-side on a polished concrete floor. The background is a seamless white cove. The image is high-contrast, emphasizing the glossy texture of the leather and the aggressive, sharp silhouette of the footwear." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB1NLtN1pX4iIuJEbTVgE9oXzbYuV7UHxezMy5TkgbAKCyPbtPsNDq91RwRpoKz4MWu8L0lQp9HXpHdFZ0xxu7ttpGIgghetsYtBMTHJVSOJnb8NDWaoNmDsCOMH_BV5KsVyuTKGQQCjo3vbVzIOsUVSghxoAbUQcemofrfCBMrHll6bD4UGUcJg7EUR2SPBGtcJkRDfY3RxJcn44I5x56Lpi_07hHUARN-0ISQzfGnjAvkvXQozPWjjmtFblsMx0Qe3_vfmQREvqQ"/>
+</div>
+<div class="p-4 flex flex-col gap-1">
+<h3 class="font-label-caption text-label-caption uppercase text-primary">Pointed Leather Boot</h3>
+<p class="font-label-caption text-label-caption text-on-surface-variant">₹32,000</p>
+</div>
+</article>
+<article class="min-w-[70vw] md:min-w-[320px] flex flex-col snap-start cursor-pointer group bg-surface-container-lowest">
+<div class="aspect-[3/4] bg-surface-dim relative border-b border-outline-variant overflow-hidden">
+<img class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="An austere, knee-length black skirt with severe pleats, captured from a low angle to emphasize its architectural drape. The garment is worn by a model whose face and torso are cropped out, focusing purely on the lower half against a bright, blank white studio wall." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA4T8PDL0Lx2sAdpvjGVHFrDShHESno7PGF187LAc_YCLqlC108D4m0zVF2r7Ngat-8VDBKPJ3CriuqRFxSmGwZ0FHfbbzG02MWGfF2HPy7ODv9Fhk4QUV0CdpzxfhI2zuL_BxAKeZ-LEIu_ihNXa3lfmOUQMstIx1CeYUdTQGNzkJd_yoG-Uou6cLfvyRTCG6Erom1n3A6IBDBgV-vpeOdUNu77OcPV9FgpK6VclPXZTYQ7IDDLkHoch9e0hj18S9fnodWtGzM9Cs"/>
+</div>
+<div class="p-4 flex flex-col gap-1">
+<h3 class="font-label-caption text-label-caption uppercase text-primary">Architectural Skirt</h3>
+<p class="font-label-caption text-label-caption text-on-surface-variant">₹14,500</p>
+</div>
+</article>
+<!-- Padding element for scroll area -->
+<div class="min-w-[1px] bg-outline-variant snap-start"></div>
+</div>
+</section>
+<!-- Brand Statement -->
+<section class="bg-surface-container-lowest py-32 px-margin-mobile md:px-margin-desktop flex items-center justify-center border-b border-outline-variant">
+<p class="font-headline-md text-headline-md max-w-3xl text-center text-primary uppercase leading-relaxed tracking-wide">
+                We approach clothing as wearable architecture. Stripping away all superfluous decoration to reveal the pure form, function, and structural integrity beneath. Unapologetic minimalism for the modern silhouette.
+            </p>
+</section>
+<!-- Footer -->
+<footer class="bg-surface w-full">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-base py-16 px-margin-mobile md:px-margin-desktop">
+<div class="mb-12 md:mb-0 flex flex-col justify-between">
+<div class="font-headline-md text-headline-md font-bold text-primary mb-8">DOUSEOR</div>
+<p class="font-label-caption text-label-caption uppercase tracking-widest text-on-surface-variant">© 2024 DOUSEOR. ALL RIGHTS RESERVED.</p>
+</div>
+<div class="flex flex-col gap-6">
+<a class="font-label-caption text-label-caption uppercase tracking-widest text-on-surface-variant hover:text-primary transition-colors" href="#">SHOP</a>
+<a class="font-label-caption text-label-caption uppercase tracking-widest text-on-surface-variant hover:text-primary transition-colors" href="#">ABOUT</a>
+<a class="font-label-caption text-label-caption uppercase tracking-widest text-on-surface-variant hover:text-primary transition-colors" href="#">CONTACT</a>
+</div>
+<div class="flex flex-col gap-6">
+<a class="font-label-caption text-label-caption uppercase tracking-widest text-on-surface-variant hover:text-primary transition-colors" href="#">NEWSLETTER</a>
+<a class="font-label-caption text-label-caption uppercase tracking-widest text-on-surface-variant hover:text-primary transition-colors" href="#">PRIVACY</a>
+<a class="font-label-caption text-label-caption uppercase tracking-widest text-on-surface-variant hover:text-primary transition-colors" href="#">TERMS</a>
+</div>
+<div class="hidden md:flex flex-col items-end justify-end">
+<button class="hover:opacity-70 transition-opacity duration-200 active:scale-[0.98]">
+<span class="material-symbols-outlined text-primary font-headline-md text-headline-md">arrow_upward</span>
+</button>
+</div>
+</div>
+</footer>
+</main>
+<style>
+        /* Hide scrollbar for Chrome, Safari and Opera */
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        /* Hide scrollbar for IE, Edge and Firefox */
+        .hide-scrollbar {
+            -ms-overflow-style: none;  /* IE and Edge */
+            scrollbar-width: none;  /* Firefox */
+        }
+    </style>
+</body></html>

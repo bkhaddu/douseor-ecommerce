@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>DOUSEOR | Luxury Brutalist Fashion</title>
+<meta name="description" content="DOUSEOR — Structural Integrity. Unapologetic Form. Editorial luxury fashion rooted in brutalist minimalism."/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700;900&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="styles.css"/>
+</head>
+<body>
+
+<!-- HEADER -->
+<header id="main-header">
+  <div class="header-inner">
+    <button class="icon-btn" id="menu-toggle" aria-label="Menu">
+      <span class="material-symbols-outlined">menu</span>
+    </button>
+    <a href="#" class="logo" data-nav="home">DOUSEOR</a>
+    <button class="icon-btn" id="cart-toggle" aria-label="Shopping Bag">
+      <span class="material-symbols-outlined">shopping_bag</span>
+      <span class="cart-badge" id="cart-badge">2</span>
+    </button>
+  </div>
+</header>
+
+<!-- MOBILE NAV OVERLAY -->
+<nav id="mobile-nav" class="mobile-nav">
+  <div class="mobile-nav-header">
+    <span class="logo">DOUSEOR</span>
+    <button class="icon-btn" id="nav-close"><span class="material-symbols-outlined">close</span></button>
+  </div>
+  <div class="mobile-nav-links">
+    <a href="#" data-nav="home">HOME</a>
+    <a href="#" data-nav="shop">SHOP ALL</a>
+    <a href="#" data-nav="about">ABOUT</a>
+    <a href="#" data-nav="contact">CONTACT</a>
+  </div>
+</nav>
+
+<!-- PAGE: HOME -->
+<main id="page-home" class="page active">
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-image">
+      <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBMjC0EIGdn92djHsnpmo_B05wowZHcBLZ97xZp9fBf-LAALnAt2ezqvS_ENvQZAjTXf0KvueY2KN5elxbmH71KoToqrD_mEfsUzGA2oapFgneMSRvA1ChZRDXj14HiX7ohuxQZU15Aq6i5xu8qbC_t8T7PKTeLICwv-ye1JYE9I-jLye1yuNYNuOXgDs-TBysXlvc5spZ2slGKUSdTFpK7D3JhLvrbb8S8vv0eqN_jihdE94K64EzxPOMZsnga1D-cEmXvHVIqhyc" alt="Editorial Hero"/>
+    </div>
+    <div class="hero-content">
+      <h1 class="hero-title">Douseor</h1>
+      <p class="hero-sub">Structural Integrity. Unapologetic Form. The new uniform for the disciplined.</p>
+      <a href="#" class="btn-primary" data-nav="shop">SHOP NOW</a>
+    </div>
+  </section>
+  <!-- Marquee -->
+  <div class="marquee-container">
+    <div class="marquee-content">
+      NEW ARRIVALS FW24 &nbsp; // &nbsp; NEW ARRIVALS FW24 &nbsp; // &nbsp; NEW ARRIVALS FW24 &nbsp; // &nbsp; NEW ARRIVALS FW24 &nbsp; // &nbsp; NEW ARRIVALS FW24 &nbsp; // &nbsp; NEW ARRIVALS FW24 &nbsp; // &nbsp; NEW ARRIVALS FW24 &nbsp; // &nbsp; NEW ARRIVALS FW24 &nbsp; // &nbsp;
+    </div>
+  </div>
+  <!-- Featured Products -->
+  <section class="product-grid four-col" id="featured-grid"></section>
+  <!-- Banner -->
+  <section class="banner">
+    <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuAY__LQpeB3vjJUplNHq_EIWH4-iyE4rsam8HrnXhnlgsuXnSlHMq25_Gx24bezdtm2ye8r5zBpJbj4l6hT__tOCGV5ItL8iqWPfguiwU2PNu2G4__xmiVGryvWycqYmsVrCTP0jKhtrZ5gkUZfzueMBzY9qup3QoiaN3lhsCApO8uaqZYiJhz1IyfgrRShj1RLqLPL_ZS5Nk64W_2EsgKG3R7WvFJVk9ITtg7WUmQoIG1XztjgmtYkxjaGG_sCZlkNKmdEGRNU-xc" alt="Campaign"/>
+    <div class="banner-overlay">
+      <h2>Archive Collection</h2>
+      <a href="#" class="btn-outline" data-nav="shop">EXPLORE</a>
+    </div>
+  </section>
+  <!-- Statement -->
+  <section class="statement">
+    <p>We reject decoration. We embrace structure. Form follows function in an unapologetic pursuit of essentialism. This is Douseor.</p>
+  </section>
+</main>
+
+<!-- PAGE: SHOP -->
+<main id="page-shop" class="page">
+  <section class="shop-header">
+    <h1 class="page-title">SHOP ALL</h1>
+    <span class="item-count">8 ITEMS</span>
+  </section>
+  <div class="filter-bar" id="filter-bar">
+    <div class="filter-left">
+      <button class="filter-btn" data-filter="category">CATEGORY <span class="material-symbols-outlined sm">expand_more</span></button>
+      <button class="filter-btn" data-filter="size">SIZE <span class="material-symbols-outlined sm">expand_more</span></button>
+      <button class="filter-btn" data-filter="color">COLOR <span class="material-symbols-outlined sm">expand_more</span></button>
+    </div>
+    <button class="filter-btn">SORT BY <span class="material-symbols-outlined sm">sort</span></button>
+  </div>
+  <section class="product-grid four-col bordered" id="shop-grid"></section>
+</main>
+
+<!-- PAGE: PRODUCT DETAIL -->
+<main id="page-product" class="page">
+  <div class="product-detail">
+    <div class="pd-gallery">
+      <div class="pd-main-image">
+        <img id="pd-main-img" src="" alt="Product"/>
+      </div>
+      <div class="pd-thumbs" id="pd-thumbs"></div>
+    </div>
+    <div class="pd-info">
+      <div class="pd-info-sticky">
+        <span class="pd-category" id="pd-cat"></span>
+        <h1 class="pd-title" id="pd-title"></h1>
+        <span class="pd-price" id="pd-price"></span>
+        <div class="divider"></div>
+        <!-- Size Selector -->
+        <div class="size-section">
+          <div class="size-header">
+            <span>SELECT SIZE</span>
+            <button class="link-btn">SIZE GUIDE</button>
+          </div>
+          <div class="size-grid" id="size-grid"></div>
+        </div>
+        <button class="btn-add-cart" id="btn-add-cart">ADD TO CART</button>
+        <!-- Accordions -->
+        <div class="accordions">
+          <div class="accordion open" id="acc-desc">
+            <button class="accordion-header" data-accordion="acc-desc">
+              <span>DESCRIPTION</span>
+              <span class="material-symbols-outlined acc-icon">remove</span>
+            </button>
+            <div class="accordion-body" id="pd-desc"></div>
+          </div>
+          <div class="accordion" id="acc-ship">
+            <button class="accordion-header" data-accordion="acc-ship">
+              <span>SHIPPING & RETURNS</span>
+              <span class="material-symbols-outlined acc-icon">add</span>
+            </button>
+            <div class="accordion-body"><p>Free standard shipping on all orders. Returns accepted within 14 days of delivery. Items must be unworn with tags attached.</p></div>
+          </div>
+          <div class="accordion" id="acc-care">
+            <button class="accordion-header" data-accordion="acc-care">
+              <span>CARE INSTRUCTIONS</span>
+              <span class="material-symbols-outlined acc-icon">add</span>
+            </button>
+            <div class="accordion-body"><p>Dry clean only. Store on a wide hanger. Avoid direct sunlight and moisture.</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <section class="related-section">
+    <h2>YOU MAY ALSO LIKE</h2>
+    <div class="product-grid four-col" id="related-grid"></div>
+  </section>
+</main>
+
+<!-- PAGE: CART -->
+<main id="page-cart" class="page">
+  <section class="cart-section">
+    <h1 class="page-title" id="cart-title">CART (0)</h1>
+    <div class="cart-layout">
+      <div class="cart-items" id="cart-items"></div>
+      <div class="cart-summary" id="cart-summary-panel">
+        <div class="summary-box">
+          <h2>Summary</h2>
+          <div class="summary-row"><span>SUBTOTAL</span><span id="cart-subtotal">$0.00</span></div>
+          <div class="summary-row muted"><span>SHIPPING</span><span>CALCULATED AT CHECKOUT</span></div>
+          <div class="divider"></div>
+          <div class="summary-row total"><span>TOTAL</span><span id="cart-total">$0.00</span></div>
+          <button class="btn-add-cart" data-nav="checkout">PROCEED TO CHECKOUT</button>
+        </div>
+      </div>
+    </div>
+    <div class="empty-cart" id="empty-cart" style="display:none;">
+      <p>Your cart is empty.</p>
+      <a href="#" class="btn-primary" data-nav="shop">CONTINUE SHOPPING</a>
+    </div>
+  </section>
+</main>
+
+<!-- PAGE: ABOUT -->
+<main id="page-about" class="page">
+  <section class="about-hero">
+    <div class="about-left">
+      <h1 class="page-title">THE ESSENCE<br/>OF RESTRAINT</h1>
+    </div>
+    <div class="about-right">
+      <p>Douseor is founded on the principle of extreme minimalism. We strip away the unnecessary to reveal the core structural integrity of everyday objects. Our approach is unapologetic, cold, and highly disciplined, prioritizing function and architectural clarity over decorative noise.</p>
+    </div>
+  </section>
+  <section class="values-section">
+    <h2 class="section-label">Core Principles</h2>
+    <div class="values-grid">
+      <div class="value-card">
+        <div class="value-num">01</div>
+        <div><h3>STRUCTURAL HONESTY</h3><p>Materials are presented as they are. No faux finishes, no hiding the construction. The beauty lies in the exposed mechanics.</p></div>
+      </div>
+      <div class="value-card">
+        <div class="value-num">02</div>
+        <div><h3>PURPOSEFUL VOID</h3><p>Space is not empty; it is an active design element. By maintaining rigorous padding, we allow the object to dominate.</p></div>
+      </div>
+      <div class="value-card">
+        <div class="value-num">03</div>
+        <div><h3>COLD PRECISION</h3><p>Warmth is subjective; precision is undeniable. We rely on a strict grid, hairline borders, and a monochromatic palette.</p></div>
+      </div>
+    </div>
+  </section>
+  <section class="about-image">
+    <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDwLAWYuomjxFfHMmtT1cMAO7ud7rleZ2EHhyId8Z_8zqhrik2gy_dvrOuI-oJ_vyL3qGoH4tLnxm0Iq-5y7GzwkXwgJdGbjZQyWPjmzwWarLqtxPLbRnRvkqYGTbuj5i72j2BWRFVpXFlXTHUT549a13K07BVA3voNURzvlL8oRT04VklzopOVsaVY113XjkNirMyDw3JCGVY4Rvpei6i4MHPFW33C8pWfP1AOTzFDV88765VEhF2EApQDv4icP0znqYRfrTiz54c" alt="Editorial space"/>
+  </section>
+  <!-- Contact form -->
+  <section class="contact-section" id="contact">
+    <h2>INQUIRIES</h2>
+    <div class="contact-grid">
+      <div class="contact-info">
+        <div><h3>HEADQUARTERS</h3><p>142 STRUCTURAL AVE.<br/>SECTOR 4, NEW YORK<br/>NY 10001</p></div>
+        <div><h3>DIRECT LINE</h3><p>+1 (800) 000-0000<br/>INFO@DOUSEOR.COM</p></div>
+        <div><h3>HOURS</h3><p>MON - FRI: 09:00 - 17:00 EST<br/>SAT - SUN: CLOSED</p></div>
+      </div>
+      <form class="contact-form" id="contact-form">
+        <div class="form-field"><label for="cf-name">FULL NAME</label><input type="text" id="cf-name" required/></div>
+        <div class="form-field"><label for="cf-email">EMAIL ADDRESS</label><input type="email" id="cf-email" required/></div>
+        <div class="form-field"><label for="cf-msg">MESSAGE</label><textarea id="cf-msg" rows="4" required></textarea></div>
+        <button type="submit" class="btn-primary">SEND MESSAGE</button>
+      </form>
+    </div>
+  </section>
+</main>
+
+<!-- PAGE: CHECKOUT -->
+<main id="page-checkout" class="page">
+  <div class="checkout-layout">
+    <section class="checkout-form-col">
+      <nav class="breadcrumbs">
+        <span class="active">INFORMATION</span>
+        <span class="material-symbols-outlined sm">chevron_right</span>
+        <span>SHIPPING</span>
+        <span class="material-symbols-outlined sm">chevron_right</span>
+        <span>PAYMENT</span>
+      </nav>
+      <form class="checkout-form" id="checkout-form">
+        <div class="form-section">
+          <h2>CONTACT</h2>
+          <div class="form-field"><input type="email" placeholder="EMAIL OR MOBILE PHONE NUMBER"/></div>
+        </div>
+        <div class="form-section">
+          <h2>SHIPPING ADDRESS</h2>
+          <div class="form-row two-col">
+            <div class="form-field"><input type="text" placeholder="FIRST NAME"/></div>
+            <div class="form-field"><input type="text" placeholder="LAST NAME"/></div>
+          </div>
+          <div class="form-field"><input type="text" placeholder="ADDRESS"/></div>
+          <div class="form-row three-col">
+            <div class="form-field"><input type="text" placeholder="CITY"/></div>
+            <div class="form-field"><input type="text" placeholder="STATE"/></div>
+            <div class="form-field"><input type="text" placeholder="ZIP CODE"/></div>
+          </div>
+        </div>
+        <div class="form-section">
+          <h2>PAYMENT</h2>
+          <p class="form-note">ALL TRANSACTIONS ARE SECURE AND ENCRYPTED.</p>
+          <div class="payment-box">
+            <div class="payment-header"><span>CREDIT CARD</span><span class="material-symbols-outlined">credit_card</span></div>
+            <div class="form-field"><input type="text" placeholder="CARD NUMBER"/></div>
+            <div class="form-field"><input type="text" placeholder="NAME ON CARD"/></div>
+            <div class="form-row two-col">
+              <div class="form-field"><input type="text" placeholder="MM/YY"/></div>
+              <div class="form-field"><input type="text" placeholder="CVV"/></div>
+            </div>
+          </div>
+        </div>
+        <div class="checkout-actions">
+          <a href="#" class="link-back" data-nav="cart"><span class="material-symbols-outlined sm">chevron_left</span> RETURN TO CART</a>
+          <button type="button" class="btn-primary wide" id="btn-pay">PAY NOW</button>
+        </div>
+      </form>
+    </section>
+    <aside class="checkout-summary" id="checkout-summary"></aside>
+  </div>
+</main>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<!-- FOOTER -->
+<footer id="main-footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <span class="logo-sm">DOUSEOR</span>
+      <span class="copyright">© 2024 DOUSEOR. ALL RIGHTS RESERVED.</span>
+    </div>
+    <div class="footer-links">
+      <a href="#" data-nav="shop">SHOP</a>
+      <a href="#" data-nav="about">ABOUT</a>
+      <a href="#" data-nav="contact">CONTACT</a>
+    </div>
+    <div class="footer-links">
+      <a href="#">NEWSLETTER</a>
+      <a href="#">PRIVACY</a>
+      <a href="#">TERMS</a>
+    </div>
+    <div class="footer-subscribe">
+      <span>SUBSCRIBE</span>
+      <div class="subscribe-input">
+        <input type="email" placeholder="EMAIL ADDRESS"/>
+        <button class="icon-btn"><span class="material-symbols-outlined">arrow_forward</span></button>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="app.js"></script>
+</body>
+</html>

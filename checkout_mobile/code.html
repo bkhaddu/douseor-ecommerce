@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>DOUSEOR Checkout</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-error": "#ffffff",
+                        "tertiary-fixed": "#e6e1df",
+                        "surface-container-highest": "#e3e2df",
+                        "on-primary-container": "#858383",
+                        "primary-fixed": "#e5e2e1",
+                        "tertiary-container": "#1d1b1a",
+                        "surface-dim": "#dbdad6",
+                        "on-primary-fixed-variant": "#474646",
+                        "secondary-container": "#e0dfdf",
+                        "on-tertiary-fixed": "#1d1b1a",
+                        "surface-container-lowest": "#ffffff",
+                        "on-secondary": "#ffffff",
+                        "on-tertiary": "#ffffff",
+                        "on-surface": "#1b1c1a",
+                        "surface-tint": "#5f5e5e",
+                        "on-primary-fixed": "#1c1b1b",
+                        "error": "#ba1a1a",
+                        "secondary-fixed": "#e3e2e2",
+                        "background": "#faf9f5",
+                        "on-secondary-container": "#626363",
+                        "on-secondary-fixed-variant": "#464747",
+                        "secondary": "#5e5e5e",
+                        "inverse-on-surface": "#f2f1ed",
+                        "outline": "#747878",
+                        "surface-container-high": "#e9e8e4",
+                        "primary": "#000000",
+                        "on-background": "#1b1c1a",
+                        "surface": "#faf9f5",
+                        "outline-variant": "#c4c7c7",
+                        "on-error-container": "#93000a",
+                        "surface-container": "#efeeea",
+                        "secondary-fixed-dim": "#c7c6c6",
+                        "primary-fixed-dim": "#c9c6c5",
+                        "on-secondary-fixed": "#1a1c1c",
+                        "on-tertiary-fixed-variant": "#484645",
+                        "error-container": "#ffdad6",
+                        "surface-variant": "#e3e2df",
+                        "inverse-surface": "#30312e",
+                        "on-tertiary-container": "#868381",
+                        "on-surface-variant": "#444748",
+                        "inverse-primary": "#c9c6c5",
+                        "primary-container": "#1c1b1b",
+                        "surface-container-low": "#f5f4f0",
+                        "surface-bright": "#faf9f5",
+                        "tertiary-fixed-dim": "#cac6c3",
+                        "tertiary": "#000000",
+                        "on-primary": "#ffffff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "base": "8px",
+                        "gutter": "1px",
+                        "navbar-height": "60px",
+                        "margin-mobile": "16px",
+                        "margin-desktop": "40px"
+                    },
+                    "fontFamily": {
+                        "headline-xl-mobile": ["Inter"],
+                        "body": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "headline-xl": ["Inter"],
+                        "label-caption": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-xl-mobile": ["42px", {"lineHeight": "1.1", "letterSpacing": "-0.04em", "fontWeight": "300"}],
+                        "body": ["13px", {"lineHeight": "1.7", "letterSpacing": "0.01em", "fontWeight": "400"}],
+                        "headline-md": ["16px", {"lineHeight": "1.2", "letterSpacing": "0.02em", "fontWeight": "500"}],
+                        "headline-lg": ["32px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "400"}],
+                        "headline-xl": ["72px", {"lineHeight": "1.1", "letterSpacing": "-0.04em", "fontWeight": "300"}],
+                        "label-caption": ["11px", {"lineHeight": "1.4", "letterSpacing": "0.08em", "fontWeight": "400"}]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        /* Custom Input Styles overriding Tailwind forms plugin for brutalist look */
+        input[type="text"], input[type="email"], input[type="tel"] {
+            border: none !important;
+            border-bottom: 1px solid #E0DFDB !important;
+            border-radius: 0 !important;
+            background-color: transparent !important;
+            padding-left: 0 !important;
+            padding-right: 0 !important;
+        }
+        input[type="text"]:focus, input[type="email"]:focus, input[type="tel"]:focus {
+            box-shadow: none !important;
+            border-bottom-color: #000000 !important;
+        }
+        
+        .custom-radio {
+            appearance: none;
+            width: 16px;
+            height: 16px;
+            border: 1px solid #000000;
+            border-radius: 50%;
+            outline: none;
+            cursor: pointer;
+            position: relative;
+        }
+        .custom-radio:checked::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 8px;
+            height: 8px;
+            background-color: #000000;
+            border-radius: 50%;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface text-on-surface font-body selection:bg-primary selection:text-on-primary">
+<!-- Top Navigation suppressed for checkout intent (transactional), 
+         but keeping a minimal brand anchor as typical in checkouts -->
+<header class="w-full h-navbar-height bg-surface flex justify-center items-center border-b border-outline-variant px-margin-mobile">
+<span class="font-headline-lg text-headline-lg font-black tracking-tighter text-primary">DOUSEOR</span>
+</header>
+<main class="w-full max-w-[600px] mx-auto px-margin-mobile pt-8 pb-32">
+<!-- Order Summary Toggle (Mobile typically collapsed) -->
+<div class="mb-8 border-b border-outline-variant pb-4 flex justify-between items-center cursor-pointer">
+<div class="flex items-center gap-2 text-primary">
+<span class="material-symbols-outlined text-lg">shopping_bag</span>
+<span class="font-label-caption text-label-caption uppercase">Show order summary</span>
+<span class="material-symbols-outlined text-sm">expand_more</span>
+</div>
+<span class="font-headline-md text-headline-md">$450.00</span>
+</div>
+<!-- Progress Indicator -->
+<nav class="flex items-center gap-2 mb-10 font-label-caption text-label-caption uppercase tracking-widest text-on-surface-variant overflow-x-auto whitespace-nowrap pb-2">
+<span class="text-primary font-medium">Information</span>
+<span class="material-symbols-outlined text-[14px]">chevron_right</span>
+<span>Shipping</span>
+<span class="material-symbols-outlined text-[14px]">chevron_right</span>
+<span>Payment</span>
+</nav>
+<!-- Form Layout -->
+<div class="flex flex-col gap-10">
+<!-- Contact Information -->
+<section class="flex flex-col gap-6">
+<div class="flex justify-between items-end">
+<h2 class="font-headline-md text-headline-md uppercase">Contact</h2>
+<a class="font-label-caption text-label-caption underline hover:opacity-70 transition-opacity" href="#">Log in</a>
+</div>
+<div class="relative w-full">
+<input class="w-full font-body text-body text-primary placeholder-on-surface-variant h-10 transition-colors" id="email" placeholder="Email" type="email"/>
+</div>
+<label class="flex items-start gap-3 cursor-pointer mt-2 group">
+<input class="mt-1 w-4 h-4 border-outline-variant rounded-none text-primary focus:ring-0 focus:ring-offset-0 bg-transparent cursor-pointer" type="checkbox"/>
+<span class="font-body text-body text-on-surface-variant group-hover:text-primary transition-colors">Email me with news and offers</span>
+</label>
+</section>
+<!-- Shipping Address -->
+<section class="flex flex-col gap-6">
+<h2 class="font-headline-md text-headline-md uppercase">Shipping address</h2>
+<div class="flex flex-col gap-4">
+<div class="relative w-full">
+<select class="w-full font-body text-body text-primary h-10 border-none border-b border-outline-variant bg-transparent px-0 focus:ring-0 focus:border-primary appearance-none cursor-pointer">
+<option>United States</option>
+<option>Canada</option>
+<option>United Kingdom</option>
+</select>
+<span class="material-symbols-outlined absolute right-0 top-1/2 -translate-y-1/2 pointer-events-none text-on-surface-variant">expand_more</span>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<div class="relative w-full">
+<input class="w-full font-body text-body text-primary placeholder-on-surface-variant h-10" placeholder="First name" type="text"/>
+</div>
+<div class="relative w-full">
+<input class="w-full font-body text-body text-primary placeholder-on-surface-variant h-10" placeholder="Last name" type="text"/>
+</div>
+</div>
+<div class="relative w-full">
+<input class="w-full font-body text-body text-primary placeholder-on-surface-variant h-10" placeholder="Address" type="text"/>
+</div>
+<div class="relative w-full">
+<input class="w-full font-body text-body text-primary placeholder-on-surface-variant h-10" placeholder="Apartment, suite, etc. (optional)" type="text"/>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<div class="relative w-full">
+<input class="w-full font-body text-body text-primary placeholder-on-surface-variant h-10" placeholder="City" type="text"/>
+</div>
+<div class="relative w-full">
+<input class="w-full font-body text-body text-primary placeholder-on-surface-variant h-10" placeholder="ZIP code" type="text"/>
+</div>
+</div>
+<div class="relative w-full mt-2">
+<input class="w-full font-body text-body text-primary placeholder-on-surface-variant h-10" placeholder="Phone" type="tel"/>
+</div>
+</div>
+</section>
+</div>
+</main>
+<!-- Fixed Bottom Action -->
+<div class="fixed bottom-0 w-full bg-surface border-t border-outline-variant p-margin-mobile flex justify-center z-50">
+<div class="w-full max-w-[600px] flex gap-4 items-center justify-between">
+<a class="font-label-caption text-label-caption text-on-surface-variant hover:text-primary transition-colors flex items-center gap-1 hidden sm:flex" href="#">
+<span class="material-symbols-outlined text-[16px]">chevron_left</span>
+                Return to cart
+            </a>
+<button class="flex-1 sm:flex-none w-full sm:w-auto bg-primary text-on-primary font-label-caption text-label-caption uppercase tracking-widest py-4 px-8 hover:opacity-90 transition-opacity flex justify-center items-center h-14">
+                CONTINUE TO SHIPPING
+            </button>
+</div>
+</div>
+</body></html>
