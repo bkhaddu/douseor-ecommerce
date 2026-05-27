@@ -374,11 +374,6 @@ function renderCheckoutSummary() {
   
   container.innerHTML = html;
   
-  // Load saved Razorpay Key ID
-  const rzpKeyInput = document.getElementById('rzp-key-id');
-  if (rzpKeyInput) {
-    rzpKeyInput.value = localStorage.getItem('douseor_rzp_key') || '';
-  }
 }
 
 // Contact form handling
@@ -392,16 +387,7 @@ document.getElementById('contact-form')?.addEventListener('submit', (e) => {
 document.getElementById('btn-pay')?.addEventListener('click', (e) => {
   e.preventDefault();
   
-  const rzpKeyInput = document.getElementById('rzp-key-id');
-  const keyId = rzpKeyInput ? rzpKeyInput.value.trim() : '';
-  
-  if (!keyId) {
-    showToast('PLEASE ENTER A VALID RAZORPAY KEY ID.');
-    return;
-  }
-  
-  // Save key for future use
-  localStorage.setItem('douseor_rzp_key', keyId);
+  const keyId = 'rzp_test_SqtBM9kBSOpcEg';
   
   let subtotal = state.cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
   if (subtotal <= 0) {
