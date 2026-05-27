@@ -5,6 +5,27 @@ const state = {
   currentProduct: null
 };
 
+// Auth State Management
+const defaultUsers = [
+  { name: 'ADMINISTRATOR', email: 'admin@douseor.com', password: 'douseor123', role: 'admin' }
+];
+
+let users = JSON.parse(localStorage.getItem('douseor_users')) || defaultUsers;
+let currentUser = JSON.parse(localStorage.getItem('douseor_current_user')) || null;
+
+// Ensure default users list is saved
+if (!localStorage.getItem('douseor_users')) {
+  localStorage.setItem('douseor_users', JSON.stringify(defaultUsers));
+}
+
+function saveUsersToStorage() {
+  localStorage.setItem('douseor_users', JSON.stringify(users));
+}
+
+function saveSessionToStorage() {
+  localStorage.setItem('douseor_current_user', JSON.stringify(currentUser));
+}
+
 // Mock product data based on designs
 const defaultProducts = [
   { id: 1, title: 'STRUCTURED BLAZER', price: 850, cat: 'OUTERWEAR', img: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCnypeDgqgS63bGBweLV16iprewU2vxLzFIw1yZwpfs442JlY612_U77T_uYW81ZCGwlfDKbUg1Oi8vfm3m_mVWePX4Mzz1cA0Ez8h7Si0OvH0fCVeqTndktzcJ5VDhgV0Joz0wx3HD3OkTwVpY3vqi2uAZgZfi3VZun4d1xW1X1ARL4uKXeFh0vmdvSMvyWvwlgbWcXVhC6QSpOobL81UuBjaJ0mUCczaGz1rSIYHdkYiQ7l-SK8no1J-Nb1ZxzBUfwaJNWTDo5wQ' },
@@ -53,14 +74,35 @@ function init() {
   initProductDetail();
   initAccordions();
   initAdminPage();
+  initAuthPage();
+  updateAuthUI();
   
   // Start on home
   navigateTo('home');
 }
 
 function navigateTo(pageId) {
+  // Navigation Guard: only admin can access admin portal
+  if (pageId === 'admin') {
+    if (!currentUser) {
+      showToast('ACCESS RESTRICTED. LOGIN REQUIRED.');
+      navigateTo('login');
+      return;
+    }
+    if (currentUser.role !== 'admin') {
+      showToast('ACCESS RESTRICTED. ADMIN STATUS REQUIRED.');
+      navigateTo('home');
+      return;
+    }
+  }
+
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-  document.getElementById(`page-${pageId}`).classList.add('active');
+  const targetPage = document.getElementById(`page-${pageId}`);
+  if (targetPage) {
+    targetPage.classList.add('active');
+  } else {
+    document.getElementById('page-home').classList.add('active');
+  }
   window.scrollTo(0,0);
   
   if (pageId === 'cart') renderCart();
@@ -72,22 +114,29 @@ function navigateTo(pageId) {
 }
 
 function bindNav() {
-  document.querySelectorAll('[data-nav]').forEach(el => {
-    el.addEventListener('click', (e) => {
+  // Event delegation to capture data-nav clicks dynamically
+  document.addEventListener('click', (e) => {
+    const navEl = e.target.closest('[data-nav]');
+    if (navEl) {
       e.preventDefault();
-      navigateTo(el.getAttribute('data-nav'));
-    });
+      const target = navEl.getAttribute('data-nav');
+      if (target === 'logout') {
+        logoutUser();
+      } else {
+        navigateTo(target);
+      }
+    }
   });
 
-  document.getElementById('menu-toggle').addEventListener('click', () => {
+  document.getElementById('menu-toggle')?.addEventListener('click', () => {
     document.getElementById('mobile-nav').classList.add('open');
   });
   
-  document.getElementById('nav-close').addEventListener('click', () => {
+  document.getElementById('nav-close')?.addEventListener('click', () => {
     document.getElementById('mobile-nav').classList.remove('open');
   });
 
-  document.getElementById('cart-toggle').addEventListener('click', () => navigateTo('cart'));
+  document.getElementById('cart-toggle')?.addEventListener('click', () => navigateTo('cart'));
 }
 
 function formatPrice(num) {
@@ -504,6 +553,183 @@ function initAdminPage() {
     
     showToast(`ADDED ${title} SUCCESSFULLY`);
   };
+}
+
+// AUTHENTICATION LOGIC & FORM WIRING
+function initAuthPage() {
+  const loginForm = document.getElementById('login-form');
+  const registerForm = document.getElementById('register-form');
+  const isAdminCheckbox = document.getElementById('rg-is-admin');
+  const adminCodeField = document.getElementById('field-admin-code');
+  const adminCodeInput = document.getElementById('rg-admin-code');
+
+  // Toggle admin passcode input
+  if (isAdminCheckbox && adminCodeField) {
+    isAdminCheckbox.onchange = () => {
+      if (isAdminCheckbox.checked) {
+        adminCodeField.style.display = 'flex';
+        adminCodeInput.setAttribute('required', 'true');
+      } else {
+        adminCodeField.style.display = 'none';
+        adminCodeInput.removeAttribute('required');
+      }
+    };
+  }
+
+  // Handle Login submission
+  if (loginForm) {
+    loginForm.onsubmit = (e) => {
+      e.preventDefault();
+      const email = document.getElementById('li-email').value.trim().toLowerCase();
+      const password = document.getElementById('li-password').value;
+
+      const user = users.find(u => u.email === email && u.password === password);
+      if (user) {
+        currentUser = user;
+        saveSessionToStorage();
+        updateAuthUI();
+        showToast(`WELCOME BACK, ${user.name}`);
+        
+        if (user.role === 'admin') {
+          navigateTo('admin');
+        } else {
+          navigateTo('home');
+        }
+        loginForm.reset();
+      } else {
+        showToast('INVALID EMAIL OR PASSWORD.');
+      }
+    };
+  }
+
+  // Handle Register submission
+  if (registerForm) {
+    registerForm.onsubmit = (e) => {
+      e.preventDefault();
+      const name = document.getElementById('rg-name').value.trim().toUpperCase();
+      const email = document.getElementById('rg-email').value.trim().toLowerCase();
+      const password = document.getElementById('rg-password').value;
+      const isAdmin = isAdminCheckbox ? isAdminCheckbox.checked : false;
+
+      // Check if user already exists
+      if (users.some(u => u.email === email)) {
+        showToast('EMAIL ADDRESS IS ALREADY REGISTERED.');
+        return;
+      }
+
+      let role = 'user';
+      if (isAdmin) {
+        const adminPasscode = adminCodeInput ? adminCodeInput.value.trim() : '';
+        if (adminPasscode !== 'DOUSEOR2026') {
+          showToast('INVALID SYSTEM ADMIN PASSCODE.');
+          return;
+        }
+        role = 'admin';
+      }
+
+      const newUser = { name, email, password, role };
+      users.push(newUser);
+      saveUsersToStorage();
+
+      currentUser = newUser;
+      saveSessionToStorage();
+      updateAuthUI();
+
+      showToast(`ACCOUNT CREATED. WELCOME ${name}`);
+      registerForm.reset();
+      if (isAdminCheckbox) isAdminCheckbox.checked = false;
+      if (adminCodeField) adminCodeField.style.display = 'none';
+      if (adminCodeInput) adminCodeInput.removeAttribute('required');
+
+      if (role === 'admin') {
+        navigateTo('admin');
+      } else {
+        navigateTo('home');
+      }
+    };
+  }
+}
+
+function logoutUser() {
+  if (currentUser) {
+    const name = currentUser.name;
+    currentUser = null;
+    saveSessionToStorage();
+    updateAuthUI();
+    showToast(`LOGGED OUT ${name}`);
+    navigateTo('home');
+  }
+}
+
+function updateAuthUI() {
+  const headerBanner = document.getElementById('header-user-banner');
+  const authTrigger = document.getElementById('nav-auth-trigger');
+  const authIcon = document.getElementById('nav-auth-icon');
+  
+  const mobAdmin = document.getElementById('mobile-nav-admin');
+  const mobAuth = document.getElementById('mobile-nav-auth');
+  
+  const footAdmin = document.getElementById('footer-nav-admin');
+  const footAuth = document.getElementById('footer-nav-auth');
+  
+  if (currentUser) {
+    // Logged In
+    if (headerBanner) {
+      headerBanner.textContent = `USER: ${currentUser.name} (${currentUser.role.toUpperCase()})`;
+      headerBanner.style.display = 'inline-block';
+    }
+    if (authTrigger) {
+      authTrigger.setAttribute('data-nav', 'logout');
+      authTrigger.title = 'LOGOUT';
+    }
+    if (authIcon) {
+      authIcon.textContent = 'logout';
+    }
+    
+    // Mobile menu drawer
+    if (mobAdmin) {
+      mobAdmin.style.display = currentUser.role === 'admin' ? 'block' : 'none';
+    }
+    if (mobAuth) {
+      mobAuth.textContent = 'LOGOUT';
+      mobAuth.setAttribute('data-nav', 'logout');
+    }
+    
+    // Footer
+    if (footAdmin) {
+      footAdmin.style.display = currentUser.role === 'admin' ? 'block' : 'none';
+    }
+    if (footAuth) {
+      footAuth.textContent = 'LOGOUT';
+      footAuth.setAttribute('data-nav', 'logout');
+    }
+  } else {
+    // Logged Out
+    if (headerBanner) {
+      headerBanner.style.display = 'none';
+    }
+    if (authTrigger) {
+      authTrigger.setAttribute('data-nav', 'login');
+      authTrigger.title = 'LOGIN';
+    }
+    if (authIcon) {
+      authIcon.textContent = 'person';
+    }
+    
+    // Mobile menu drawer
+    if (mobAdmin) mobAdmin.style.display = 'none';
+    if (mobAuth) {
+      mobAuth.textContent = 'LOGIN';
+      mobAuth.setAttribute('data-nav', 'login');
+    }
+    
+    // Footer
+    if (footAdmin) footAdmin.style.display = 'none';
+    if (footAuth) {
+      footAuth.textContent = 'LOGIN';
+      footAuth.setAttribute('data-nav', 'login');
+    }
+  }
 }
 
 // Initial populate to show it working

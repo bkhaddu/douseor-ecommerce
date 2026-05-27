@@ -1306,3 +1306,179 @@ button {
   color: var(--on-primary);
   border-color: var(--primary);
 }
+
+/* HEADER USER ACTIONS & SESSIONS */
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.user-session-banner {
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  color: var(--secondary);
+  text-transform: uppercase;
+  border-right: 1px solid var(--outline-variant);
+  padding-right: 16px;
+  font-weight: 500;
+  display: none; /* controlled dynamically */
+}
+
+@media (max-width: 768px) {
+  .user-session-banner {
+    display: none !important; /* hide on mobile header to save space */
+  }
+}
+
+/* AUTH PAGES: LOGIN & REGISTER */
+.auth-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: calc(100vh - var(--navbar-height));
+  background-color: var(--surface-low);
+  padding: 40px 16px;
+}
+
+.auth-card {
+  width: 100%;
+  max-width: 450px;
+  background-color: var(--surface-bright);
+  border: 1px solid var(--outline-variant);
+  padding: 48px;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.auth-title {
+  font-size: 32px;
+  font-weight: 300;
+  letter-spacing: -0.04em;
+  text-transform: uppercase;
+  margin: 0;
+  line-height: 1.1;
+}
+
+.auth-subtitle {
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  color: var(--secondary);
+  text-transform: uppercase;
+  margin: -16px 0 0 0;
+  line-height: 1.4;
+}
+
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.auth-form label {
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  color: var(--secondary);
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+.auth-form input {
+  border: none;
+  border-bottom: 1px solid var(--outline-variant);
+  background: transparent;
+  padding: 12px 0;
+  font-family: var(--font-body);
+  font-size: 13px;
+  letter-spacing: 0.01em;
+  width: 100%;
+  text-transform: uppercase;
+  outline: none;
+}
+
+.checkbox-field {
+  flex-direction: row;
+  align-items: center;
+}
+
+.brutalist-checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.brutalist-checkbox {
+  width: 16px !important;
+  height: 16px !important;
+  appearance: none;
+  -webkit-appearance: none;
+  border: 1px solid var(--outline-variant) !important;
+  border-radius: 0 !important;
+  background-color: transparent;
+  cursor: pointer;
+  position: relative;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.brutalist-checkbox:checked {
+  background-color: var(--primary);
+}
+
+.brutalist-checkbox:checked::after {
+  content: "✔";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: var(--on-primary);
+  font-size: 10px;
+}
+
+.checkbox-text {
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  color: var(--secondary);
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+.admin-code-field {
+  border: 1px solid var(--outline-variant);
+  padding: 16px;
+  background-color: var(--surface-low);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  animation: fadeIn 0.3s ease;
+}
+
+.field-hint {
+  font-size: 10px;
+  letter-spacing: 0.04em;
+  color: var(--secondary);
+  text-transform: uppercase;
+  line-height: 1.4;
+}
+
+.auth-footer {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--secondary);
+  border-top: 1px solid var(--outline-variant);
+  padding-top: 24px;
+}
+
+.auth-footer button {
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  font-weight: bold;
+}

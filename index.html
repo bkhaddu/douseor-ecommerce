@@ -18,10 +18,16 @@
       <span class="material-symbols-outlined">menu</span>
     </button>
     <a href="#" class="logo" data-nav="home">DOUSEOR</a>
-    <button class="icon-btn" id="cart-toggle" aria-label="Shopping Bag">
-      <span class="material-symbols-outlined">shopping_bag</span>
-      <span class="cart-badge" id="cart-badge">2</span>
-    </button>
+    <div class="header-actions">
+      <span class="user-session-banner" id="header-user-banner" style="display:none;"></span>
+      <a href="#" class="icon-btn" id="nav-auth-trigger" data-nav="login" aria-label="Account">
+        <span class="material-symbols-outlined" id="nav-auth-icon">person</span>
+      </a>
+      <button class="icon-btn" id="cart-toggle" aria-label="Shopping Bag">
+        <span class="material-symbols-outlined">shopping_bag</span>
+        <span class="cart-badge" id="cart-badge">2</span>
+      </button>
+    </div>
   </div>
 </header>
 
@@ -36,7 +42,8 @@
     <a href="#" data-nav="shop">SHOP ALL</a>
     <a href="#" data-nav="about">ABOUT</a>
     <a href="#" data-nav="contact">CONTACT</a>
-    <a href="#" data-nav="admin">ADMIN</a>
+    <a href="#" data-nav="admin" id="mobile-nav-admin" style="display:none;">ADMIN</a>
+    <a href="#" data-nav="login" id="mobile-nav-auth">LOGIN</a>
   </div>
 </nav>
 
@@ -346,6 +353,78 @@
   </div>
 </main>
 
+<!-- PAGE: LOGIN -->
+<main id="page-login" class="page">
+  <div class="auth-wrapper">
+    <div class="auth-card">
+      <h1 class="auth-title">IDENTIFICATION</h1>
+      <p class="auth-subtitle">ACCESS THE DOUSEOR SYSTEM OR REGISTER A PROFILE.</p>
+      
+      <form class="auth-form" id="login-form">
+        <div class="form-field">
+          <label for="li-email">EMAIL ADDRESS</label>
+          <input type="email" id="li-email" placeholder="E.G. ADMIN@DOUSEOR.COM" required/>
+        </div>
+        <div class="form-field">
+          <label for="li-password">PASSWORD</label>
+          <input type="password" id="li-password" placeholder="••••••••••••" required/>
+        </div>
+        <button type="submit" class="btn-primary wide">AUTHENTICATE</button>
+      </form>
+      
+      <div class="auth-footer">
+        <span>NEW TO THE PLATFORM?</span>
+        <button class="link-btn" data-nav="register">CREATE ACCOUNT</button>
+      </div>
+    </div>
+  </div>
+</main>
+
+<!-- PAGE: REGISTER -->
+<main id="page-register" class="page">
+  <div class="auth-wrapper">
+    <div class="auth-card">
+      <h1 class="auth-title">REGISTRATION</h1>
+      <p class="auth-subtitle">CREATE A DOUSEOR ACCOUNT FOR CLIENT OR SYSTEM ROLES.</p>
+      
+      <form class="auth-form" id="register-form">
+        <div class="form-field">
+          <label for="rg-name">FULL NAME</label>
+          <input type="text" id="rg-name" placeholder="E.G. ALEXANDER MCQUEEN" required/>
+        </div>
+        <div class="form-field">
+          <label for="rg-email">EMAIL ADDRESS</label>
+          <input type="email" id="rg-email" placeholder="E.G. ALEX@DOMAIN.COM" required/>
+        </div>
+        <div class="form-field">
+          <label for="rg-password">PASSWORD</label>
+          <input type="password" id="rg-password" placeholder="••••••••••••" required minlength="4"/>
+        </div>
+        
+        <div class="form-field checkbox-field">
+          <label class="brutalist-checkbox-label">
+            <input type="checkbox" id="rg-is-admin" class="brutalist-checkbox"/>
+            <span class="checkbox-text">REGISTER AS ADMINISTRATOR</span>
+          </label>
+        </div>
+        
+        <div class="form-field admin-code-field" id="field-admin-code" style="display:none;">
+          <label for="rg-admin-code">SECRET ADMIN PASSCODE</label>
+          <input type="password" id="rg-admin-code" placeholder="E.G. DOUSEOR2026"/>
+          <span class="field-hint">REQUIRED TO CONFIRM SYSTEM PRIVILEGES. (DEMO PASSCODE: DOUSEOR2026)</span>
+        </div>
+        
+        <button type="submit" class="btn-primary wide">REGISTER PROFILE</button>
+      </form>
+      
+      <div class="auth-footer">
+        <span>ALREADY HAVE AN ACCOUNT?</span>
+        <button class="link-btn" data-nav="login">SIGN IN</button>
+      </div>
+    </div>
+  </div>
+</main>
+
 <!-- TOAST -->
 <div class="toast" id="toast"></div>
 
@@ -360,7 +439,8 @@
       <a href="#" data-nav="shop">SHOP</a>
       <a href="#" data-nav="about">ABOUT</a>
       <a href="#" data-nav="contact">CONTACT</a>
-      <a href="#" data-nav="admin">ADMIN</a>
+      <a href="#" data-nav="admin" id="footer-nav-admin" style="display:none;">ADMIN</a>
+      <a href="#" data-nav="login" id="footer-nav-auth">LOGIN</a>
     </div>
     <div class="footer-links">
       <a href="#">NEWSLETTER</a>
