@@ -373,6 +373,12 @@ function renderCheckoutSummary() {
   `;
   
   container.innerHTML = html;
+  
+  // Load saved Razorpay Key ID
+  const rzpKeyInput = document.getElementById('rzp-key-id');
+  if (rzpKeyInput) {
+    rzpKeyInput.value = localStorage.getItem('douseor_rzp_key') || '';
+  }
 }
 
 // Contact form handling
@@ -383,11 +389,71 @@ document.getElementById('contact-form')?.addEventListener('submit', (e) => {
 });
 
 // Checkout form handling
-document.getElementById('btn-pay')?.addEventListener('click', () => {
-  showToast('PAYMENT PROCESSED SUCCESSFULLY');
-  state.cart = [];
-  updateCartBadge();
-  setTimeout(() => navigateTo('home'), 2000);
+document.getElementById('btn-pay')?.addEventListener('click', (e) => {
+  e.preventDefault();
+  
+  const rzpKeyInput = document.getElementById('rzp-key-id');
+  const keyId = rzpKeyInput ? rzpKeyInput.value.trim() : '';
+  
+  if (!keyId) {
+    showToast('PLEASE ENTER A VALID RAZORPAY KEY ID.');
+    return;
+  }
+  
+  // Save key for future use
+  localStorage.setItem('douseor_rzp_key', keyId);
+  
+  let subtotal = state.cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
+  if (subtotal <= 0) {
+    showToast('YOUR CART IS EMPTY.');
+    return;
+  }
+  
+  // Ensure Razorpay SDK is loaded
+  if (typeof Razorpay === 'undefined') {
+    showToast('RAZORPAY GATEWAY ERROR: SDK NOT LOADED.');
+    return;
+  }
+  
+  // Prefill details
+  const contactForm = document.getElementById('checkout-form');
+  const emailInput = contactForm?.querySelector('input[type="email"]');
+  const email = emailInput ? emailInput.value.trim() : (currentUser ? currentUser.email : '');
+  
+  const options = {
+    "key": keyId,
+    "amount": Math.round(subtotal * 100), // in paise
+    "currency": "INR",
+    "name": "DOUSEOR",
+    "description": `Purchase Order: DSR-${Date.now()}`,
+    "image": "https://fonts.gstatic.com/s/i/materialsymbolsoutlined/shopping_bag/v16/24px.svg",
+    "handler": function (response) {
+      showToast(`PAYMENT SUCCESSFUL. ID: ${response.razorpay_payment_id}`);
+      state.cart = [];
+      updateCartBadge();
+      navigateTo('home');
+    },
+    "prefill": {
+      "email": email,
+      "contact": ""
+    },
+    "theme": {
+      "color": "#0d0d0d" // monochromatic brutalist theme
+    },
+    "modal": {
+      "ondismiss": function() {
+        showToast('PAYMENT PROCESS CANCELLED.');
+      }
+    }
+  };
+  
+  try {
+    const rzp = new Razorpay(options);
+    rzp.open();
+  } catch (err) {
+    console.error(err);
+    showToast(`RAZORPAY ERROR: ${err.message}`);
+  }
 });
 
 function showToast(msg) {

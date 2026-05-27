@@ -1482,3 +1482,68 @@ button {
   letter-spacing: 0.08em;
   font-weight: bold;
 }
+
+/* RAZORPAY PAYMENT GATEWAY PORTAL */
+.rzp-gateway-box {
+  border: 1px solid var(--outline-variant);
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  background-color: var(--surface-bright);
+}
+
+.rzp-gateway-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--outline-variant);
+  padding-bottom: 24px;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.rzp-logo-badge {
+  background-color: var(--primary);
+  color: var(--on-primary);
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  font-weight: 900;
+  text-transform: uppercase;
+  padding: 6px 12px;
+}
+
+.rzp-key-field label {
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  color: var(--secondary);
+  text-transform: uppercase;
+  margin-bottom: 8px;
+  font-weight: bold;
+}
+
+.rzp-key-field input {
+  border: none;
+  border-bottom: 1px solid var(--outline-variant);
+  background: transparent;
+  padding: 12px 0;
+  font-family: var(--font-body);
+  font-size: 13px;
+  letter-spacing: 0.01em;
+  width: 100%;
+  text-transform: uppercase;
+  outline: none;
+}
+
+.rzp-info-bullet {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  color: var(--secondary);
+  text-transform: uppercase;
+  line-height: 1.4;
+}

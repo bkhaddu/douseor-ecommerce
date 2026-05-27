@@ -8,6 +8,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700;900&display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
 <link rel="stylesheet" href="styles.css"/>
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 </head>
 <body>
 
@@ -260,14 +261,22 @@
         </div>
         <div class="form-section">
           <h2>PAYMENT</h2>
-          <p class="form-note">ALL TRANSACTIONS ARE SECURE AND ENCRYPTED.</p>
-          <div class="payment-box">
-            <div class="payment-header"><span>CREDIT CARD</span><span class="material-symbols-outlined">credit_card</span></div>
-            <div class="form-field"><input type="text" placeholder="CARD NUMBER"/></div>
-            <div class="form-field"><input type="text" placeholder="NAME ON CARD"/></div>
-            <div class="form-row two-col">
-              <div class="form-field"><input type="text" placeholder="MM/YY"/></div>
-              <div class="form-field"><input type="text" placeholder="CVV"/></div>
+          <p class="form-note">ALL TRANSACTIONS ARE SECURE AND PROCESSED VIA RAZORPAY.</p>
+          <div class="rzp-gateway-box">
+            <div class="rzp-gateway-header">
+              <span>RAZORPAY GATEWAY</span>
+              <div class="rzp-logo-badge">Razorpay</div>
+            </div>
+            
+            <div class="form-field rzp-key-field">
+              <label for="rzp-key-id">RAZORPAY KEY ID</label>
+              <input type="text" id="rzp-key-id" placeholder="E.G. rzp_test_xxxxxxxxxxxxxx" required/>
+              <span class="field-hint">ENTER YOUR RAZORPAY TEST KEY ID TO INITIATE SECURE TRANSFERS.</span>
+            </div>
+            
+            <div class="rzp-info-bullet">
+              <span class="material-symbols-outlined" style="font-size: 14px;">shield</span>
+              <span>SECURE 256-BIT ENCRYPTED TRANSACTION PROTOCOL.</span>
             </div>
           </div>
         </div>
