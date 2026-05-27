@@ -73,7 +73,7 @@ function bindNav() {
 }
 
 function formatPrice(num) {
-  return `$${num.toLocaleString('en-US', {minimumFractionDigits: 2})}`;
+  return `₹${num.toLocaleString('en-US', {minimumFractionDigits: 2})}`;
 }
 
 function renderProductGrid(containerId, items) {
@@ -107,7 +107,7 @@ function renderProductGrid(containerId, items) {
 
 function initProductDetail() {
   document.getElementById('pd-title').textContent = pdData.title;
-  document.getElementById('pd-price').textContent = `${formatPrice(pdData.price)} USD`;
+  document.getElementById('pd-price').textContent = `${formatPrice(pdData.price)}`;
   document.getElementById('pd-cat').textContent = pdData.cat;
   document.getElementById('pd-desc').innerHTML = `<p>${pdData.desc}</p>`;
   
