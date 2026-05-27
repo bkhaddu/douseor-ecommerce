@@ -36,6 +36,7 @@
     <a href="#" data-nav="shop">SHOP ALL</a>
     <a href="#" data-nav="about">ABOUT</a>
     <a href="#" data-nav="contact">CONTACT</a>
+    <a href="#" data-nav="admin">ADMIN</a>
   </div>
 </nav>
 
@@ -273,6 +274,78 @@
   </div>
 </main>
 
+<!-- PAGE: ADMIN -->
+<main id="page-admin" class="page">
+  <div class="admin-layout">
+    <!-- LEFT PANEL: Add Product Form -->
+    <section class="admin-form-col">
+      <h1 class="page-title">ADD PRODUCT</h1>
+      <form class="admin-form" id="admin-product-form">
+        <div class="form-field">
+          <label for="ap-title">PRODUCT TITLE</label>
+          <input type="text" id="ap-title" placeholder="E.G. OVERSIZED TRENCH" required/>
+        </div>
+        <div class="form-row two-col">
+          <div class="form-field">
+            <label for="ap-price">PRICE (INR)</label>
+            <input type="number" id="ap-price" placeholder="E.G. 950" required min="1"/>
+          </div>
+          <div class="form-field">
+            <label for="ap-cat">CATEGORY</label>
+            <select id="ap-cat" required>
+              <option value="OUTERWEAR">OUTERWEAR</option>
+              <option value="SHIRTING">SHIRTING</option>
+              <option value="BOTTOMS">BOTTOMS</option>
+              <option value="KNITWEAR">KNITWEAR</option>
+              <option value="FOOTWEAR">FOOTWEAR</option>
+              <option value="DRESSES">DRESSES</option>
+              <option value="TAILORING">TAILORING</option>
+              <option value="ACCESSORIES">ACCESSORIES</option>
+            </select>
+          </div>
+        </div>
+        
+        <div class="form-field">
+          <label>IMAGE SOURCE</label>
+          <div class="image-source-toggle">
+            <button type="button" class="btn-toggle active" id="btn-toggle-file">UPLOAD FILE</button>
+            <button type="button" class="btn-toggle" id="btn-toggle-url">IMAGE URL</button>
+          </div>
+        </div>
+        
+        <!-- File Upload Field -->
+        <div class="form-field file-upload-field" id="field-file-upload">
+          <label for="ap-file" class="file-dropzone" id="file-dropzone-label">
+            <span class="material-symbols-outlined">upload_file</span>
+            <span class="dropzone-text">SELECT IMAGE FILE</span>
+            <input type="file" id="ap-file" accept="image/*" style="display:none;"/>
+          </label>
+          <div class="file-preview" id="file-preview-container" style="display:none;">
+            <img id="ap-file-preview" src="" alt="Preview"/>
+            <button type="button" class="btn-remove-preview" id="btn-remove-preview">REMOVE IMAGE</button>
+          </div>
+        </div>
+        
+        <!-- URL Input Field -->
+        <div class="form-field url-upload-field" id="field-url-upload" style="display:none;">
+          <label for="ap-url">IMAGE URL</label>
+          <input type="url" id="ap-url" placeholder="HTTPS://IMAGE.URL/..."/>
+        </div>
+        
+        <button type="submit" class="btn-primary wide" id="btn-add-product">ADD PRODUCT TO INVENTORY</button>
+      </form>
+    </section>
+    
+    <!-- RIGHT PANEL: Current Inventory List -->
+    <section class="admin-inventory-col">
+      <h2 class="inventory-title">CURRENT INVENTORY (<span id="admin-inventory-count">0</span>)</h2>
+      <div class="admin-inventory-list" id="admin-inventory-list">
+        <!-- Dynamically loaded -->
+      </div>
+    </section>
+  </div>
+</main>
+
 <!-- TOAST -->
 <div class="toast" id="toast"></div>
 
@@ -287,6 +360,7 @@
       <a href="#" data-nav="shop">SHOP</a>
       <a href="#" data-nav="about">ABOUT</a>
       <a href="#" data-nav="contact">CONTACT</a>
+      <a href="#" data-nav="admin">ADMIN</a>
     </div>
     <div class="footer-links">
       <a href="#">NEWSLETTER</a>

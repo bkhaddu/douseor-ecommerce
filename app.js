@@ -6,7 +6,7 @@ const state = {
 };
 
 // Mock product data based on designs
-const products = [
+const defaultProducts = [
   { id: 1, title: 'STRUCTURED BLAZER', price: 850, cat: 'OUTERWEAR', img: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCnypeDgqgS63bGBweLV16iprewU2vxLzFIw1yZwpfs442JlY612_U77T_uYW81ZCGwlfDKbUg1Oi8vfm3m_mVWePX4Mzz1cA0Ez8h7Si0OvH0fCVeqTndktzcJ5VDhgV0Joz0wx3HD3OkTwVpY3vqi2uAZgZfi3VZun4d1xW1X1ARL4uKXeFh0vmdvSMvyWvwlgbWcXVhC6QSpOobL81UuBjaJ0mUCczaGz1rSIYHdkYiQ7l-SK8no1J-Nb1ZxzBUfwaJNWTDo5wQ' },
   { id: 2, title: 'ASYMMETRIC SHIRT', price: 450, cat: 'SHIRTING', img: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDxaC3TGYZHvSEBnNJwg1lS7CNson4j5O6N4-hvv39PCvcg51Qcb1V2UhfZxl0AXaGonQWfEHhewVnIEJwDANDNlZjp8Floyc0owSRiW5fG0IL9kvnGAS7O3B5XbvO28IDklf1Hsy4JauBHnBYweCTFcaNR8JQnkVfqW0H2UmZkqNopHYfG3szn1O77ZvfgruQE66SPddhadP3rlNUZdW9mPGFOoxqyNPRlJQdPshaJdKqe82bW7eQovgFqlF7in8HveV9IlB5zV3M' },
   { id: 3, title: 'WIDE LEG TROUSER', price: 480, cat: 'BOTTOMS', img: 'https://lh3.googleusercontent.com/aida-public/AB6AXuBxJGwo4tQyNSf5-3jORESnseHpA1Xirs9bpyl6bmg0Bbt3Wk5hSxlrbTOoOfeNdGswmKPAnWKodyvSUgdItAPVQsoWVEAo0PJm2GG7VgS3gpbkWGYm0qKXaDwGD46yRzTfL-bckInPy7-VJei-m6jdQ19Hk8FgkQvlYOdkuAa_cOKeTBLC2vviEOmZXdsmmWC3CTTh2EGxas9oxBtSpYupJJDcIOik_50T73sp5HBpEcZls9Ljl4ayswhV6lzROn3Nf5jjXlI_hpw' },
@@ -16,6 +16,12 @@ const products = [
   { id: 7, title: 'BOX BAG', price: 1200, cat: 'ACCESSORIES', img: 'https://lh3.googleusercontent.com/aida-public/AB6AXuBDUCKBE3CvlK_TpfGW8AS9DlN2xcCpXIOpHU2SJ-yZLjAJBqtLizGrb6ipcmnT19ih6EB8sCoPk_ghU3VViz311ovKI2Q85qfRR1EBBdXIOpQWI6UaZqeQFbD2f0GQhS4tSkKUpA4DXxiBcXSmwPWbEKTm9IhI-EMkoxNPUR2ZC231QSUKZ29g5DySuSPJt_0T27tIidyQAlx3zfnVgD-b22Z6EHO2ZWIjvorhoWNtWnAap5F5CdIcNMK4dXQ15z07iCDm7dfV6Ko' },
   { id: 8, title: 'OVERSIZED BLAZER', price: 1050, cat: 'TAILORING', img: 'https://lh3.googleusercontent.com/aida-public/AB6AXuAyEvpJaKB5Tpx3Wr4-oQeOhu60Ck-j_rqBwm4wCj9Z_TnNzpog2IloJWkLvlR7z9koIJNJIa2ehOpzc7AMieoFLr802QGjIU3BKGkFCNPdyivr_F1J3HFxNWTuuhyuF2G-mnGG2-ZcN8uW3nLUT6ZyMoDuXYXIetPS3F5qz1HkXR9RpmiW-hXs6LCvv1bg2ZXo9X4eUVNrucjca1H0ixW7p0vWg3EnIEzKxkXyN3sHBjPoS8pBpJxoUozxCx8BoMjygML5YqqRyIc' },
 ];
+
+let products = JSON.parse(localStorage.getItem('douseor_products')) || defaultProducts;
+
+function saveProductsToStorage() {
+  localStorage.setItem('douseor_products', JSON.stringify(products));
+}
 
 const pdData = {
   id: 101, title: 'OBSIDIAN WOOL TRENCH', price: 1250, cat: 'OUTERWEAR / STRUCTURAL', img: 'https://lh3.googleusercontent.com/aida-public/AB6AXuB5pb_qupVAv6BIrc-162PloKENHcUGvDz2i-A-foC3Sa-8Hj_Sbr9_ZS81wX6V2SfZXwUXgHpzzhk4qnNBRNDswy1n7dMu9h2NE1UtewKKwNaCaeP_dmo8pp8qgfmiAm_QIjcGjzHyjLc6t9ACzK9FGh9d-apeiA37iAqwNXVy-v81aiq7adk94k7-NgpulGpjKaeju2fAy2fYnGrHR1sVgCXWTiZ-PchFCoQ0zb_cTpB-BoIStMSCCsw8CzEYI6kIDGUdIB-2H6k',
@@ -29,13 +35,24 @@ const pdData = {
   unavailableSizes: ['L']
 }
 
-function init() {
-  bindNav();
+function refreshAllGrids() {
   renderProductGrid('featured-grid', products.slice(0,4));
   renderProductGrid('shop-grid', products);
   renderProductGrid('related-grid', products.slice(4,8));
+  
+  // Update item count on Shop page
+  const countEl = document.querySelector('.item-count');
+  if (countEl) {
+    countEl.textContent = `${products.length} ITEMS`;
+  }
+}
+
+function init() {
+  bindNav();
+  refreshAllGrids();
   initProductDetail();
   initAccordions();
+  initAdminPage();
   
   // Start on home
   navigateTo('home');
@@ -48,6 +65,7 @@ function navigateTo(pageId) {
   
   if (pageId === 'cart') renderCart();
   if (pageId === 'checkout') renderCheckoutSummary();
+  if (pageId === 'admin') renderAdminInventory();
   
   // Close mobile nav if open
   document.getElementById('mobile-nav').classList.remove('open');
@@ -328,6 +346,164 @@ function showToast(msg) {
   toast.textContent = msg;
   toast.classList.add('show');
   setTimeout(() => toast.classList.remove('show'), 3000);
+}
+
+// ADMIN LOGIC IMPLEMENTATION
+let adminSelectedImageBase64 = null;
+
+function renderAdminInventory() {
+  const listEl = document.getElementById('admin-inventory-list');
+  const countEl = document.getElementById('admin-inventory-count');
+  if (!listEl || !countEl) return;
+  
+  countEl.textContent = products.length;
+  listEl.innerHTML = '';
+  
+  if (products.length === 0) {
+    listEl.innerHTML = '<p style="padding: 24px 0; text-align: center; color: var(--secondary); font-size: 11px; letter-spacing: 0.08em;">INVENTORY IS EMPTY</p>';
+    return;
+  }
+  
+  products.forEach(p => {
+    const item = document.createElement('div');
+    item.className = 'admin-inventory-item';
+    item.innerHTML = `
+      <div class="admin-inv-left">
+        <div class="admin-inv-img">
+          <img src="${p.img}" alt="${p.title}">
+        </div>
+        <div class="admin-inv-details">
+          <span class="admin-inv-title">${p.title}</span>
+          <span class="admin-inv-meta">${p.cat} / ${formatPrice(p.price)}</span>
+        </div>
+      </div>
+      <button class="btn-delete-prod" onclick="deleteProductFromAdmin(${p.id})">DELETE</button>
+    `;
+    listEl.appendChild(item);
+  });
+}
+
+window.deleteProductFromAdmin = (id) => {
+  const index = products.findIndex(p => p.id === id);
+  if (index !== -1) {
+    const title = products[index].title;
+    products.splice(index, 1);
+    saveProductsToStorage();
+    renderAdminInventory();
+    refreshAllGrids();
+    showToast(`DELETED ${title}`);
+  }
+};
+
+function initAdminPage() {
+  const form = document.getElementById('admin-product-form');
+  if (!form) return;
+  
+  const toggleFile = document.getElementById('btn-toggle-file');
+  const toggleUrl = document.getElementById('btn-toggle-url');
+  const fieldFile = document.getElementById('field-file-upload');
+  const fieldUrl = document.getElementById('field-url-upload');
+  const fileInput = document.getElementById('ap-file');
+  const urlInput = document.getElementById('ap-url');
+  
+  const dropzoneLabel = document.getElementById('file-dropzone-label');
+  const previewContainer = document.getElementById('file-preview-container');
+  const previewImg = document.getElementById('ap-file-preview');
+  const removePreviewBtn = document.getElementById('btn-remove-preview');
+  
+  let uploadMode = 'file'; // or 'url'
+  
+  // Toggle buttons
+  toggleFile.onclick = () => {
+    uploadMode = 'file';
+    toggleFile.classList.add('active');
+    toggleUrl.classList.remove('active');
+    fieldFile.style.display = 'block';
+    fieldUrl.style.display = 'none';
+    urlInput.removeAttribute('required');
+  };
+  
+  toggleUrl.onclick = () => {
+    uploadMode = 'url';
+    toggleUrl.classList.add('active');
+    toggleFile.classList.remove('active');
+    fieldUrl.style.display = 'block';
+    fieldFile.style.display = 'none';
+    urlInput.setAttribute('required', 'true');
+  };
+  
+  // File change reader
+  fileInput.onchange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = (event) => {
+        adminSelectedImageBase64 = event.target.result;
+        previewImg.src = adminSelectedImageBase64;
+        dropzoneLabel.style.display = 'none';
+        previewContainer.style.display = 'flex';
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+  
+  // Remove preview
+  removePreviewBtn.onclick = () => {
+    adminSelectedImageBase64 = null;
+    fileInput.value = '';
+    previewContainer.style.display = 'none';
+    dropzoneLabel.style.display = 'flex';
+  };
+  
+  // Form submission
+  form.onsubmit = (e) => {
+    e.preventDefault();
+    
+    const title = document.getElementById('ap-title').value.trim().toUpperCase();
+    const price = parseFloat(document.getElementById('ap-price').value);
+    const cat = document.getElementById('ap-cat').value;
+    
+    let img = null;
+    if (uploadMode === 'file') {
+      img = adminSelectedImageBase64;
+      if (!img) {
+        showToast('PLEASE UPLOAD AN IMAGE FILE');
+        return;
+      }
+    } else {
+      img = urlInput.value.trim();
+      if (!img) {
+        showToast('PLEASE ENTER AN IMAGE URL');
+        return;
+      }
+    }
+    
+    // Generate new unique ID
+    const newId = products.length > 0 ? Math.max(...products.map(p => p.id)) + 1 : 1;
+    
+    const newProduct = {
+      id: newId,
+      title,
+      price,
+      cat,
+      img
+    };
+    
+    products.push(newProduct);
+    saveProductsToStorage();
+    
+    // Reset form and UI
+    form.reset();
+    adminSelectedImageBase64 = null;
+    previewContainer.style.display = 'none';
+    dropzoneLabel.style.display = 'flex';
+    
+    // Refresh admin list and grids
+    renderAdminInventory();
+    refreshAllGrids();
+    
+    showToast(`ADDED ${title} SUCCESSFULLY`);
+  };
 }
 
 // Initial populate to show it working

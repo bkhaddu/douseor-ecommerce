@@ -1058,3 +1058,251 @@ button {
 .toast.show {
   transform: translateX(-50%) translateY(0);
 }
+
+/* ADMIN PAGE */
+.admin-layout {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+@media (min-width: 1024px) {
+  .admin-layout {
+    flex-direction: row;
+  }
+}
+
+.admin-form-col {
+  width: 100%;
+  padding: 80px 16px;
+  background-color: var(--surface-bright);
+}
+
+@media (min-width: 1024px) {
+  .admin-form-col {
+    width: 45%;
+    padding: 80px;
+    border-right: 1px solid var(--outline-variant);
+  }
+}
+
+.admin-inventory-col {
+  width: 100%;
+  padding: 80px 16px;
+  background-color: var(--surface-low);
+}
+
+@media (min-width: 1024px) {
+  .admin-inventory-col {
+    width: 55%;
+    padding: 80px;
+    height: 100vh;
+    overflow-y: auto;
+    position: sticky;
+    top: var(--navbar-height);
+  }
+}
+
+.inventory-title {
+  font-size: 32px;
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  margin-bottom: 48px;
+  border-bottom: 1px solid var(--outline-variant);
+  padding-bottom: 16px;
+}
+
+.admin-form {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.admin-form label {
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  color: var(--secondary);
+  text-transform: uppercase;
+  margin-bottom: 8px;
+  font-weight: bold;
+}
+
+.admin-form input[type="text"],
+.admin-form input[type="number"],
+.admin-form input[type="url"],
+.admin-form select {
+  border: none;
+  border-bottom: 1px solid var(--outline-variant);
+  background: transparent;
+  padding: 12px 0;
+  font-family: var(--font-body);
+  font-size: 13px;
+  letter-spacing: 0.01em;
+  width: 100%;
+  text-transform: uppercase;
+  outline: none;
+}
+
+.admin-form select {
+  cursor: pointer;
+}
+
+.image-source-toggle {
+  display: flex;
+  border: 1px solid var(--outline-variant);
+  background-color: var(--surface-bright);
+}
+
+.btn-toggle {
+  flex: 1;
+  text-align: center;
+  padding: 12px 0;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  background-color: transparent;
+  color: var(--secondary);
+  cursor: pointer;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.btn-toggle:hover {
+  background-color: var(--surface-variant);
+}
+
+.btn-toggle.active {
+  background-color: var(--primary);
+  color: var(--on-primary);
+}
+
+/* File upload dropzone styles */
+.file-dropzone {
+  border: 1px dashed var(--outline-variant);
+  background-color: var(--surface-bright);
+  padding: 40px 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  cursor: pointer;
+  transition: background-color 0.2s, border-color 0.2s;
+}
+
+.file-dropzone:hover {
+  background-color: var(--surface-low);
+  border-color: var(--outline);
+}
+
+.dropzone-text {
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.file-preview {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  border: 1px solid var(--outline-variant);
+  padding: 16px;
+  background-color: var(--surface-bright);
+}
+
+.file-preview img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.btn-remove-preview {
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--error);
+  text-decoration: underline;
+  text-align: left;
+  background: transparent;
+  cursor: pointer;
+}
+
+.btn-remove-preview:hover {
+  color: var(--primary);
+}
+
+/* Inventory List styles */
+.admin-inventory-list {
+  display: flex;
+  flex-direction: column;
+  border-top: 1px solid var(--outline-variant);
+}
+
+.admin-inventory-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 24px 0;
+  border-bottom: 1px solid var(--outline-variant);
+  gap: 24px;
+}
+
+.admin-inv-left {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.admin-inv-img {
+  width: 60px;
+  height: 75px;
+  border: 1px solid var(--outline-variant);
+  flex-shrink: 0;
+  background-color: var(--surface-container-highest);
+  overflow: hidden;
+}
+
+.admin-inv-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: grayscale(100%);
+}
+
+.admin-inv-details {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.admin-inv-title {
+  font-size: 13px;
+  font-weight: bold;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+}
+
+.admin-inv-meta {
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  color: var(--secondary);
+  text-transform: uppercase;
+}
+
+.btn-delete-prod {
+  padding: 10px 20px;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  background-color: transparent;
+  color: var(--secondary);
+  border: 1px solid var(--outline-variant);
+  cursor: pointer;
+  transition: background-color 0.2s, color 0.2s, border-color 0.2s;
+}
+
+.btn-delete-prod:hover {
+  background-color: var(--primary);
+  color: var(--on-primary);
+  border-color: var(--primary);
+}
