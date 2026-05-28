@@ -1547,3 +1547,21 @@ button {
   text-transform: uppercase;
   line-height: 1.4;
 }
+
+.btn-edit-prod {
+  padding: 10px 20px;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  background-color: transparent;
+  color: var(--secondary);
+  border: 1px solid var(--outline-variant);
+  cursor: pointer;
+  transition: background-color 0.2s, color 0.2s, border-color 0.2s;
+}
+
+.btn-edit-prod:hover {
+  background-color: var(--primary);
+  color: var(--on-primary);
+  border-color: var(--primary);
+}

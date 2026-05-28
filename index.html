@@ -289,7 +289,7 @@
   <div class="admin-layout">
     <!-- LEFT PANEL: Add Product Form -->
     <section class="admin-form-col">
-      <h1 class="page-title">ADD PRODUCT</h1>
+      <h1 class="page-title" id="admin-form-title">ADD PRODUCT</h1>
       <form class="admin-form" id="admin-product-form">
         <div class="form-field">
           <label for="ap-title">PRODUCT TITLE</label>
@@ -341,8 +341,17 @@
           <label for="ap-url">IMAGE URL</label>
           <input type="url" id="ap-url" placeholder="HTTPS://IMAGE.URL/..."/>
         </div>
+
+        <!-- Description Field -->
+        <div class="form-field">
+          <label for="ap-desc">PRODUCT DESCRIPTION</label>
+          <textarea id="ap-desc" placeholder="E.G. A STRUCTURED, SEVERELY OVERSIZED SILHOUETTE FEATURING RAW HEMS..." rows="3" required></textarea>
+        </div>
         
-        <button type="submit" class="btn-primary wide" id="btn-add-product">ADD PRODUCT TO INVENTORY</button>
+        <div class="admin-form-actions" style="display:flex; flex-direction:column; gap:16px;">
+          <button type="submit" class="btn-primary wide" id="btn-add-product">ADD PRODUCT TO INVENTORY</button>
+          <button type="button" class="btn-outline wide" id="btn-cancel-edit" style="display:none;">CANCEL EDIT</button>
+        </div>
       </form>
     </section>
     

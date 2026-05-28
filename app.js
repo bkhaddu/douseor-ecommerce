@@ -154,7 +154,7 @@ function renderProductGrid(containerId, items) {
     card.className = 'product-card';
     card.onclick = (e) => {
       e.preventDefault();
-      navigateTo('product');
+      showProductDetail(p);
     };
     
     card.innerHTML = `
@@ -172,68 +172,93 @@ function renderProductGrid(containerId, items) {
   });
 }
 
-function initProductDetail() {
-  document.getElementById('pd-title').textContent = pdData.title;
-  document.getElementById('pd-price').textContent = `${formatPrice(pdData.price)}`;
-  document.getElementById('pd-cat').textContent = pdData.cat;
-  document.getElementById('pd-desc').innerHTML = `<p>${pdData.desc}</p>`;
+function showProductDetail(product, skipNavigate = false) {
+  state.currentProduct = { ...product, size: 'S' }; // default size
   
+  const titleEl = document.getElementById('pd-title');
+  const priceEl = document.getElementById('pd-price');
+  const catEl = document.getElementById('pd-cat');
+  const descEl = document.getElementById('pd-desc');
   const mainImg = document.getElementById('pd-main-img');
-  mainImg.src = pdData.img;
+  
+  if (titleEl) titleEl.textContent = product.title;
+  if (priceEl) priceEl.textContent = formatPrice(product.price);
+  if (catEl) catEl.textContent = product.cat;
+  
+  const customDesc = product.desc || 'CONSTRUCTED FROM BRUTALIST MINIMALIST SHAPES. EXTREME ATTENTION TO SILHOUETTE. DESIGNED TO STAND OUT IN MODERN GEOMETRIC PLAZAS.';
+  if (descEl) descEl.innerHTML = `<p>${customDesc}</p>`;
+  if (mainImg) mainImg.src = product.img;
   
   const thumbContainer = document.getElementById('pd-thumbs');
-  thumbContainer.innerHTML = '';
-  
-  // Add main image to thumbs
-  const allThumbs = [pdData.img, ...pdData.thumbs];
-  
-  allThumbs.forEach((src, idx) => {
-    const div = document.createElement('div');
-    div.className = `pd-thumb ${idx === 0 ? 'active' : ''}`;
-    div.innerHTML = `<img src="${src}" alt="Thumb">`;
-    div.onclick = () => {
-      mainImg.src = src;
-      document.querySelectorAll('.pd-thumb').forEach(t => t.classList.remove('active'));
-      div.classList.add('active');
-    };
-    thumbContainer.appendChild(div);
-  });
+  if (thumbContainer) {
+    thumbContainer.innerHTML = '';
+    const allThumbs = product.thumbs && product.thumbs.length > 0 ? [product.img, ...product.thumbs] : [product.img];
+    
+    allThumbs.forEach((src, idx) => {
+      const div = document.createElement('div');
+      div.className = `pd-thumb ${idx === 0 ? 'active' : ''}`;
+      div.innerHTML = `<img src="${src}" alt="Thumb">`;
+      div.onclick = () => {
+        if (mainImg) mainImg.src = src;
+        document.querySelectorAll('.pd-thumb').forEach(t => t.classList.remove('active'));
+        div.classList.add('active');
+      };
+      thumbContainer.appendChild(div);
+    });
+  }
   
   // Sizes
   const sizeGrid = document.getElementById('size-grid');
-  sizeGrid.innerHTML = '';
-  let selectedSize = 'S'; // default
-  state.currentProduct = { ...pdData, size: selectedSize };
-  
-  pdData.sizes.forEach(s => {
-    const div = document.createElement('div');
-    div.className = `size-opt ${s === selectedSize ? 'selected' : ''} ${pdData.unavailableSizes.includes(s) ? 'disabled' : ''}`;
-    div.textContent = s;
-    if (!pdData.unavailableSizes.includes(s)) {
-      div.onclick = () => {
-        document.querySelectorAll('.size-opt').forEach(el => el.classList.remove('selected'));
-        div.classList.add('selected');
-        selectedSize = s;
-        state.currentProduct.size = selectedSize;
-      };
-    }
-    sizeGrid.appendChild(div);
-  });
-  
-  document.getElementById('btn-add-cart').onclick = () => {
-    const item = {...state.currentProduct, cartId: Date.now(), qty: 1};
+  if (sizeGrid) {
+    sizeGrid.innerHTML = '';
+    const sizes = product.sizes || ['XS', 'S', 'M', 'L'];
+    const unavailableSizes = product.unavailableSizes || ['L'];
+    let selectedSize = 'S';
+    state.currentProduct.size = selectedSize;
     
-    // Check if same item + size exists
-    const existing = state.cart.find(c => c.id === item.id && c.size === item.size);
-    if (existing) {
-      existing.qty += 1;
-    } else {
-      state.cart.push(item);
-    }
-    
-    updateCartBadge();
-    showToast(`ADDED ${item.title} TO CART`);
-  };
+    sizes.forEach(s => {
+      const div = document.createElement('div');
+      div.className = `size-opt ${s === selectedSize ? 'selected' : ''} ${unavailableSizes.includes(s) ? 'disabled' : ''}`;
+      div.textContent = s;
+      if (!unavailableSizes.includes(s)) {
+        div.onclick = () => {
+          document.querySelectorAll('.size-opt').forEach(el => el.classList.remove('selected'));
+          div.classList.add('selected');
+          selectedSize = s;
+          state.currentProduct.size = selectedSize;
+        };
+      }
+      sizeGrid.appendChild(div);
+    });
+  }
+  
+  // Re-bind the click add to cart button
+  const addBtn = document.getElementById('btn-add-cart');
+  if (addBtn) {
+    addBtn.onclick = () => {
+      const item = { ...state.currentProduct, cartId: Date.now(), qty: 1 };
+      
+      const existing = state.cart.find(c => c.id === item.id && c.size === item.size);
+      if (existing) {
+        existing.qty += 1;
+      } else {
+        state.cart.push(item);
+      }
+      
+      updateCartBadge();
+      showToast(`ADDED ${item.title} TO CART`);
+    };
+  }
+  
+  if (!skipNavigate) navigateTo('product');
+}
+
+function initProductDetail() {
+  if (products.length > 0) {
+    showProductDetail(products[0], true);
+  } else {
+    showProductDetail(pdData, true);
+  }
 }
 
 function initAccordions() {
@@ -451,6 +476,7 @@ function showToast(msg) {
 
 // ADMIN LOGIC IMPLEMENTATION
 let adminSelectedImageBase64 = null;
+let editingProductId = null;
 
 function renderAdminInventory() {
   const listEl = document.getElementById('admin-inventory-list');
@@ -478,7 +504,10 @@ function renderAdminInventory() {
           <span class="admin-inv-meta">${p.cat} / ${formatPrice(p.price)}</span>
         </div>
       </div>
-      <button class="btn-delete-prod" onclick="deleteProductFromAdmin(${p.id})">DELETE</button>
+      <div class="admin-inv-actions" style="display:flex; gap:8px;">
+        <button class="btn-edit-prod" onclick="editProductFromAdmin(${p.id})">EDIT</button>
+        <button class="btn-delete-prod" onclick="deleteProductFromAdmin(${p.id})">DELETE</button>
+      </div>
     `;
     listEl.appendChild(item);
   });
@@ -496,6 +525,71 @@ window.deleteProductFromAdmin = (id) => {
   }
 };
 
+window.editProductFromAdmin = (id) => {
+  const p = products.find(prod => prod.id === id);
+  if (!p) return;
+  
+  editingProductId = p.id;
+  
+  // Set headers and form button states
+  document.getElementById('admin-form-title').textContent = 'EDIT PRODUCT';
+  document.getElementById('btn-add-product').textContent = 'SAVE CHANGES';
+  document.getElementById('btn-cancel-edit').style.display = 'block';
+  
+  // Populate standard inputs
+  document.getElementById('ap-title').value = p.title;
+  document.getElementById('ap-price').value = p.price;
+  document.getElementById('ap-cat').value = p.cat;
+  document.getElementById('ap-desc').value = p.desc || '';
+  
+  // Populate image selector
+  const toggleFile = document.getElementById('btn-toggle-file');
+  const toggleUrl = document.getElementById('btn-toggle-url');
+  const fieldFile = document.getElementById('field-file-upload');
+  const fieldUrl = document.getElementById('field-url-upload');
+  const dropzoneLabel = document.getElementById('file-dropzone-label');
+  const previewContainer = document.getElementById('file-preview-container');
+  const previewImg = document.getElementById('ap-file-preview');
+  const urlInput = document.getElementById('ap-url');
+  
+  if (p.img && p.img.startsWith('data:image')) {
+    // Loaded via file upload
+    adminSelectedImageBase64 = p.img;
+    previewImg.src = p.img;
+    dropzoneLabel.style.display = 'none';
+    previewContainer.style.display = 'flex';
+    
+    toggleFile.click();
+  } else {
+    // Loaded via URL
+    urlInput.value = p.img || '';
+    adminSelectedImageBase64 = null;
+    dropzoneLabel.style.display = 'flex';
+    previewContainer.style.display = 'none';
+    
+    toggleUrl.click();
+  }
+  
+  // Scroll to form cleanly
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+};
+
+window.cancelProductEdit = () => {
+  editingProductId = null;
+  
+  // Reset form headers and buttons
+  document.getElementById('admin-form-title').textContent = 'ADD PRODUCT';
+  document.getElementById('btn-add-product').textContent = 'ADD PRODUCT TO INVENTORY';
+  document.getElementById('btn-cancel-edit').style.display = 'none';
+  
+  const form = document.getElementById('admin-product-form');
+  if (form) form.reset();
+  
+  adminSelectedImageBase64 = null;
+  document.getElementById('file-preview-container').style.display = 'none';
+  document.getElementById('file-dropzone-label').style.display = 'flex';
+};
+
 function initAdminPage() {
   const form = document.getElementById('admin-product-form');
   if (!form) return;
@@ -511,6 +605,7 @@ function initAdminPage() {
   const previewContainer = document.getElementById('file-preview-container');
   const previewImg = document.getElementById('ap-file-preview');
   const removePreviewBtn = document.getElementById('btn-remove-preview');
+  const cancelBtn = document.getElementById('btn-cancel-edit');
   
   let uploadMode = 'file'; // or 'url'
   
@@ -556,6 +651,13 @@ function initAdminPage() {
     dropzoneLabel.style.display = 'flex';
   };
   
+  // Cancel button binding
+  if (cancelBtn) {
+    cancelBtn.onclick = () => {
+      cancelProductEdit();
+    };
+  }
+  
   // Form submission
   form.onsubmit = (e) => {
     e.preventDefault();
@@ -563,6 +665,7 @@ function initAdminPage() {
     const title = document.getElementById('ap-title').value.trim().toUpperCase();
     const price = parseFloat(document.getElementById('ap-price').value);
     const cat = document.getElementById('ap-cat').value;
+    const desc = document.getElementById('ap-desc').value.trim();
     
     let img = null;
     if (uploadMode === 'file') {
@@ -579,31 +682,50 @@ function initAdminPage() {
       }
     }
     
-    // Generate new unique ID
-    const newId = products.length > 0 ? Math.max(...products.map(p => p.id)) + 1 : 1;
-    
-    const newProduct = {
-      id: newId,
-      title,
-      price,
-      cat,
-      img
-    };
-    
-    products.push(newProduct);
-    saveProductsToStorage();
-    
-    // Reset form and UI
-    form.reset();
-    adminSelectedImageBase64 = null;
-    previewContainer.style.display = 'none';
-    dropzoneLabel.style.display = 'flex';
+    if (editingProductId !== null) {
+      // Editing existing product
+      const product = products.find(p => p.id === editingProductId);
+      if (product) {
+        product.title = title;
+        product.price = price;
+        product.cat = cat;
+        product.img = img;
+        product.desc = desc;
+        
+        saveProductsToStorage();
+        showToast(`UPDATED ${title} SUCCESSFULLY`);
+      }
+      
+      // Reset editing state
+      cancelProductEdit();
+    } else {
+      // Generate new unique ID
+      const newId = products.length > 0 ? Math.max(...products.map(p => p.id)) + 1 : 1;
+      
+      const newProduct = {
+        id: newId,
+        title,
+        price,
+        cat,
+        img,
+        desc
+      };
+      
+      products.push(newProduct);
+      saveProductsToStorage();
+      
+      // Reset form and UI
+      form.reset();
+      adminSelectedImageBase64 = null;
+      previewContainer.style.display = 'none';
+      dropzoneLabel.style.display = 'flex';
+      
+      showToast(`ADDED ${title} SUCCESSFULLY`);
+    }
     
     // Refresh admin list and grids
     renderAdminInventory();
     refreshAllGrids();
-    
-    showToast(`ADDED ${title} SUCCESSFULLY`);
   };
 }
 
