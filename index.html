@@ -334,18 +334,56 @@
             <img id="ap-file-preview" src="" alt="Preview"/>
             <button type="button" class="btn-remove-preview" id="btn-remove-preview">REMOVE IMAGE</button>
           </div>
+          
+          <!-- Multiple Thumbnails Upload Field -->
+          <div class="form-field additional-file-upload-field" style="margin-top: 16px;">
+            <label class="file-dropzone" style="padding: 12px 16px; min-height: auto;">
+              <span class="material-symbols-outlined" style="font-size: 20px;">add_photo_alternate</span>
+              <span class="dropzone-text" style="font-size: 11px;">UPLOAD ADDITIONAL THUMBNAILS (MULTIPLE)</span>
+              <input type="file" id="ap-additional-files" accept="image/*" multiple style="display:none;"/>
+            </label>
+            <div class="additional-previews-grid" id="additional-previews-container" style="display:flex; flex-wrap:wrap; gap:8px; margin-top:8px;"></div>
+          </div>
         </div>
         
         <!-- URL Input Field -->
         <div class="form-field url-upload-field" id="field-url-upload" style="display:none;">
           <label for="ap-url">IMAGE URL</label>
           <input type="url" id="ap-url" placeholder="HTTPS://IMAGE.URL/..."/>
+          
+          <!-- Comma-separated Thumbnail URLs -->
+          <div class="form-field" style="margin-top: 12px;">
+            <label for="ap-additional-urls">ADDITIONAL THUMBNAIL URLS (COMMA-SEPARATED)</label>
+            <textarea id="ap-additional-urls" placeholder="HTTPS://IMAGE1.URL, HTTPS://IMAGE2.URL" rows="2"></textarea>
+          </div>
         </div>
 
         <!-- Description Field -->
         <div class="form-field">
           <label for="ap-desc">PRODUCT DESCRIPTION</label>
           <textarea id="ap-desc" placeholder="E.G. A STRUCTURED, SEVERELY OVERSIZED SILHOUETTE FEATURING RAW HEMS..." rows="3" required></textarea>
+        </div>
+
+        <!-- Size Configuration Options -->
+        <div class="form-field">
+          <label>OFFERED SIZES</label>
+          <div class="size-checkbox-grid">
+            <label class="size-check-label"><input type="checkbox" class="sz-opt" value="XS" checked/> XS</label>
+            <label class="size-check-label"><input type="checkbox" class="sz-opt" value="S" checked/> S</label>
+            <label class="size-check-label"><input type="checkbox" class="sz-opt" value="M" checked/> M</label>
+            <label class="size-check-label"><input type="checkbox" class="sz-opt" value="L" checked/> L</label>
+            <label class="size-check-label"><input type="checkbox" class="sz-opt" value="XL"/> XL</label>
+          </div>
+        </div>
+        <div class="form-field" style="margin-top: -8px; margin-bottom: 8px;">
+          <label>OUT OF STOCK SIZES (DISABLED)</label>
+          <div class="size-checkbox-grid">
+            <label class="size-check-label"><input type="checkbox" class="sz-oos" value="XS"/> XS</label>
+            <label class="size-check-label"><input type="checkbox" class="sz-oos" value="S"/> S</label>
+            <label class="size-check-label"><input type="checkbox" class="sz-oos" value="M"/> M</label>
+            <label class="size-check-label"><input type="checkbox" class="sz-oos" value="L" checked/> L</label>
+            <label class="size-check-label"><input type="checkbox" class="sz-oos" value="XL"/> XL</label>
+          </div>
         </div>
         
         <div class="admin-form-actions" style="display:flex; flex-direction:column; gap:16px;">

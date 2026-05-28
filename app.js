@@ -538,7 +538,36 @@ function showToast(msg) {
 
 // ADMIN LOGIC IMPLEMENTATION
 let adminSelectedImageBase64 = null;
+let adminSelectedAdditionalImages = []; // Array of base64 strings or URLs for thumbs
 let editingProductId = null;
+
+function renderAdditionalPreviews() {
+  const container = document.getElementById('additional-previews-container');
+  if (!container) return;
+  container.innerHTML = '';
+  
+  adminSelectedAdditionalImages.forEach((src, idx) => {
+    const thumb = document.createElement('div');
+    thumb.className = 'additional-preview-thumb';
+    thumb.innerHTML = `
+      <img src="${src}" alt="Thumb Preview">
+      <button type="button" class="btn-remove-thumb" onclick="removeAdditionalPreview(${idx})">×</button>
+    `;
+    container.appendChild(thumb);
+  });
+}
+
+window.removeAdditionalPreview = (idx) => {
+  adminSelectedAdditionalImages.splice(idx, 1);
+  renderAdditionalPreviews();
+  
+  // Also synchronize with URL field if we are in URL mode (comma-separated list)
+  const additionalUrlsInput = document.getElementById('ap-additional-urls');
+  if (additionalUrlsInput) {
+    const urlsOnly = adminSelectedAdditionalImages.filter(img => !img.startsWith('data:image'));
+    additionalUrlsInput.value = urlsOnly.join(', ');
+  }
+};
 
 function renderAdminInventory() {
   const listEl = document.getElementById('admin-inventory-list');
@@ -606,6 +635,20 @@ window.editProductFromAdmin = (id) => {
   document.getElementById('ap-cat').value = p.cat;
   document.getElementById('ap-desc').value = p.desc || '';
   
+  // Populate size checkboxes
+  const offeredSizes = p.sizes || ['XS', 'S', 'M', 'L'];
+  document.querySelectorAll('.sz-opt').forEach(cb => {
+    cb.checked = offeredSizes.includes(cb.value);
+  });
+  
+  const oosSizes = p.unavailableSizes || ['L'];
+  document.querySelectorAll('.sz-oos').forEach(cb => {
+    cb.checked = oosSizes.includes(cb.value);
+  });
+  
+  // Populate additional images / thumbnails
+  adminSelectedAdditionalImages = p.thumbs ? [...p.thumbs] : [];
+  
   // Populate image selector
   const toggleFile = document.getElementById('btn-toggle-file');
   const toggleUrl = document.getElementById('btn-toggle-url');
@@ -615,6 +658,14 @@ window.editProductFromAdmin = (id) => {
   const previewContainer = document.getElementById('file-preview-container');
   const previewImg = document.getElementById('ap-file-preview');
   const urlInput = document.getElementById('ap-url');
+  const additionalUrlsInput = document.getElementById('ap-additional-urls');
+  
+  // Populate previews and URL textbox
+  renderAdditionalPreviews();
+  if (additionalUrlsInput) {
+    const urlsOnly = adminSelectedAdditionalImages.filter(img => !img.startsWith('data:image'));
+    additionalUrlsInput.value = urlsOnly.join(', ');
+  }
   
   if (p.img && p.img.startsWith('data:image')) {
     // Loaded via file upload
@@ -650,8 +701,23 @@ window.cancelProductEdit = () => {
   if (form) form.reset();
   
   adminSelectedImageBase64 = null;
+  adminSelectedAdditionalImages = [];
+  
+  // Clear preview grids
   document.getElementById('file-preview-container').style.display = 'none';
   document.getElementById('file-dropzone-label').style.display = 'flex';
+  
+  const additionalPreviewsContainer = document.getElementById('additional-previews-container');
+  if (additionalPreviewsContainer) additionalPreviewsContainer.innerHTML = '';
+  
+  // Restore size checkboxes to default values
+  document.querySelectorAll('.sz-opt').forEach(cb => {
+    cb.checked = ['XS', 'S', 'M', 'L'].includes(cb.value);
+  });
+  
+  document.querySelectorAll('.sz-oos').forEach(cb => {
+    cb.checked = cb.value === 'L';
+  });
 };
 
 function initAdminPage() {
@@ -664,6 +730,9 @@ function initAdminPage() {
   const fieldUrl = document.getElementById('field-url-upload');
   const fileInput = document.getElementById('ap-file');
   const urlInput = document.getElementById('ap-url');
+  
+  const additionalFileInput = document.getElementById('ap-additional-files');
+  const additionalUrlsInput = document.getElementById('ap-additional-urls');
   
   const dropzoneLabel = document.getElementById('file-dropzone-label');
   const previewContainer = document.getElementById('file-preview-container');
@@ -707,6 +776,26 @@ function initAdminPage() {
     }
   };
   
+  // Additional files reader (multiple)
+  if (additionalFileInput) {
+    additionalFileInput.onchange = (e) => {
+      const files = Array.from(e.target.files);
+      let loadedCount = 0;
+      files.forEach(file => {
+        const reader = new FileReader();
+        reader.onload = (event) => {
+          adminSelectedAdditionalImages.push(event.target.result);
+          loadedCount++;
+          if (loadedCount === files.length) {
+            renderAdditionalPreviews();
+            additionalFileInput.value = ''; // Reset input to allow selecting same files again
+          }
+        };
+        reader.readAsDataURL(file);
+      });
+    };
+  }
+  
   // Remove preview
   removePreviewBtn.onclick = () => {
     adminSelectedImageBase64 = null;
@@ -735,15 +824,28 @@ function initAdminPage() {
     if (uploadMode === 'file') {
       img = adminSelectedImageBase64;
       if (!img) {
-        showToast('PLEASE UPLOAD AN IMAGE FILE');
+        showToast('PLEASE UPLOAD AN MAIN IMAGE FILE');
         return;
       }
     } else {
       img = urlInput.value.trim();
       if (!img) {
-        showToast('PLEASE ENTER AN IMAGE URL');
+        showToast('PLEASE ENTER A MAIN IMAGE URL');
         return;
       }
+    }
+    
+    // Extract size options and out-of-stock options
+    const sizes = Array.from(document.querySelectorAll('.sz-opt:checked')).map(cb => cb.value);
+    const unavailableSizes = Array.from(document.querySelectorAll('.sz-oos:checked')).map(cb => cb.value);
+    
+    // Construct thumbs array based on current upload mode
+    let thumbs = [];
+    if (uploadMode === 'file') {
+      thumbs = adminSelectedAdditionalImages;
+    } else if (additionalUrlsInput) {
+      const rawUrls = additionalUrlsInput.value.trim();
+      thumbs = rawUrls ? rawUrls.split(',').map(url => url.trim()).filter(url => url) : [];
     }
     
     try {
@@ -751,7 +853,7 @@ function initAdminPage() {
         // Editing existing product in DB
         await apiRequest(`/api/products/${editingProductId}`, {
           method: 'PUT',
-          body: JSON.stringify({ title, price, cat, img, desc })
+          body: JSON.stringify({ title, price, cat, img, desc, thumbs, sizes, unavailableSizes })
         });
         showToast(`UPDATED ${title} SUCCESSFULLY`);
         cancelProductEdit();
@@ -759,15 +861,18 @@ function initAdminPage() {
         // Adding new product to DB
         await apiRequest('/api/products', {
           method: 'POST',
-          body: JSON.stringify({ title, price, cat, img, desc })
+          body: JSON.stringify({ title, price, cat, img, desc, thumbs, sizes, unavailableSizes })
         });
         showToast(`ADDED ${title} SUCCESSFULLY`);
         
         // Reset form and UI
         form.reset();
         adminSelectedImageBase64 = null;
+        adminSelectedAdditionalImages = [];
         previewContainer.style.display = 'none';
         dropzoneLabel.style.display = 'flex';
+        const additionalPreviewsContainer = document.getElementById('additional-previews-container');
+        if (additionalPreviewsContainer) additionalPreviewsContainer.innerHTML = '';
       }
       
       // Reload products and refresh views

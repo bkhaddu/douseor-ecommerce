@@ -267,7 +267,7 @@ app.get('/api/products/:id', async (req, res) => {
 // Create Product (Admin Only)
 app.post('/api/products', auth, adminAuth, async (req, res) => {
   try {
-    const { title, price, cat, img, desc } = req.body;
+    const { title, price, cat, img, desc, thumbs, sizes, unavailableSizes } = req.body;
     
     // Automatically generate unique numeric product ID
     const maxProd = await Product.findOne().sort({ id: -1 });
@@ -279,7 +279,10 @@ app.post('/api/products', auth, adminAuth, async (req, res) => {
       price,
       cat,
       img,
-      desc: desc || ''
+      desc: desc || '',
+      thumbs: thumbs || [],
+      sizes: sizes || ['XS', 'S', 'M', 'L'],
+      unavailableSizes: unavailableSizes || []
     });
     
     await product.save();
@@ -293,7 +296,7 @@ app.post('/api/products', auth, adminAuth, async (req, res) => {
 app.put('/api/products/:id', auth, adminAuth, async (req, res) => {
   try {
     const id = parseInt(req.params.id);
-    const { title, price, cat, img, desc } = req.body;
+    const { title, price, cat, img, desc, thumbs, sizes, unavailableSizes } = req.body;
     
     const product = await Product.findOne({ id });
     if (!product) return res.status(404).json({ error: 'Product not found.' });
@@ -303,6 +306,9 @@ app.put('/api/products/:id', auth, adminAuth, async (req, res) => {
     if (cat !== undefined) product.cat = cat;
     if (img !== undefined && img !== null) product.img = img;
     if (desc !== undefined) product.desc = desc;
+    if (thumbs !== undefined) product.thumbs = thumbs;
+    if (sizes !== undefined) product.sizes = sizes;
+    if (unavailableSizes !== undefined) product.unavailableSizes = unavailableSizes;
     
     await product.save();
     res.json(product);
