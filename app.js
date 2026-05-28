@@ -5,43 +5,54 @@ const state = {
   currentProduct: null
 };
 
-// Auth State Management
-const defaultUsers = [
-  { name: 'ADMINISTRATOR', email: 'admin@douseor.com', password: 'douseor123', role: 'admin' }
-];
+// Auth State & Token Management
+let jwtToken = localStorage.getItem('douseor_jwt_token') || null;
+let currentUser = null;
+let products = [];
 
-let users = JSON.parse(localStorage.getItem('douseor_users')) || defaultUsers;
-let currentUser = JSON.parse(localStorage.getItem('douseor_current_user')) || null;
-
-// Ensure default users list is saved
-if (!localStorage.getItem('douseor_users')) {
-  localStorage.setItem('douseor_users', JSON.stringify(defaultUsers));
+// API Request Helper
+async function apiRequest(endpoint, options = {}) {
+  const headers = {
+    'Content-Type': 'application/json',
+    ...(options.headers || {})
+  };
+  if (jwtToken) {
+    headers['Authorization'] = `Bearer ${jwtToken}`;
+  }
+  const response = await fetch(endpoint, {
+    ...options,
+    headers
+  });
+  const data = await response.json();
+  if (!response.ok) {
+    throw new Error(data.error || 'API Request Failed.');
+  }
+  return data;
 }
 
-function saveUsersToStorage() {
-  localStorage.setItem('douseor_users', JSON.stringify(users));
+// Load dynamic data from DB
+async function loadProductsFromDB() {
+  try {
+    products = await apiRequest('/api/products');
+    refreshAllGrids();
+  } catch (err) {
+    console.error('Failed to load products from database:', err);
+  }
 }
 
-function saveSessionToStorage() {
-  localStorage.setItem('douseor_current_user', JSON.stringify(currentUser));
-}
-
-// Mock product data based on designs
-const defaultProducts = [
-  { id: 1, title: 'STRUCTURED BLAZER', price: 850, cat: 'OUTERWEAR', img: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCnypeDgqgS63bGBweLV16iprewU2vxLzFIw1yZwpfs442JlY612_U77T_uYW81ZCGwlfDKbUg1Oi8vfm3m_mVWePX4Mzz1cA0Ez8h7Si0OvH0fCVeqTndktzcJ5VDhgV0Joz0wx3HD3OkTwVpY3vqi2uAZgZfi3VZun4d1xW1X1ARL4uKXeFh0vmdvSMvyWvwlgbWcXVhC6QSpOobL81UuBjaJ0mUCczaGz1rSIYHdkYiQ7l-SK8no1J-Nb1ZxzBUfwaJNWTDo5wQ' },
-  { id: 2, title: 'ASYMMETRIC SHIRT', price: 450, cat: 'SHIRTING', img: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDxaC3TGYZHvSEBnNJwg1lS7CNson4j5O6N4-hvv39PCvcg51Qcb1V2UhfZxl0AXaGonQWfEHhewVnIEJwDANDNlZjp8Floyc0owSRiW5fG0IL9kvnGAS7O3B5XbvO28IDklf1Hsy4JauBHnBYweCTFcaNR8JQnkVfqW0H2UmZkqNopHYfG3szn1O77ZvfgruQE66SPddhadP3rlNUZdW9mPGFOoxqyNPRlJQdPshaJdKqe82bW7eQovgFqlF7in8HveV9IlB5zV3M' },
-  { id: 3, title: 'WIDE LEG TROUSER', price: 480, cat: 'BOTTOMS', img: 'https://lh3.googleusercontent.com/aida-public/AB6AXuBxJGwo4tQyNSf5-3jORESnseHpA1Xirs9bpyl6bmg0Bbt3Wk5hSxlrbTOoOfeNdGswmKPAnWKodyvSUgdItAPVQsoWVEAo0PJm2GG7VgS3gpbkWGYm0qKXaDwGD46yRzTfL-bckInPy7-VJei-m6jdQ19Hk8FgkQvlYOdkuAa_cOKeTBLC2vviEOmZXdsmmWC3CTTh2EGxas9oxBtSpYupJJDcIOik_50T73sp5HBpEcZls9Ljl4ayswhV6lzROn3Nf5jjXlI_hpw' },
-  { id: 4, title: 'SQUARE BOOT', price: 1100, cat: 'FOOTWEAR', img: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDH3AXFTmx6hZguqW-Pp4b6uWSsw5KTm_c9T1MGLo19tpx2gURumWcfs1s5UWmB1tXl-0P6H08ciN6E7qDDkrMOGBBqIxfurFTzkTsiYwgsGkR77c88V4VoJRmwdJXgnLnZA-Czj2WNAgjDn0FPzlaoLS6qBsbVqcQmZokVMi_cDT6SFY95aztltXN3D962E_y2o-_nqtvxtBJnhPbCy1NsoHZWaWK4TvzU_20PBqc8RoSw5p62ZNFrxRZCDNincYZPPEYWoMAgQOw' },
-  { id: 5, title: 'HEAVY KNIT', price: 680, cat: 'KNITWEAR', img: 'https://lh3.googleusercontent.com/aida-public/AB6AXuC0_6j8AOqutq5g8YRZLzttxcntkkaGk19y6l_OVbtBsUMJEn397lNs9PU-hzLmPDXUtKmeWJZ7PV0DbSwpHMNcQ2rCRox4Rca55ufhIuM302xaYUpg6o1g9g7zxylmUdXSb2XAd5_V9gUG-CV5xQ5ARRJJyFlrkAPXZbnasAAwIB5mrM2wmigOVOAVYcYmH6zfswDw_AxL9L8Iba_qWlnEfFquIShsLfBGjYE3ShLPETUaZILdDzi7Uh0z0Ewvrrh_LoeKia3ahEQ' },
-  { id: 6, title: 'COLUMN DRESS', price: 950, cat: 'DRESSES', img: 'https://lh3.googleusercontent.com/aida-public/AB6AXuAu_VxljTM_74Dsr6WHDBaMrtickc-L9NctaGOujBXr2q9-hP_va7uwXwiAT1VahEgvskLWymy2Zj0Q1meUEQD5FSEunf2Itm4wJJzBCsHU303E1pt0rZRQkHJIHPfphTyESPjxh8nUu61n_m7yXujxUH6h6zZwN8Aii6hUy1JZ4Ndmos1-R3KTu3U7vCM2A18KVF85Qj_crOAqiP_Tg0EnSQPf2TapI33tejsc3tBVPK11kS71WU1H1ZhTwhXaTF_kaEYyE2CaPLw' },
-  { id: 7, title: 'BOX BAG', price: 1200, cat: 'ACCESSORIES', img: 'https://lh3.googleusercontent.com/aida-public/AB6AXuBDUCKBE3CvlK_TpfGW8AS9DlN2xcCpXIOpHU2SJ-yZLjAJBqtLizGrb6ipcmnT19ih6EB8sCoPk_ghU3VViz311ovKI2Q85qfRR1EBBdXIOpQWI6UaZqeQFbD2f0GQhS4tSkKUpA4DXxiBcXSmwPWbEKTm9IhI-EMkoxNPUR2ZC231QSUKZ29g5DySuSPJt_0T27tIidyQAlx3zfnVgD-b22Z6EHO2ZWIjvorhoWNtWnAap5F5CdIcNMK4dXQ15z07iCDm7dfV6Ko' },
-  { id: 8, title: 'OVERSIZED BLAZER', price: 1050, cat: 'TAILORING', img: 'https://lh3.googleusercontent.com/aida-public/AB6AXuAyEvpJaKB5Tpx3Wr4-oQeOhu60Ck-j_rqBwm4wCj9Z_TnNzpog2IloJWkLvlR7z9koIJNJIa2ehOpzc7AMieoFLr802QGjIU3BKGkFCNPdyivr_F1J3HFxNWTuuhyuF2G-mnGG2-ZcN8uW3nLUT6ZyMoDuXYXIetPS3F5qz1HkXR9RpmiW-hXs6LCvv1bg2ZXo9X4eUVNrucjca1H0ixW7p0vWg3EnIEzKxkXyN3sHBjPoS8pBpJxoUozxCx8BoMjygML5YqqRyIc' },
-];
-
-let products = JSON.parse(localStorage.getItem('douseor_products')) || defaultProducts;
-
-function saveProductsToStorage() {
-  localStorage.setItem('douseor_products', JSON.stringify(products));
+async function loadCurrentUserSession() {
+  if (!jwtToken) {
+    currentUser = null;
+    updateAuthUI();
+    return;
+  }
+  try {
+    currentUser = await apiRequest('/api/auth/me');
+    updateAuthUI();
+  } catch (err) {
+    console.error('Session expired or invalid:', err);
+    logoutUser();
+  }
 }
 
 const pdData = {
@@ -68,14 +79,15 @@ function refreshAllGrids() {
   }
 }
 
-function init() {
+async function init() {
   bindNav();
-  refreshAllGrids();
-  initProductDetail();
   initAccordions();
   initAdminPage();
   initAuthPage();
-  updateAuthUI();
+  
+  // Load data asynchronously from MongoDB backend
+  await loadCurrentUserSession();
+  await loadProductsFromDB();
   
   // Start on home
   navigateTo('home');
@@ -399,6 +411,28 @@ function renderCheckoutSummary() {
   
   container.innerHTML = html;
   
+  // Pre-populate contact & shipping address fields if user is logged in
+  if (currentUser) {
+    const emailField = document.getElementById('cf-email');
+    if (emailField && !emailField.value) {
+      emailField.value = currentUser.email;
+    }
+    
+    const addressField = document.getElementById('cf-address');
+    if (addressField && !addressField.value) {
+      addressField.value = currentUser.address || '';
+    }
+    
+    const firstNameField = document.getElementById('cf-firstname');
+    const lastNameField = document.getElementById('cf-lastname');
+    if (currentUser.name && firstNameField && !firstNameField.value) {
+      const nameParts = currentUser.name.split(' ');
+      firstNameField.value = nameParts[0] || '';
+      if (lastNameField && !lastNameField.value) {
+        lastNameField.value = nameParts.slice(1).join(' ') || '';
+      }
+    }
+  }
 }
 
 // Contact form handling
@@ -426,10 +460,15 @@ document.getElementById('btn-pay')?.addEventListener('click', (e) => {
     return;
   }
   
-  // Prefill details
+  // Validate shipping inputs
   const contactForm = document.getElementById('checkout-form');
-  const emailInput = contactForm?.querySelector('input[type="email"]');
+  if (contactForm && !contactForm.reportValidity()) {
+    return;
+  }
+  
+  const emailInput = document.getElementById('cf-email');
   const email = emailInput ? emailInput.value.trim() : (currentUser ? currentUser.email : '');
+  const addressVal = document.getElementById('cf-address')?.value.trim() || '';
   
   const options = {
     "key": keyId,
@@ -438,8 +477,22 @@ document.getElementById('btn-pay')?.addEventListener('click', (e) => {
     "name": "DOUSEOR",
     "description": `Purchase Order: DSR-${Date.now()}`,
     "image": "https://fonts.gstatic.com/s/i/materialsymbolsoutlined/shopping_bag/v16/24px.svg",
-    "handler": function (response) {
+    "handler": async function (response) {
       showToast(`PAYMENT SUCCESSFUL. ID: ${response.razorpay_payment_id}`);
+      
+      // If user is logged in, sync/save address back to MongoDB if altered or new
+      if (currentUser && addressVal && addressVal !== currentUser.address) {
+        try {
+          currentUser = await apiRequest('/api/auth/profile', {
+            method: 'PUT',
+            body: JSON.stringify({ address: addressVal })
+          });
+          console.log('Address successfully saved to MongoDB:', currentUser.address);
+        } catch (err) {
+          console.error('Failed to sync address to database:', err);
+        }
+      }
+      
       state.cart = [];
       updateCartBadge();
       navigateTo('home');
@@ -513,15 +566,17 @@ function renderAdminInventory() {
   });
 }
 
-window.deleteProductFromAdmin = (id) => {
-  const index = products.findIndex(p => p.id === id);
-  if (index !== -1) {
-    const title = products[index].title;
-    products.splice(index, 1);
-    saveProductsToStorage();
-    renderAdminInventory();
-    refreshAllGrids();
-    showToast(`DELETED ${title}`);
+window.deleteProductFromAdmin = async (id) => {
+  const p = products.find(prod => prod.id === id);
+  if (!p) return;
+  if (!confirm(`ARE YOU SURE YOU WANT TO DELETE ${p.title}?`)) return;
+  
+  try {
+    await apiRequest(`/api/products/${id}`, { method: 'DELETE' });
+    showToast(`DELETED ${p.title}`);
+    await loadProductsFromDB();
+  } catch (err) {
+    showToast(`DELETE FAILED: ${err.message}`);
   }
 };
 
@@ -659,7 +714,7 @@ function initAdminPage() {
   }
   
   // Form submission
-  form.onsubmit = (e) => {
+  form.onsubmit = async (e) => {
     e.preventDefault();
     
     const title = document.getElementById('ap-title').value.trim().toUpperCase();
@@ -682,50 +737,35 @@ function initAdminPage() {
       }
     }
     
-    if (editingProductId !== null) {
-      // Editing existing product
-      const product = products.find(p => p.id === editingProductId);
-      if (product) {
-        product.title = title;
-        product.price = price;
-        product.cat = cat;
-        product.img = img;
-        product.desc = desc;
-        
-        saveProductsToStorage();
+    try {
+      if (editingProductId !== null) {
+        // Editing existing product in DB
+        await apiRequest(`/api/products/${editingProductId}`, {
+          method: 'PUT',
+          body: JSON.stringify({ title, price, cat, img, desc })
+        });
         showToast(`UPDATED ${title} SUCCESSFULLY`);
+        cancelProductEdit();
+      } else {
+        // Adding new product to DB
+        await apiRequest('/api/products', {
+          method: 'POST',
+          body: JSON.stringify({ title, price, cat, img, desc })
+        });
+        showToast(`ADDED ${title} SUCCESSFULLY`);
+        
+        // Reset form and UI
+        form.reset();
+        adminSelectedImageBase64 = null;
+        previewContainer.style.display = 'none';
+        dropzoneLabel.style.display = 'flex';
       }
       
-      // Reset editing state
-      cancelProductEdit();
-    } else {
-      // Generate new unique ID
-      const newId = products.length > 0 ? Math.max(...products.map(p => p.id)) + 1 : 1;
-      
-      const newProduct = {
-        id: newId,
-        title,
-        price,
-        cat,
-        img,
-        desc
-      };
-      
-      products.push(newProduct);
-      saveProductsToStorage();
-      
-      // Reset form and UI
-      form.reset();
-      adminSelectedImageBase64 = null;
-      previewContainer.style.display = 'none';
-      dropzoneLabel.style.display = 'flex';
-      
-      showToast(`ADDED ${title} SUCCESSFULLY`);
+      // Reload products and refresh views
+      await loadProductsFromDB();
+    } catch (err) {
+      showToast(`FAILED: ${err.message}`);
     }
-    
-    // Refresh admin list and grids
-    renderAdminInventory();
-    refreshAllGrids();
   };
 }
 
@@ -752,44 +792,45 @@ function initAuthPage() {
 
   // Handle Login submission
   if (loginForm) {
-    loginForm.onsubmit = (e) => {
+    loginForm.onsubmit = async (e) => {
       e.preventDefault();
       const email = document.getElementById('li-email').value.trim().toLowerCase();
       const password = document.getElementById('li-password').value;
 
-      const user = users.find(u => u.email === email && u.password === password);
-      if (user) {
-        currentUser = user;
-        saveSessionToStorage();
-        updateAuthUI();
-        showToast(`WELCOME BACK, ${user.name}`);
+      try {
+        const data = await apiRequest('/api/auth/login', {
+          method: 'POST',
+          body: JSON.stringify({ email, password })
+        });
         
-        if (user.role === 'admin') {
+        jwtToken = data.token;
+        localStorage.setItem('douseor_jwt_token', jwtToken);
+        currentUser = data.user;
+        
+        updateAuthUI();
+        showToast(`WELCOME BACK, ${currentUser.name}`);
+        
+        if (currentUser.role === 'admin') {
           navigateTo('admin');
         } else {
           navigateTo('home');
         }
         loginForm.reset();
-      } else {
-        showToast('INVALID EMAIL OR PASSWORD.');
+      } catch (err) {
+        showToast(err.message || 'INVALID EMAIL OR PASSWORD.');
       }
     };
   }
 
   // Handle Register submission
   if (registerForm) {
-    registerForm.onsubmit = (e) => {
+    registerForm.onsubmit = async (e) => {
       e.preventDefault();
       const name = document.getElementById('rg-name').value.trim().toUpperCase();
       const email = document.getElementById('rg-email').value.trim().toLowerCase();
       const password = document.getElementById('rg-password').value;
+      const address = document.getElementById('rg-address')?.value.trim() || '';
       const isAdmin = isAdminCheckbox ? isAdminCheckbox.checked : false;
-
-      // Check if user already exists
-      if (users.some(u => u.email === email)) {
-        showToast('EMAIL ADDRESS IS ALREADY REGISTERED.');
-        return;
-      }
 
       let role = 'user';
       if (isAdmin) {
@@ -801,38 +842,44 @@ function initAuthPage() {
         role = 'admin';
       }
 
-      const newUser = { name, email, password, role };
-      users.push(newUser);
-      saveUsersToStorage();
+      try {
+        const data = await apiRequest('/api/auth/register', {
+          method: 'POST',
+          body: JSON.stringify({ name, email, password, role, address })
+        });
+        
+        jwtToken = data.token;
+        localStorage.setItem('douseor_jwt_token', jwtToken);
+        currentUser = data.user;
+        
+        updateAuthUI();
+        showToast(`ACCOUNT CREATED. WELCOME ${name}`);
+        
+        registerForm.reset();
+        if (isAdminCheckbox) isAdminCheckbox.checked = false;
+        if (adminCodeField) adminCodeField.style.display = 'none';
+        if (adminCodeInput) adminCodeInput.removeAttribute('required');
 
-      currentUser = newUser;
-      saveSessionToStorage();
-      updateAuthUI();
-
-      showToast(`ACCOUNT CREATED. WELCOME ${name}`);
-      registerForm.reset();
-      if (isAdminCheckbox) isAdminCheckbox.checked = false;
-      if (adminCodeField) adminCodeField.style.display = 'none';
-      if (adminCodeInput) adminCodeInput.removeAttribute('required');
-
-      if (role === 'admin') {
-        navigateTo('admin');
-      } else {
-        navigateTo('home');
+        if (role === 'admin') {
+          navigateTo('admin');
+        } else {
+          navigateTo('home');
+        }
+      } catch (err) {
+        showToast(err.message || 'REGISTRATION FAILED.');
       }
     };
   }
 }
 
 function logoutUser() {
-  if (currentUser) {
-    const name = currentUser.name;
-    currentUser = null;
-    saveSessionToStorage();
-    updateAuthUI();
-    showToast(`LOGGED OUT ${name}`);
-    navigateTo('home');
-  }
+  const name = currentUser ? currentUser.name : '';
+  currentUser = null;
+  jwtToken = null;
+  localStorage.removeItem('douseor_jwt_token');
+  updateAuthUI();
+  if (name) showToast(`LOGGED OUT ${name}`);
+  navigateTo('home');
 }
 
 function updateAuthUI() {

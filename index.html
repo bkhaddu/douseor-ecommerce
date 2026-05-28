@@ -244,19 +244,19 @@
       <form class="checkout-form" id="checkout-form">
         <div class="form-section">
           <h2>CONTACT</h2>
-          <div class="form-field"><input type="email" placeholder="EMAIL OR MOBILE PHONE NUMBER"/></div>
+          <div class="form-field"><input type="email" id="cf-email" placeholder="EMAIL OR MOBILE PHONE NUMBER" required/></div>
         </div>
         <div class="form-section">
           <h2>SHIPPING ADDRESS</h2>
           <div class="form-row two-col">
-            <div class="form-field"><input type="text" placeholder="FIRST NAME"/></div>
-            <div class="form-field"><input type="text" placeholder="LAST NAME"/></div>
+            <div class="form-field"><input type="text" id="cf-firstname" placeholder="FIRST NAME" required/></div>
+            <div class="form-field"><input type="text" id="cf-lastname" placeholder="LAST NAME" required/></div>
           </div>
-          <div class="form-field"><input type="text" placeholder="ADDRESS"/></div>
+          <div class="form-field"><input type="text" id="cf-address" placeholder="ADDRESS" required/></div>
           <div class="form-row three-col">
-            <div class="form-field"><input type="text" placeholder="CITY"/></div>
-            <div class="form-field"><input type="text" placeholder="STATE"/></div>
-            <div class="form-field"><input type="text" placeholder="ZIP CODE"/></div>
+            <div class="form-field"><input type="text" id="cf-city" placeholder="CITY" required/></div>
+            <div class="form-field"><input type="text" id="cf-state" placeholder="STATE" required/></div>
+            <div class="form-field"><input type="text" id="cf-zip" placeholder="ZIP CODE" required/></div>
           </div>
         </div>
         <div class="form-section">
@@ -411,6 +411,11 @@
         <div class="form-field">
           <label for="rg-password">PASSWORD</label>
           <input type="password" id="rg-password" placeholder="••••••••••••" required minlength="4"/>
+        </div>
+        
+        <div class="form-field">
+          <label for="rg-address">SHIPPING ADDRESS (OPTIONAL)</label>
+          <input type="text" id="rg-address" placeholder="E.G. 123 SILICON LANE, SUITE 4B, SF, CA"/>
         </div>
         
         <div class="form-field checkbox-field">
