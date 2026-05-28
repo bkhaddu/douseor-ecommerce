@@ -1,7 +1,7 @@
 {
   "name": "douseor-ecommerce",
   "version": "1.0.0",
-  "description": "Premium brutalist fashion editorial e-commerce platform backed by MongoDB.",
+  "description": "Premium brutalist fashion editorial e-commerce platform backed by MongoDB and Azure Web Apps.",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
