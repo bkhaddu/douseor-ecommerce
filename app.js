@@ -19,7 +19,16 @@ async function apiRequest(endpoint, options = {}) {
   if (jwtToken) {
     headers['Authorization'] = `Bearer ${jwtToken}`;
   }
-  const response = await fetch(endpoint, {
+  
+  // Resolve base URL dynamically to ensure we always hit our backend server
+  let baseUrl = '';
+  if (window.location.origin.startsWith('file://') || (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1')) {
+    if (!window.location.origin.includes(':8080')) {
+      baseUrl = 'http://localhost:8080';
+    }
+  }
+  
+  const response = await fetch(baseUrl + endpoint, {
     ...options,
     headers
   });
